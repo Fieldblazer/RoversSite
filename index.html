@@ -128,14 +128,18 @@
         </div>
     </div>
 
-    <!-- Main Nav -->
+        <!-- Main Nav -->
 <nav class="bg-trfc-dark border-b border-gray-800 sticky top-0 z-50 shadow-lg">
   <div class="container mx-auto px-4">
     <div class="flex justify-between items-center py-4">
 
       <!-- Logo + Title Block -->
       <div class="flex items-center space-x-4">
-        <img src="https://i.imgur.com/JpT6gSi.png" alt="ROVERS Logo" class="h-[5rem] w-[5rem] shrink-0">
+        <img
+          src="https://i.imgur.com/JpT6gSi.png"
+          alt="ROVERS Logo"
+          class="h-[5rem] w-[5rem] shrink-0"
+        />
         <div class="leading-tight whitespace-nowrap">
           <h1 class="text-xl font-bold font-title text-white">
             TEXARKANA ROVERS
@@ -148,49 +152,51 @@
 
       <!-- Navigation Links -->
       <div class="hidden lg:flex space-x-8 items-center">
-        <div class="dropdown relative">
-          <button class="nav-link text-white hover:text-gold flex items-center">
-            About <i class="fas fa-chevron-down ml-1 text-xs"></i>
-          </button>
-          <!-- Add dropdown menu here -->
-        </div>
+        <!-- ABOUT (direct link to about.html, no dropdown) -->
+        <a href="/about.html" class="nav-link text-white hover:text-gold">
+          About
+        </a>
 
-        <!-- Hamburger Icon for Mobile -->
-        <button class="lg:hidden text-white focus:outline-none">
-          <i class="fas fa-bars text-2xl"></i>
-        </button>
-
+        <!-- CLUB dropdown (if you intend to add a submenu under Club) -->
         <div class="dropdown relative">
           <button class="nav-link text-white hover:text-gold flex items-center">
             Club <i class="fas fa-chevron-down ml-1 text-xs"></i>
           </button>
-          <!-- Add dropdown menu here -->
+          <!-- Add dropdown menu here, if needed -->
         </div>
 
+        <!-- PROGRAMS dropdown -->
         <div class="dropdown relative">
           <button class="nav-link text-white hover:text-gold flex items-center">
             Programs <i class="fas fa-chevron-down ml-1 text-xs"></i>
           </button>
-          <!-- Add dropdown menu here -->
+          <!-- Add dropdown menu here, if needed -->
         </div>
 
-        <a href="#" class="nav-link text-white hover:text-gold">Tryouts</a>
-        <a href="#" class="nav-link text-white hover:text-gold">Tournaments</a>
-        <a href="#" class="nav-link text-white hover:text-gold">News</a>
-        <a href="#" class="nav-link text-white hover:text-gold">Contact</a>
+        <!-- Other static links -->
+        <a href="/enrollment.html" class="nav-link text-white hover:text-gold">Enrollment</a>
+        <a href="/tournaments.html" class="nav-link text-white hover:text-gold">Tournaments</a>
+        <a href="/news.html" class="nav-link text-white hover:text-gold">News</a>
+        <a href="/contact.html" class="nav-link text-white hover:text-gold">Contact</a>
 
         <!-- Register Button -->
-        <a href="#" class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-6 py-2 rounded-md transition-all">APPLY</a>
+        <a
+          href="/apply.html"
+          class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-6 py-2 rounded-md transition-all"
+        >
+          APPLY
+        </a>
       </div>
 
       <!-- Hamburger Icon for Mobile -->
-        <button class="lg:hidden text-white focus:outline-none">
-          <i class="fas fa-bars text-2xl"></i>
-        </button>
+      <button class="lg:hidden text-white focus:outline-none">
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
 
     </div>
   </div>
 </nav>
+
 
 
 

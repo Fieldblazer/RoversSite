@@ -245,34 +245,55 @@
 
     <!-- Programs Section -->
 <section class="py-16 bg-trfc-dark">
-    <div class="container mx-auto px-4">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl font-bold font-title mb-4">OUR <span class="text-gold">PROGRAMS</span></h2>
-            <div class="w-20 h-1 bg-gold mx-auto mb-4"></div>
-            <p class="text-gray-300 max-w-3xl mx-auto">
-                Rovers FC offers a complete player pathway from recreational to elite competitive soccer, with age-appropriate training and competition.
-            </p>
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl font-bold font-title mb-4">
+        OUR <span class="text-gold">PROGRAMS</span>
+      </h2>
+      <div class="w-20 h-1 bg-gold mx-auto mb-4"></div>
+      <p class="text-gray-300 max-w-3xl mx-auto">
+        Rovers FC offers a complete player pathway from recreational to elite competitive soccer,
+        with age-appropriate training and competition.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- CAMPS & CLINICS (with fade-overlay) -->
+      <div class="relative team-card p-6 rounded-lg shadow-lg hover-scale overflow-hidden">
+        <!-- Overlay: full-card, semi-transparent black -->
+        <div
+          class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center z-10"
+        >
+          <span class="text-gold text-2xl font-bold">Coming Soon</span>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-8">
-            <!-- CAMPS & CLINICS (Moved to first) -->
-            <div class="team-card p-6 rounded-lg shadow-lg hover-scale">
-                <div class="flex items-center mb-4">
-                    <div class="bg-gold text-trfc-dark p-3 rounded-full mr-4">
-                        <i class="fas fa-campground text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold">CAMPS & CLINICS</h3>
-                </div>
-                <p class="text-gray-300 mb-4">
-                    Specialized training opportunities throughout the year for players of all skill levels.
-                </p>
-                <ul class="text-gray-300 space-y-2 mb-4">
-                    <li class="flex items-center"><i class="fas fa-check text-gold mr-2"></i> Summer Camps</li>
-                    <li class="flex items-center"><i class="fas fa-check text-gold mr-2"></i> Goalkeeper Training</li>
-                    <li class="flex items-center"><i class="fas fa-check text-gold mr-2"></i> College Prep Clinics</li>
-                </ul>
-                <a href="#" class="text-gold font-bold hover:underline">Learn More →</a>
+        <!-- ORIGINAL CONTENT (pushed underneath the overlay) -->
+        <div>
+          <div class="flex items-center mb-4">
+            <div class="bg-gold text-trfc-dark p-3 rounded-full mr-4">
+              <i class="fas fa-campground text-xl"></i>
             </div>
+            <h3 class="text-xl font-bold">CAMPS &amp; CLINICS</h3>
+          </div>
+          <p class="text-gray-300 mb-4">
+            Specialized training opportunities throughout the year for players of all skill levels.
+          </p>
+          <ul class="text-gray-300 space-y-2 mb-4">
+            <li class="flex items-center">
+              <i class="fas fa-check text-gold mr-2"></i> Summer Camps
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-check text-gold mr-2"></i> Goalkeeper Training
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-check text-gold mr-2"></i> College Prep Clinics
+            </li>
+          </ul>
+          <a href="#" class="text-gold font-bold hover:underline">Learn More →</a>
+        </div>
+      </div>
+
+
 
             <!-- ACADEMY (Stays in the middle) -->
             <div class="team-card p-6 rounded-lg shadow-lg hover-scale">
@@ -431,35 +452,36 @@
         </div>
     </section>
 
-    <!-- Sponsors -->
-    <section class="py-12 bg-gray-900">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h3 class="text-xl font-bold text-gray-300 mb-4">OUR <span class="text-gold">PARTNERS</span></h3>
-            </div>
-            
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
-                <div class="flex items-center justify-center">
-                    <img src="https://i.imgur.com/QpObIfy.png" alt="Sponsor" class="h-16 object-contain grayscale hover:grayscale-0 transition">
-                </div>
-                <div class="flex items-center justify-center">
-                    <img src="https://via.placeholder.com/150x80" alt="Sponsor" class="h-16 object-contain grayscale hover:grayscale-0 transition">
-                </div>
-                <div class="flex items-center justify-center">
-                    <img src="https://via.placeholder.com/150x80" alt="Sponsor" class="h-16 object-contain grayscale hover:grayscale-0 transition">
-                </div>
-                <div class="flex items-center justify-center">
-                    <img src="https://via.placeholder.com/150x80" alt="Sponsor" class="h-16 object-contain grayscale hover:grayscale-0 transition">
-                </div>
-                <div class="flex items-center justify-center">
-                    <img src="https://via.placeholder.com/150x80" alt="Sponsor" class="h-16 object-contain grayscale hover:grayscale-0 transition">
-                </div>
-                <div class="flex items-center justify-center">
-                    <img src="https://i.imgur.com/Dv7Aj6B.png" alt="Sponsor" class="h-16 object-contain grayscale hover:grayscale-0 transition">
-                </div>
-            </div>
-        </div>
-    </section>
+   <!-- Sponsors -->
+<section class="py-12 bg-gray-900">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h3 class="text-xl font-bold text-gray-300 mb-4">
+        OUR <span class="text-gold">PARTNERS</span>
+      </h3>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-8">
+      <div class="flex items-center justify-center">
+        <img
+          src="https://i.imgur.com/QpObIfy.png"
+          alt="Sponsor"
+          class="h-12 object-contain transition"
+        >
+      </div>
+      <div class="flex items-center justify-center">
+        <img
+          src="https://i.imgur.com/Dv7Aj6B.png"
+          alt="Sponsor"
+          class="h-12 object-contain transition"
+        >
+      </div>
+      <!-- Add more sponsor logos here, each with class="h-12 object-contain transition" -->
+    </div>
+  </div>
+</section>
+
+
 
     <!-- Footer -->
     <footer class="bg-black text-white pt-16 pb-8">

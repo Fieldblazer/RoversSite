@@ -1,0 +1,748 @@
+<!DOCTYPE html About Me Page Code Orig DeepSite>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Texarkana Rovers FC</title>
+
+  <!-- TailwindCSS & FontAwesome -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+
+  <!-- Tailwind Config Override -->
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            navy: "#001f3f",
+            skyblue: "#87CEEB",
+            gold: "#FFD700",
+            black: "#111827",
+            trfc: {
+              dark: "#0A0F1D",
+              blue: "#1E90FF",
+              gold: "#FFD700",
+            },
+          },
+          fontFamily: {
+            sans: ["Montserrat", "sans-serif"],
+            title: ["Oswald", "sans-serif"],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    @import url(
+      "https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap"
+    );
+
+    body {
+      font-family: "Montserrat", sans-serif;
+      background-color: #0a0f1d; /* trfc-dark */
+      color: white;
+    }
+
+    .hero-gradient {
+      background: linear-gradient(
+        135deg,
+        rgba(10, 15, 29, 0.95) 0%,
+        rgba(30, 144, 255, 0.85) 100%
+      );
+    }
+
+    .fade-in {
+      animation: fadeIn 1s ease-in-out forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .player-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+ /* Base for every timeline item */
+.timeline-item {
+  position: relative;
+  padding-left: 3rem;    /* space for the dot and line */
+  padding-bottom: 2.5rem;/* spacing between items */
+}
+
+/* The dot itself */
+.timeline-item .dot {
+  position: absolute;
+  left: 0;
+  top: 0.25rem;          /* slightly down from the top */
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 3px solid #1E90FF; /* trfc-blue border (visible for both states) */
+  background-color: transparent; /* if pending, stay empty */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Completed steps get a solid fill */
+.timeline-item.completed .dot {
+  background-color: #1E90FF; /* trfc-blue */
+}
+
+/* The vertical connecting line for completed items */
+.timeline-item.completed::after {
+  content: '';
+  position: absolute;
+  left: 1rem;          /* center of the dot (2rem / 2) */
+  top: 2.5rem;         /* start just below the dot */
+  width: 3px;
+  /* For steps 1 and 2, go all the way down to the next dot */
+  height: calc(100% - 2.5rem);
+  background-color: #1E90FF;
+}
+
+/* But for the third (last completed), only draw halfway down */
+.timeline-item.completed:nth-child(3)::after {
+  height: 50%;
+}
+
+/* Pending steps have no connector below them */
+.timeline-item.pending::after {
+  content: none;
+}
+
+/* Text colors */
+.timeline-item h3 {
+  color: #FFFFFF;  /* white */
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-item p {
+  color: #A1A1AA;  /* gray-400 for readability on dark */
+}
+  </style>
+</head>
+
+<body class="bg-trfc-dark text-white">
+
+  <!-- ================== HEADER / MAIN NAV (copied from home page) ================== -->
+  <nav class="bg-trfc-dark border-b border-gray-800 sticky top-0 z-50 shadow-lg">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center py-4">
+        <!-- Logo + Title -->
+        <div class="flex items-center space-x-4">
+          <img
+            src="https://i.imgur.com/JpT6gSi.png"
+            alt="ROVERS Logo"
+            class="h-[5rem] w-[5rem] shrink-0"
+          />
+          <div class="leading-tight whitespace-nowrap">
+            <h1 class="text-xl font-bold font-title text-white">
+              TEXARKANA ROVERS
+            </h1>
+            <p class="text-xl font-bold font-title text-gold">
+              FOOTBALL CLUB
+            </p>
+          </div>
+        </div>
+
+        <!-- Desktop Links -->
+        <div class="hidden lg:flex space-x-8 items-center">
+          <!-- About -->
+          <div class="dropdown relative">
+            <a
+              href="/about.html"
+              class="nav-link text-white hover:text-gold flex items-center"
+            >
+              About
+              <i class="fas fa-chevron-down ml-1 text-xs"></i>
+            </a>
+            <!-- Optional dropdown menu here -->
+          </div>
+
+          <!-- Club -->
+          <div class="dropdown relative">
+            <a
+              href="/club.html"
+              class="nav-link text-white hover:text-gold flex items-center"
+            >
+              Club
+              <i class="fas fa-chevron-down ml-1 text-xs"></i>
+            </a>
+          </div>
+
+          <!-- Programs -->
+          <div class="dropdown relative">
+            <a
+              href="/programs.html"
+              class="nav-link text-white hover:text-gold flex items-center"
+            >
+              Programs
+              <i class="fas fa-chevron-down ml-1 text-xs"></i>
+            </a>
+          </div>
+
+          <!-- Enrollment -->
+          <a href="/enrollment.html" class="nav-link text-white hover:text-gold"
+            >Enrollment</a
+          >
+
+          <!-- Tournaments -->
+          <a href="/tournaments.html" class="nav-link text-white hover:text-gold"
+            >Tournaments</a
+          >
+
+          <!-- News -->
+          <a href="/news.html" class="nav-link text-white hover:text-gold">News</a>
+
+          <!-- Contact -->
+          <a href="/contact.html" class="nav-link text-white hover:text-gold"
+            >Contact</a
+          >
+
+          <!-- Apply Button -->
+          <a
+            href="/apply.html"
+            class="bg-gold hover:bg-yellow-500 text-black font-bold px-6 py-2 rounded-md transition-all"
+          >
+            APPLY
+          </a>
+        </div>
+
+        <!-- Hamburger (mobile) -->
+        <button class="lg:hidden text-white focus:outline-none">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+  <!-- ================== END HEADER / MAIN NAV ================== -->
+
+  <!-- ================== HERO SECTION ================== -->
+  <section class="relative h-96 overflow-hidden">
+  <!-- 1) Background image + dark overlay -->
+  <div class="absolute inset-0">
+    <!-- 
+      • bg-cover: scale image to cover entire container 
+      • bg-center: center horizontally
+      • background-position: center 50% (moves down further if you need)
+      • filter brightness(60%): dim the photo so white text remains readable 
+    -->
+    <div
+      class="absolute inset-0 bg-cover"
+      style="
+        background-image: url('https://i.imgur.com/9IGMPrU.jpeg');
+        background-position: center 40%;
+        filter: brightness(30%);
+      "
+    ></div>
+    <!-- Optional extra overlay for more darkness (uncomment if needed) -->
+    <!-- <div class="absolute inset-0 bg-black opacity-20"></div> -->
+  </div>
+
+  <!-- 2) Foreground text (centered both horizontally and vertically) -->
+  <div class="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center">
+    <h1 class="text-4xl md:text-5xl font-bold text-white mb-3">
+      About Texarkana Rovers FC
+    </h1>
+    <p class="text-lg md:text-xl text-gray-200 max-w-3xl">
+      Discover our passion, history, and commitment to excellence in football
+    </p>
+  </div>
+</section>
+  <!-- ================== END HERO ================== -->
+
+  <!-- ================== OUR STORY ================== -->
+ <section class="py-16 bg-trfc-dark">
+  <div class="container mx-auto px-4">
+    <!-- Change items-start → items-center so both columns vertically align -->
+    <div class="flex flex-col md:flex-row md:items-center">
+      
+      <!-- Left Column: Text (remains half-width on md+) -->
+      <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10 fade-in">
+        <h2 class="text-3xl font-bold text-gold mb-6">Our Story</h2>
+        <p class="text-gray-300 mb-4">
+          TRFC was founded by local parents, former athletes, and coaches who saw
+          a need for meaningful change in our region's youth soccer landscape. In a
+          city of over 150,000 residents served by a single soccer organization, we
+          emerged as an alternative — built from the ground up by the community, for
+          the community.
+        </p>
+        <p class="text-gray-300 mb-6">
+          At TRFC, we provide youth athletes with high-quality, competitive soccer
+          training rooted in strong character development, sportsmanship, and purpose.
+          We believe that soccer is more than just a game — it is a powerful platform
+          to shape young lives physically, mentally, and spiritually.
+        </p>
+      </div>
+
+      <!-- Right Column: Single Image (half-width on md+, centered by its container) -->
+      <div class="md:w-1/2 flex justify-center fade-in">
+        <img
+          src="https://i.imgur.com/C3BZ2n9.png"
+          alt="Team celebrating victory"
+          class="w-full max-w-md h-auto rounded-lg shadow-xl"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ================== END OUR STORY ================== -->
+
+  
+
+  <!-- ================== MISSION & VALUES ================== -->
+  <section class="py-16 bg-trfc-dark">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16 fade-in">
+        <h2 class="text-3xl font-bold text-gold mb-4">Our Core Values</h2>
+        <p class="text-gray-300 max-w-2xl mx-auto">
+          TRFC is founded on an inclusive, player-centered environment where honesty,
+          integrity, discipline, teamwork, and leadership are modeled and expected. While
+          we welcome all backgrounds, our club is proudly guided by Christian values and
+          led with a Christ-first approach — ensuring that our actions on and off the field
+          reflect humility, service, and love.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div
+          class="bg-navy p-8 rounded-lg shadow-md hover:shadow-lg transition duration-300 fade-in"
+        >
+          <div class="text-gold mb-4">
+            <i class="fas fa-trophy text-4xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-white">Excellence</h3>
+          <p class="text-gray-300">
+            We strive for the highest standards in training, performance, and personal
+            development, pushing our players to reach their full potential.
+          </p>
+        </div>
+
+        <div
+          class="bg-navy p-8 rounded-lg shadow-md hover:shadow-lg transition duration-300 fade-in"
+          style="animation-delay: 0.2s;"
+        >
+          <div class="text-gold mb-4">
+            <i class="fas fa-users text-4xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-white">Community</h3>
+          <p class="text-gray-300">
+            Soccer is more than a game - it's about bringing people together. We're proud
+            to be an integral part of our local community.
+          </p>
+        </div>
+
+        <div
+          class="bg-navy p-8 rounded-lg shadow-md hover:shadow-lg transition duration-300 fade-in"
+          style="animation-delay: 0.4s;"
+        >
+          <div class="text-gold mb-4">
+            <i class="fas fa-heart text-4xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-white">Passion</h3>
+          <p class="text-gray-300">
+            Our love for the game drives everything we do. This passion is what makes
+            TRFC special and keeps us moving forward.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ================== END MISSION & VALUES ================== -->
+
+  <!-- ================== OUR JOURNEY (TIMELINE) ================== -->
+  <section class="py-16 bg-trfc-dark">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center text-gold mb-16 fade-in">
+      Our Journey
+    </h2>
+
+    <div class="relative max-w-3xl mx-auto">
+      <!-- Step 1: Club Foundation (Completed) -->
+      <div class="timeline-item completed fade-in">
+        <div class="dot"></div>
+        <h3 class="text-xl mb-2">Club Foundation</h3>
+        <p>2023 – Founded by local coach and former player Luis Vasquez with just 12 local players.</p>
+      </div>
+
+      <!-- Step 2: First Season (Completed) -->
+      <div class="timeline-item completed fade-in" style="animation-delay: 0.2s;">
+        <div class="dot"></div>
+        <h3 class="text-xl mb-2">First Season</h3>
+        <p>2024 – Competed and advanced to championship rounds of multiple regional events, securing sponsorships.</p>
+      </div>
+
+      <!-- Step 3: Youth Academy (Completed) -->
+      <div class="timeline-item completed fade-in" style="animation-delay: 0.4s;">
+        <div class="dot"></div>
+        <h3 class="text-xl mb-2">Youth Academy</h3>
+        <p>2025 – Established our youth development program.</p>
+      </div>
+
+      <!-- Step 4: Official Practice Venue (Pending) -->
+      <div class="timeline-item pending fade-in" style="animation-delay: 0.6s;">
+        <div class="dot"></div>
+        <h3 class="text-xl mb-2">Official Practice Venue</h3>
+        <p>In Progress</p>
+      </div>
+
+      <!-- Step 5: City Recognized Organization (Pending) -->
+      <div class="timeline-item pending fade-in" style="animation-delay: 0.8s;">
+        <div class="dot"></div>
+        <h3 class="text-xl mb-2">City Recognized Organization</h3>
+        <p>In Progress</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ================== END TIMELINE ================== -->
+
+  <!-- ================== MEET OUR LEADERSHIP ================== -->
+  <section class="py-16 bg-trfc-dark">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16 fade-in">
+      <h2 class="text-3xl font-bold text-gold mb-4">Meet Our Leadership</h2>
+      <p class="text-gray-300 max-w-2xl mx-auto">
+        The dedicated professionals who guide TRFC to success
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Card 1 -->
+      <div class="player-card bg-navy rounded-lg overflow-hidden shadow-md transition duration-300 fade-in">
+        <img
+          src="https://via.placeholder.com/400x300"
+          alt="Luis Vasquez"
+          class="w-full h-64 object-cover"
+        />
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-white">Luis Vasquez</h3>
+          <p class="text-trfc-blue mb-3">Founder & Athletic Director</p>
+          <p class="text-gray-300">
+            Luis is a coach and player with more than 20 years experience. He founded
+            the club to give back to the community.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="player-card bg-navy rounded-lg overflow-hidden shadow-md transition duration-300 fade-in" style="animation-delay: 0.2s;">
+        <img
+          src="https://via.placeholder.com/400x300"
+          alt="Tommy Bohannon"
+          class="w-full h-64 object-cover"
+        />
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-white">Tommy Bohannon</h3>
+          <p class="text-trfc-blue mb-3">Founder & Head Coach</p>
+          <p class="text-gray-300">
+            Tommy is a locally grown coach and former player with a track record of
+            developing young talent, specifically in defense and goalkeeping.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="player-card bg-navy rounded-lg overflow-hidden shadow-md transition duration-300 fade-in" style="animation-delay: 0.4s;">
+        <img
+          src="https://via.placeholder.com/400x300"
+          alt="Kennedy Denney"
+          class="w-full h-64 object-cover"
+        />
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-white">Kennedy Denney</h3>
+          <p class="text-trfc-blue mb-3">Head Coach</p>
+          <p class="text-gray-300">
+            Kennedy is a head coach and former player with a track record of developing
+            young talent, specifically in in our Kit Academy program.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="player-card bg-navy rounded-lg overflow-hidden shadow-md transition duration-300 fade-in" style="animation-delay: 0.6s;">
+        <img
+          src="https://via.placeholder.com/400x300"
+          alt="Michael DeGroot"
+          class="w-full h-64 object-cover"
+        />
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-white">Michael DeGroot</h3>
+          <p class="text-trfc-blue mb-3">Head Coach</p>
+          <p class="text-gray-300">
+            Michael is a seasoned coach and former player with over 15 years of coaching experience in Texas, Arkansas, and Louisiana.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="player-card bg-navy rounded-lg overflow-hidden shadow-md transition duration-300 fade-in" style="animation-delay: 0.8s;">
+        <img
+          src="https://via.placeholder.com/400x300"
+          alt="James Lewis"
+          class="w-full h-64 object-cover"
+        />
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-white">James Lewis</h3>
+          <p class="text-trfc-blue mb-3">Club Manager</p>
+          <p class="text-gray-300">
+            James oversees all football operations with a focus on long-term strategy
+            and player development pathways.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="player-card bg-navy rounded-lg overflow-hidden shadow-md transition duration-300 fade-in" style="animation-delay: 1s;">
+        <img
+          src="https://via.placeholder.com/400x300"
+          alt="Coach Rodriguez"
+          class="w-full h-64 object-cover"
+        />
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-white">Coach Rodriguez</h3>
+          <p class="text-trfc-blue mb-3">Assistant Coach</p>
+          <p class="text-gray-300">
+            Coach Rodriguez brings a wealth of tactical knowledge and works with our
+            midfielders on advanced skill development.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-12 fade-in">
+      <a
+        href="#"
+        class="inline-block bg-trfc-blue hover:bg-blue-800 text-white font-bold py-3 px-8 rounded-lg transition duration-300"
+      >
+        View Full Team <i class="fas fa-arrow-right ml-2"></i>
+      </a>
+    </div>
+  </div>
+</section>
+  <!-- ================== END LEADERSHIP ================== -->
+
+  <!-- ================== COMMUNITY IMPACT ================== -->
+  <section class="py-16 bg-trfc-dark">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10 fade-in">
+          <h2 class="text-3xl font-bold text-gold mb-6">Community Impact</h2>
+          <p class="text-gray-300 mb-4">
+            At TRFC, we believe football has the power to transform lives and strengthen
+            communities.
+          </p>
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+              <span class="text-gray-300">
+                Free coaching sessions for underprivileged youth
+              </span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+              <span class="text-gray-300">
+                Monthly outreach to assist in local charities and causes
+              </span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+              <span class="text-gray-300">
+                Local partnerships promoting community growth through sport
+              </span>
+            </li>
+          </ul>
+          <div class="bg-navy p-4 rounded-lg">
+            <p class="text-trfc-blue font-medium">
+              "Football is nothing without the people who support it. Our community is our
+              greatest strength."
+            </p>
+            <p class="text-gray-300 mt-2">- Luis Vasquez TRFC, Founder</p>
+          </div>
+        </div>
+        <div class="md:w-1/2 fade-in">
+          <div class="grid grid-cols-2 gap-4">
+            <img
+              src="https://via.placeholder.com/300x300"
+              alt="Community event"
+              class="rounded-lg shadow-md w-full h-48 object-cover"
+            />
+            <img
+              src="https://via.placeholder.com/300x300"
+              alt="Youth coaching"
+              class="rounded-lg shadow-md w-full h-48 object-cover"
+            />
+            <img
+              src="https://via.placeholder.com/300x300"
+              alt="Charity match"
+              class="rounded-lg shadow-md w-full h-48 object-cover mt-4"
+            />
+            <img
+              src="https://via.placeholder.com/300x300"
+              alt="School visit"
+              class="rounded-lg shadow-md w-full h-48 object-cover mt-4"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ================== END COMMUNITY IMPACT ================== -->
+
+  <!-- ================== JOIN US CTA ================== -->
+  <section class="py-16 hero-gradient text-white">
+    <div class="container mx-auto px-4 text-center fade-in">
+      <h2 class="text-3xl font-bold mb-6">Become Part of Our Story</h2>
+      <p class="text-xl mb-8 max-w-2xl mx-auto">
+        Whether as a player, supporter, or partner, there are many ways to get involved
+        with Texarkana Rovers FC.
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+        <a
+          href="#"
+          class="bg-white hover:bg-gray-100 text-trfc-blue font-bold py-3 px-8 rounded-lg transition duration-300"
+        >
+          Join Our Academy <i class="fas fa-running ml-2"></i>
+        </a>
+        <a
+          href="#"
+          class="border-2 border-white hover:bg-white hover:bg-opacity-10 font-bold py-3 px-8 rounded-lg transition duration-300"
+        >
+          Become a Sponsor <i class="fas fa-handshake ml-2"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+  <!-- ================== END JOIN US CTA ================== -->
+
+  <!-- Footer -->
+    <footer class="bg-black text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center mb-6">
+                        <img src="https://i.imgur.com/JpT6gSi.png" alt="Logo" class="h-12 w-12 mr-3">
+                        <div>
+                            <h3 class="text-xl font-bold font-title">ROVERS<span class="text-gold"> FC</span></h3>
+                            <p class="text-xs text-skyblue">Texarkana Rovers Football Club</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Developing elite soccer athletes through professional coaching, competitive play, and character development.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-skyblue"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-skyblue"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-skyblue"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-skyblue"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-6 text-gold">QUICK LINKS</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">About TRFC</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Schedules</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Registration</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Tryouts</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Office</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-6 text-gold">PROGRAMS</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Club</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Academy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Camps & Clinics</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Goalkeeper Training</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Private Lessons</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Exhibition</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-6 text-gold">CONTACT US</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-skyblue mr-3 mt-1"></i>
+                            <span>123 Soccer Way<br>Texarkana, TX 75501</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt text-skyblue mr-3"></i>
+                            <span>(903) 748-7697</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-skyblue mr-3"></i>
+                            <span>info@roversfc.org</span>
+                        </li>
+                    </ul>
+                    
+                    <h4 class="text-lg font-bold mt-8 mb-4 text-gold">NEWSLETTER</h4>
+                    <form class="flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-md focus:outline-none text-black w-full">
+                        <button type="submit" class="bg-gold text-black px-4 py-2 rounded-r-md font-bold"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-800">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-500 text-sm mb-4 md:mb-0">
+                        © 2024 TRFC Rovers FC. All rights reserved.
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-500 hover:text-white text-sm">Privacy Policy</a>
+                        <a href="#" class="text-gray-500 hover:text-white text-sm">Terms of Service</a>
+                        <a href="#" class="text-gray-500 hover:text-white text-sm">Sitemap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+  <!-- ================== END FOOTER ================== -->
+
+  <!-- ================== FADE-IN ON SCROLL SCRIPT ================== -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const fadeElements = document.querySelectorAll(".fade-in");
+
+      const fadeInOnScroll = function () {
+        fadeElements.forEach((element) => {
+          const elementTop = element.getBoundingClientRect().top;
+          const windowHeight = window.innerHeight;
+
+          if (elementTop < windowHeight - 100) {
+            element.style.opacity = "1";
+          }
+        });
+      };
+
+      // Initial check
+      fadeInOnScroll();
+
+      // Check on scroll
+      window.addEventListener("scroll", fadeInOnScroll);
+    });
+  </script>
+</body>
+</html>

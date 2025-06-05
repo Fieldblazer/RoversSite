@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html KEEP>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -128,7 +128,7 @@
         </div>
     </div>
 
-        <!-- Main Nav -->
+    <!-- Main Nav -->
 <nav class="bg-trfc-dark border-b border-gray-800 sticky top-0 z-50 shadow-lg">
   <div class="container mx-auto px-4">
     <div class="flex justify-between items-center py-4">
@@ -136,7 +136,7 @@
       <!-- Logo + Title Block -->
       <div class="flex items-center space-x-4">
         <img
-          src="https://i.imgur.com/JpT6gSi.png"
+          src="https://i.imgur.com/RSMWGid.png"
           alt="ROVERS Logo"
           class="h-[5rem] w-[5rem] shrink-0"
         />
@@ -157,21 +157,47 @@
           About
         </a>
 
-        <!-- CLUB dropdown (if you intend to add a submenu under Club) -->
-        <div class="dropdown relative">
-          <button class="nav-link text-white hover:text-gold flex items-center">
-            Club <i class="fas fa-chevron-down ml-1 text-xs"></i>
-          </button>
-          <!-- Add dropdown menu here, if needed -->
-        </div>
+        <!-- CLUB dropdown -->
+<div class="relative group">
+  <button class="nav-link text-white hover:text-gold flex items-center">
+    Club <i class="fas fa-chevron-down ml-1 text-xs"></i>
+  </button>
+
+  <div class="absolute left-0 top-full w-40 bg-trfc-dark rounded shadow-lg
+              hidden group-hover:block z-10">
+    <a href="/kit-academy.html"        class="block px-4 py-2 text-white hover:bg-gray-700">Kit Academy</a>
+    <a href="/rovers-fc.html"        class="block px-4 py-2 text-white hover:bg-gray-700">Rovers FC</a>
+    <a href="/schedules.html"    class="block px-4 py-2 text-white hover:bg-gray-700">Schedules</a>
+    <a href="/gear.html"         class="block px-4 py-2 text-white hover:bg-gray-700">Gear</a>
+    <a href="/scholarships.html" class="block px-4 py-2 text-white hover:bg-gray-700">Scholarships</a>
+    <a href="/faq.html"          class="block px-4 py-2 text-white hover:bg-gray-700">FAQ</a>
+  </div>
+</div>
+
+
+
+<!-- Add this CSS so the submenu appears on hover -->
+<style>
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+</style>
+
 
         <!-- PROGRAMS dropdown -->
-        <div class="dropdown relative">
-          <button class="nav-link text-white hover:text-gold flex items-center">
-            Programs <i class="fas fa-chevron-down ml-1 text-xs"></i>
-          </button>
-          <!-- Add dropdown menu here, if needed -->
-        </div>
+        <div class="relative group">
+  <button class="nav-link text-white hover:text-gold flex items-center">
+    Programs <i class="fas fa-chevron-down ml-1 text-xs"></i>
+  </button>
+
+  <div class="absolute left-0 top-full w-40 bg-trfc-dark rounded shadow-lg
+              hidden group-hover:block z-10">
+    <a href="/open-training.html"        class="block px-4 py-2 text-white hover:bg-gray-700">Open Training</a>
+    <a href="recreation-league.html"        class="block px-4 py-2 text-white hover:bg-gray-700">Recreation League</a>
+    <a href="/competitive.html"    class="block px-4 py-2 text-white hover:bg-gray-700">Competitive</a>
+    <a href="/community-outreach.html"         class="block px-4 py-2 text-white hover:bg-gray-700">Community Outreach</a>
+  </div>
+</div>
 
         <!-- Other static links -->
         <a href="/enrollment.html" class="nav-link text-white hover:text-gold">Enrollment</a>
@@ -236,7 +262,7 @@
                     </div>
                 </div>
                 <div class="md:w-1/2 flex justify-center">
-                    <img src="https://i.imgur.com/sXy1Lyp.png" alt="Youth Soccer Team" >
+                    <img src="https://i.imgur.com/8FAByQK.png" alt="Youth Soccer Team" >
                 </div>
             </div>
         </div>
@@ -337,60 +363,64 @@
 </section>
 
 
-    <!-- News & Announcements -->
-    <section class="py-16 bg-gray-900">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold font-title mb-4">NEWS & <span class="text-gold">ANNOUNCEMENTS</span></h2>
-                <div class="w-20 h-1 bg-gold mx-auto mb-4"></div>
-                <p class="text-gray-300 max-w-3xl mx-auto">
-                    Stay updated with the latest news, events, and success stories from Rovers FC.
+   <!-- News & Announcements -->
+<section id="news" class="py-16 bg-gray-900">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold font-title mb-4">
+                NEWS & <span class="text-gold">ANNOUNCEMENTS</span>
+            </h2>
+            <div class="w-20 h-1 bg-gold mx-auto mb-4"></div>
+            <p class="text-gray-300 max-w-3xl mx-auto">
+                Stay updated with the latest news, events, and success stories from Rovers FC.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="news-card p-6 rounded-lg hover-scale">
+                <div class="h-48 bg-gray-700 mb-4 rounded overflow-hidden">
+                    <img src="https://i.imgur.com/eoli0Un.jpeg" alt="News" class="w-full h-full object-cover">
+                </div>
+                <div class="text-sm text-gold mb-2">May 15, 2024</div>
+                <h3 class="text-xl font-bold mb-3">NEXT UP: Rovers FC Take on Cumbre Alta</h3>
+                <p class="text-gray-300 mb-4">
+                    Our U15 Boys team will compete for the Bossier City Tournament Championship on October 13th.
                 </p>
+                <a href="#" class="text-gold font-bold hover:underline">Read More →</a>
             </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="news-card p-6 rounded-lg hover-scale">
-                    <div class="h-48 bg-gray-700 mb-4 rounded overflow-hidden">
-                        <img src="https://i.imgur.com/eoli0Un.jpeg" alt="News" class="w-full h-full object-cover">
-                    </div>
-                    <div class="text-sm text-gold mb-2">May 15, 2024</div>
-                    <h3 class="text-xl font-bold mb-3">NEXT UP: Rovers FC Take on Cumbre Alta</h3>
-                    <p class="text-gray-300 mb-4">
-                        Our U15 Boys team will compete for the Bossier City Tournament Championship on Octoboer 13th.
-                    </p>
-                    <a href="#" class="text-gold font-bold hover:underline">Read More →</a>
+
+            <div class="news-card p-6 rounded-lg hover-scale">
+                <div class="h-48 bg-gray-700 mb-4 rounded overflow-hidden">
+                    <img src="https://i.imgur.com/ThJT2US.jpeg" alt="News" class="w-full h-full object-cover">
                 </div>
-                
-                <div class="news-card p-6 rounded-lg hover-scale">
-                    <div class="h-48 bg-gray-700 mb-4 rounded overflow-hidden">
-                        <img src="https://i.imgur.com/ThJT2US.jpeg" alt="News" class="w-full h-full object-cover">
-                    </div>
-                    <div class="text-sm text-gold mb-2">April 28, 2024</div>
-                    <h3 class="text-xl font-bold mb-3">2025 ROVER FC Try Out Registration Now Open</h3>
-                    <p class="text-gray-300 mb-4">
-                        Can you compete at a high level on the biggest stages? Prove it!
-                    </p>
-                    <a href="#" class="text-gold font-bold hover:underline">Read More →</a>
-                </div>
-                
-                <div class="news-card p-6 rounded-lg hover-scale">
-                    <div class="h-48 bg-gray-700 mb-4 rounded overflow-hidden">
-                        <img src="https://i.imgur.com/y4xeQip.jpeg" alt="News" class="w-full h-full object-cover">
-                    </div>
-                    <div class="text-sm text-gold mb-2">April 10, 2024</div>
-                    <h3 class="text-xl font-bold mb-3">ROVERS FC Climbs the Ladder at Dallas Indoor Invitational</h3>
-                    <p class="text-gray-300 mb-4">
-                        ROVERS FC claims top spot in latest Dallas Indoor rankings.
-                    </p>
-                    <a href="#" class="text-gold font-bold hover:underline">Read More →</a>
-                </div>
+                <div class="text-sm text-gold mb-2">April 28, 2024</div>
+                <h3 class="text-xl font-bold mb-3">2025 ROVERS FC Tryout Registration Now Open</h3>
+                <p class="text-gray-300 mb-4">
+                    Can you compete at a high level on the biggest stages? Prove it!
+                </p>
+                <a href="#" class="text-gold font-bold hover:underline">Read More →</a>
             </div>
-            
-            <div class="text-center mt-12">
-                <a href="#" class="btn-outline px-8 py-3 rounded-md font-bold inline-block">VIEW ALL NEWS</a>
+
+            <div class="news-card p-6 rounded-lg hover-scale">
+                <div class="h-48 bg-gray-700 mb-4 rounded overflow-hidden">
+                    <img src="https://i.imgur.com/y4xeQip.jpeg" alt="News" class="w-full h-full object-cover">
+                </div>
+                <div class="text-sm text-gold mb-2">April 10, 2024</div>
+                <h3 class="text-xl font-bold mb-3">ROVERS FC Climbs the Ladder at Dallas Indoor Invitational</h3>
+                <p class="text-gray-300 mb-4">
+                    ROVERS FC claims top spot in latest Dallas Indoor rankings.
+                </p>
+                <a href="#" class="text-gold font-bold hover:underline">Read More →</a>
             </div>
         </div>
-    </section>
+
+        <div class="text-center mt-12">
+            <a href="#" class="btn-outline px-8 py-3 rounded-md font-bold inline-block">
+                VIEW ALL NEWS
+            </a>
+        </div>
+    </div>
+</section>
 
     <!-- Testimonials -->
     <section class="py-16 bg-trfc-dark">

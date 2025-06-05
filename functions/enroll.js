@@ -8,63 +8,70 @@
  *   4) Returns JSON { success: true } or an error
  */
 
-// functions/enroll.js
 export async function onRequestPost({ request, env }) {
-  console.log("🐝 stub onRequestPost invoked");
-  return new Response(JSON.stringify({ success: true }), {
-    status: 200,
-    headers: { "Content-Type": "application/json" }
-  });
-}
+  // 1) Log so you can verify this code is running
+  console.log("🐝 enroll.js called at " + new Date().toISOString());
 
-  // 3) Extract every field you need (text inputs). Adjust names to match your <input name="...">
-  const firstName    = formData.get("firstName")?.trim()      || "";
-  const lastName     = formData.get("lastName")?.trim()       || "";
-  const birthDate    = formData.get("birthDate")?.trim()      || "";
-  const gender       = formData.get("gender")?.trim()         || "";
-  const school       = formData.get("school")?.trim()         || "";
-  const grade        = formData.get("grade")?.trim()          || "";
+  // 2) Parse incoming form data (must be enctype="multipart/form-data" on your <form>)
+  let formData;
+  try {
+    formData = await request.formData();
+  } catch (err) {
+    console.error("🐝 Failed to parse formData:", err);
+    return new Response(
+      JSON.stringify({ success: false, error: "Invalid form submission." }),
+      { status: 400, headers: { "Content-Type": "application/json" } }
+    );
+  }
 
-  const parentName   = formData.get("parentName")?.trim()     || "";
-  const relationship = formData.get("relationship")?.trim()   || "";
-  const email        = formData.get("email")?.trim()          || "";
-  const phone        = formData.get("phone")?.trim()          || "";
-  const address      = formData.get("address")?.trim()        || "";
-  const city         = formData.get("city")?.trim()           || "";
-  const state        = formData.get("state")?.trim()          || "";
-  const zip          = formData.get("zip")?.trim()            || "";
+  // 3) Extract every field you need (text inputs). Adjust
+  // names to match your <input name="..."> exactly.
+  const firstName      = formData.get("firstName")?.trim()      || "";
+  const lastName       = formData.get("lastName")?.trim()       || "";
+  const birthDate      = formData.get("birthDate")?.trim()      || "";
+  const gender         = formData.get("gender")?.trim()         || "";
+  const school         = formData.get("school")?.trim()         || "";
+  const grade          = formData.get("grade")?.trim()          || "";
 
-  const emergencyName        = formData.get("emergencyName")?.trim()        || "";
+  const parentName     = formData.get("parentName")?.trim()     || "";
+  const relationship   = formData.get("relationship")?.trim()   || "";
+  const email          = formData.get("email")?.trim()          || "";
+  const phone          = formData.get("phone")?.trim()          || "";
+  const address        = formData.get("address")?.trim()        || "";
+  const city           = formData.get("city")?.trim()           || "";
+  const state          = formData.get("state")?.trim()          || "";
+  const zip            = formData.get("zip")?.trim()            || "";
+
+  const emergencyName         = formData.get("emergencyName")?.trim()        || "";
   const emergencyRelationship = formData.get("emergencyRelationship")?.trim() || "";
-  const emergencyPhone       = formData.get("emergencyPhone")?.trim()       || "";
+  const emergencyPhone        = formData.get("emergencyPhone")?.trim()       || "";
 
-  const experience   = formData.get("experience")?.trim()   || "";
-  const position     = formData.get("position")?.trim()     || "";
-  const newsletter   = formData.get("newsletter")           ? "Yes" : "No";
+  const experience     = formData.get("experience")?.trim()     || "";
+  const position       = formData.get("position")?.trim()       || "";
+  const newsletter     = formData.get("newsletter")              ? "Yes" : "No";
 
   const parentSignature = formData.get("parentSignature")?.trim() || "";
   const signatureDate   = formData.get("signatureDate")?.trim()   || "";
 
-  // (You can similarly grab waiver and document fields as needed,
-  //  but here we’ll send a minimal summary.)
+  // (You can similarly grab waiver and document fields if you wish.)
 
-  // 4) Check any required fields:
+  // 4) Validate any required fields:
   if (!firstName || !lastName || !email || !parentSignature) {
-    console.error("🐝 Missing required fields:");
+    console.error("🐝 Missing required fields. firstName, lastName, email, or parentSignature was blank.");
     return new Response(
       JSON.stringify({ success: false, error: "Missing required fields." }),
       { status: 400, headers: { "Content-Type": "application/json" } }
     );
   }
 
-  // 5) Build Mailgun parameters (URLSearchParams for x-www-form-urlencoded)
+  // 5) Build Mailgun parameters (URLSearchParams for application/x-www-form-urlencoded)
   const mailgunDomain = env.MAILGUN_DOMAIN;   // e.g. sandbox-abcdef123.mailgun.org
   const mailgunKey    = env.MAILGUN_API_KEY;  // e.g. key-1234567890abcdef
   const mgEndpoint    = `https://api.mailgun.net/v3/${mailgunDomain}/messages`;
 
   // *** IMPORTANT: in sandbox mode, you can only send to "Authorized Recipients" ***
   // Make sure you have added & verified this address under Mailgun → Authorized Recipients
-  const recipient = "your.verified.email@example.com";
+  const recipient = "texarkanarovers@gmail.com";
 
   const body = new URLSearchParams();
   body.append("from", `Rovers FC Sandbox <postmaster@${mailgunDomain}>`);
@@ -142,7 +149,7 @@ Date: ${signatureDate}
 
   // 6) All good → return JSON success  
   return new Response(
-    JSON.stringify({ success: true }), 
+    JSON.stringify({ success: true }),
     { status: 200, headers: { "Content-Type": "application/json" } }
   );
 }

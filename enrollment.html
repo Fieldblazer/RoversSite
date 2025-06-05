@@ -1108,109 +1108,47 @@
     </div>
   </div>
 
-  <script>
-    // Tab navigation
-    document.querySelectorAll('.tab-indicator').forEach(tab => {
-      tab.addEventListener('click', function() {
-        const tabId = this.getAttribute('data-tab');
+ 
+<script>
+  document
+    .getElementById("enrollmentForm")
+    .addEventListener("submit", async function(e) {
+      e.preventDefault();
 
-        // Update indicator styles
-        document.querySelectorAll('.tab-indicator').forEach(t => {
-          t.classList.remove('text-trfc-gold', 'border-trfc-gold');
-          t.classList.add('text-gray-400');
-        });
-        this.classList.remove('text-gray-400');
-        this.classList.add('text-trfc-gold', 'border-trfc-gold');
+      // Build a FormData object from <form>
+      const form = document.getElementById("enrollmentForm");
+      const formData = new FormData(form);
 
-        // Show only the selected section
-        document.querySelectorAll('.form-section').forEach(section => {
-          section.classList.remove('active');
-        });
-        document.getElementById(tabId).classList.add('active');
+      // Send it as a POST to /api/enroll
+      const resp = await fetch("/api/enroll", {
+        method: "POST",
+        body: formData
       });
+
+      if (resp.ok) {
+        // Show your “Enrollment Submitted!” modal
+        document.getElementById("successModal").classList.remove("hidden");
+      } else {
+        // If your Pages Function returned { error: "..." }, show it
+        let data = {};
+        try {
+          data = await resp.json();
+        } catch (_) {}
+        alert("Error submitting form: " + (data.error || resp.statusText));
+      }
     });
 
-    // Next/Previous buttons
-    document.querySelectorAll('.next-tab').forEach(button => {
-      button.addEventListener('click', function() {
-        const nextTabId = this.getAttribute('data-next');
-        document.querySelector(`.tab-indicator[data-tab="${nextTabId}"]`).click();
-      });
+  function closeSuccessModal() {
+    document.getElementById("successModal").classList.add("hidden");
+    // Reset everything back to tab #1
+    document.querySelector('.tab-indicator[data-tab="enrollment"]').click();
+    document.getElementById("enrollmentForm").reset();
+    document.querySelectorAll('[id$="Preview"]').forEach(preview => {
+      preview.classList.add("hidden");
     });
-    document.querySelectorAll('.prev-tab').forEach(button => {
-      button.addEventListener('click', function() {
-        const prevTabId = this.getAttribute('data-prev');
-        document.querySelector(`.tab-indicator[data-tab="${prevTabId}"]`).click();
-      });
-    });
-
-    // File upload preview logic
-    document.querySelectorAll('input[type="file"]').forEach(input => {
-      input.addEventListener('change', function() {
-        const file = this.files[0];
-        if (file) {
-          const previewId = `${this.id}Preview`;
-          const fileNameId = `${this.id}FileName`;
-          document.getElementById(previewId).classList.remove('hidden');
-          document.getElementById(fileNameId).textContent = file.name;
-        }
-      });
-    });
-    function removeFile(inputId) {
-      const input = document.getElementById(inputId);
-      input.value = '';
-      document.getElementById(`${inputId}Preview`).classList.add('hidden');
-    }
-
-    // Payment method toggle
-    document.querySelectorAll('input[name="paymentMethod"]').forEach(radio => {
-      radio.addEventListener('change', function() {
-        if (this.value === 'online') {
-          document.getElementById('onlinePayment').classList.remove('hidden');
-        } else {
-          document.getElementById('onlinePayment').classList.add('hidden');
-        }
-      });
-    });
-
-    // Final form‐submit handler
-    document
-      .getElementById("enrollmentForm")
-      .addEventListener("submit", async function(e) {
-        e.preventDefault();
-
-        // Collect every field (including files)
-        const form = document.getElementById("enrollmentForm");
-        const formData = new FormData(form);
-
-        // POST to your Pages Function at /api/enroll
-        const resp = await fetch("/api/enroll", {
-          method: "POST",
-          body: formData
-        });
-
-        if (resp.ok) {
-          // Show success modal if server responds 200
-          document.getElementById("successModal").classList.remove("hidden");
-        } else {
-          // Show an alert on error
-          let data = {};
-          try {
-            data = await resp.json();
-          } catch (_){}
-          alert("Error submitting form: " + (data.error || resp.statusText));
-        }
-      });
-
-    function closeSuccessModal() {
-      document.getElementById("successModal").classList.add("hidden");
-      // Reset back to the very first tab
-      document.querySelector('.tab-indicator[data-tab="enrollment"]').click();
-      document.getElementById("enrollmentForm").reset();
-      document.querySelectorAll('[id$="Preview"]').forEach(preview => {
-        preview.classList.add("hidden");
-      });
-    }
-  </script>
+  }
+</script>
 </body>
 </html>
+
+

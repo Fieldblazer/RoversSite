@@ -1109,45 +1109,145 @@
   </div>
 
  
-<script>
-  document
-    .getElementById("enrollmentForm")
-    .addEventListener("submit", async function(e) {
-      e.preventDefault();
+  <!-- …everything above stays exactly the same… -->
 
-      // Build a FormData object from <form>
-      const form = document.getElementById("enrollmentForm");
-      const formData = new FormData(form);
+  <!-- Success Modal (triggered on final form submit) -->
+  <div
+    id="successModal"
+    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden"
+  >
+    <div class="bg-white rounded-lg p-8 max-w-md w-full">
+      <div class="text-center">
+        <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-trfc-gold">
+          <i class="fas fa-check text-trfc-dark text-xl"></i>
+        </div>
+        <h3 class="text-lg font-medium text-trfc-dark mt-3">Enrollment Submitted!</h3>
+        <div class="mt-2">
+          <p class="text-sm text-gray-600">Thank you for enrolling. We will contact you soon.</p>
+        </div>
+        <div class="mt-6">
+          <button
+            type="button"
+            onclick="closeSuccessModal()"
+            class="px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-trfc-gold hover:bg-[#e6c300] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-trfc-gold"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-      // Send it as a POST to /api/enroll
-      const resp = await fetch("/api/enroll", {
-        method: "POST",
-        body: formData
+  <!-- Everything else in <body> above… -->
+
+  <!-- Combined Tab‐Navigation, Next/Prev, File Preview, Payment Toggle, and Form Submit logic: -->
+  <script>
+    // 1) Tab navigation: clicking a .tab-indicator shows that section
+    document.querySelectorAll('.tab-indicator').forEach(tab => {
+      tab.addEventListener('click', function() {
+        const tabId = this.getAttribute('data-tab');
+
+        // remove active style from all indicators
+        document.querySelectorAll('.tab-indicator').forEach(t => {
+          t.classList.remove('text-trfc-gold', 'border-trfc-gold');
+          t.classList.add('text-gray-400');
+        });
+        // add active style to clicked indicator
+        this.classList.remove('text-gray-400');
+        this.classList.add('text-trfc-gold', 'border-trfc-gold');
+
+        // hide all .form-section, then show the one matching data-tab
+        document.querySelectorAll('.form-section').forEach(section => {
+          section.classList.remove('active');
+        });
+        document.getElementById(tabId).classList.add('active');
+      });
+    });
+
+    // 2) Next/Previous tab buttons
+    document.querySelectorAll('.next-tab').forEach(button => {
+      button.addEventListener('click', function() {
+        const nextTabId = this.getAttribute('data-next');
+        document.querySelector(`.tab-indicator[data-tab="${nextTabId}"]`).click();
+      });
+    });
+    document.querySelectorAll('.prev-tab').forEach(button => {
+      button.addEventListener('click', function() {
+        const prevTabId = this.getAttribute('data-prev');
+        document.querySelector(`.tab-indicator[data-tab="${prevTabId}"]`).click();
+      });
+    });
+
+    // 3) File‐upload preview
+    document.querySelectorAll('input[type="file"]').forEach(input => {
+      input.addEventListener('change', function() {
+        const file = this.files[0];
+        if (file) {
+          const previewId = `${this.id}Preview`;
+          const fileNameId = `${this.id}FileName`;
+          document.getElementById(previewId).classList.remove('hidden');
+          document.getElementById(fileNameId).textContent = file.name;
+        }
+      });
+    });
+    function removeFile(inputId) {
+      const input = document.getElementById(inputId);
+      input.value = '';
+      document.getElementById(`${inputId}Preview`).classList.add('hidden');
+    }
+
+    // 4) Payment‐method toggle (online vs. check)
+    document.querySelectorAll('input[name="paymentMethod"]').forEach(radio => {
+      radio.addEventListener('change', function() {
+        if (this.value === 'online') {
+          document.getElementById('onlinePayment').classList.remove('hidden');
+        } else {
+          document.getElementById('onlinePayment').classList.add('hidden');
+        }
+      });
+    });
+
+    // 5) Final form‐submit handler (POST to /api/enroll)
+    document
+      .getElementById("enrollmentForm")
+      .addEventListener("submit", async function(e) {
+        e.preventDefault();
+
+        // Build a FormData object from <form>
+        const form = document.getElementById("enrollmentForm");
+        const formData = new FormData(form);
+
+        // Send it as a POST to your Pages Function at /api/enroll
+        const resp = await fetch("/api/enroll", {
+          method: "POST",
+          body: formData
+        });
+
+        if (resp.ok) {
+          // Show the “Enrollment Submitted!” modal
+          document.getElementById("successModal").classList.remove("hidden");
+        } else {
+          // If your Pages Function returned { error: "…"}, show an alert
+          let data = {};
+          try {
+            data = await resp.json();
+          } catch (_) {}
+          alert("Error submitting form: " + (data.error || resp.statusText));
+        }
       });
 
-      if (resp.ok) {
-        // Show your “Enrollment Submitted!” modal
-        document.getElementById("successModal").classList.remove("hidden");
-      } else {
-        // If your Pages Function returned { error: "..." }, show it
-        let data = {};
-        try {
-          data = await resp.json();
-        } catch (_) {}
-        alert("Error submitting form: " + (data.error || resp.statusText));
-      }
-    });
-
-  function closeSuccessModal() {
-    document.getElementById("successModal").classList.add("hidden");
-    // Reset everything back to tab #1
-    document.querySelector('.tab-indicator[data-tab="enrollment"]').click();
-    document.getElementById("enrollmentForm").reset();
-    document.querySelectorAll('[id$="Preview"]').forEach(preview => {
-      preview.classList.add("hidden");
-    });
-  }
-</script>
+    function closeSuccessModal() {
+      document.getElementById("successModal").classList.add("hidden");
+      // Reset everything back to the first tab
+      document.querySelector('.tab-indicator[data-tab="enrollment"]').click();
+      document.getElementById("enrollmentForm").reset();
+      document.querySelectorAll('[id$="Preview"]').forEach(preview => {
+        preview.classList.add("hidden");
+      });
+    }
+  </script>
+</body>
+</html>
 </body>
 </html>
 

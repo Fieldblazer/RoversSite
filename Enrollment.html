@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enrollment | Texarkana Rovers FC</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            navy: '#001f3f',
+            skyblue: '#87CEEB',
+            gold: '#FFD700',
+            black: '#111827',
+            trfc: {
+              dark: '#0A0F1D',
+              blue: '#1E90FF',
+              gold: '#FFD700',
+            }
+          },
+          fontFamily: {
+            sans: ['Montserrat', 'sans-serif'],
+            title: ['Oswald', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap');
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #0A0F1D;
+      color: #FFFFFF;
+    }
+
+    .hover-scale {
+      transition: transform 0.3s ease;
+    }
+    .hover-scale:hover {
+      transform: scale(1.03);
+    }
+
+    .nav-link {
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background-color: #FFD700;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .form-section {
+      transition: all 0.3s ease;
+    }
+    .form-section:not(.active) {
+      display: none;
+    }
+    .tab-indicator {
+      transition: all 0.3s ease;
+    }
+    .required-field::after {
+      content: "*";
+      color: #FFD700;
+      margin-left: 2px;
+    }
+    .file-upload {
+      border: 2px dashed #2E3A59;
+      transition: all 0.3s ease;
+    }
+    .file-upload:hover {
+      border-color: #1E90FF;
+    }
+  </style>
+</head>
+<body class="bg-trfc-dark">
+
+  <!-- Header / Nav -->
+  <nav class="bg-trfc-dark border-b border-gray-800 sticky top-0 z-50 shadow-lg">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center py-4">
+        <!-- Logo + Title -->
+        <div class="flex items-center space-x-4">
+          <a href="/index.html" class="flex-shrink-0 flex items-center">
+            <img
+              src="https://i.imgur.com/JpT6gSi.png"
+              alt="TERA Logo"
+              class="h-[5rem] w-[5rem]"
+            />
+            <div class="leading-tight whitespace-nowrap">
+              <h1 class="text-xl font-bold font-title text-white">
+                TEXARKANA ROVERS
+              </h1>
+              <p class="text-xl font-bold font-title text-gold">
+                FOOTBALL CLUB
+              </p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Desktop Links -->
+        <div class="hidden lg:flex space-x-8 items-center">
+          <a href="/about.html" class="nav-link text-white hover:text-gold">About</a>
+          <div class="dropdown relative">
+            <button class="nav-link text-white hover:text-gold flex items-center">
+              Club <i class="fas fa-chevron-down ml-1 text-xs"></i>
+            </button>
+          </div>
+          <div class="dropdown relative">
+            <button class="nav-link text-white hover:text-gold flex items-center">
+              Programs <i class="fas fa-chevron-down ml-1 text-xs"></i>
+            </button>
+          </div>
+          <a href="/enrollment.html" class="nav-link text-white hover:text-gold font-bold">
+            Enrollment
+          </a>
+          <a href="/tournaments.html" class="nav-link text-white hover:text-gold">Tournaments</a>
+          <a href="/#news" class="nav-link text-white hover:text-gold">News</a>
+          <a href="/contact.html" class="nav-link text-white hover:text-gold">Contact</a>
+          <a
+            href="/apply.html"
+            class="bg-gold hover:bg-[#e6c300] text-black font-bold px-6 py-2 rounded-md transition-all"
+          >
+            APPLY
+          </a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button class="lg:hidden text-white focus:outline-none">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero / Banner -->
+  <section class="py-16 bg-gradient-to-r from-trfc-blue to-trfc-dark">
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-gold mb-4">2025–2026 Season Enrollment</h1>
+      <p class="text-gray-300 text-xl max-w-2xl mx-auto">
+        Please fill out all required sections below to enroll your player.
+      </p>
+    </div>
+  </section>
+
+  <!-- Enrollment Form Container -->
+  <main class="container mx-auto px-4 py-8">
+    <div class="bg-trfc-dark rounded-lg shadow-lg overflow-hidden">
+      <div class="bg-trfc-blue text-white p-6">
+        <h2 class="text-3xl font-bold">Player & Parent Information</h2>
+        <p class="mt-2">Complete all sections to enroll your player.</p>
+      </div>
+
+      <div class="p-6">
+        <!-- Tabs -->
+        <div class="flex border-b border-gray-700">
+          <button
+            class="tab-indicator px-6 py-3 font-medium text-trfc-gold border-b-2 border-trfc-gold active"
+            data-tab="enrollment"
+          >
+            Enrollment
+          </button>
+          <button
+            class="tab-indicator px-6 py-3 font-medium text-gray-400 hover:text-trfc-gold"
+            data-tab="medical"
+          >
+            Medical
+          </button>
+          <button
+            class="tab-indicator px-6 py-3 font-medium text-gray-400 hover:text-trfc-gold"
+            data-tab="waiver"
+          >
+            Waiver
+          </button>
+          <button
+            class="tab-indicator px-6 py-3 font-medium text-gray-400 hover:text-trfc-gold"
+            data-tab="documents"
+          >
+            Documents
+          </button>
+        </div>
+
+        <!-- Single form wrapping ALL tabs -->
+        <form
+          id="enrollmentForm"
+          action="/api/enroll"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <!-- Enrollment Section -->
+          <div id="enrollment" class="form-section active mt-6">
+            <h3 class="text-2xl font-semibold text-white mb-6">Player Information</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label for="firstName" class="block text-sm font-medium text-white required-field">First Name</label>
+                <input
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  required
+                  class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
+                />
+              </div>
+              <div>
+                <label for="lastName" class="block text-sm font-medium text-white required-field">Last Name</label>
+                <input
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  required
+                  class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
+                />
+              </div>
+              <div>
+                <label for="birthDate" class="block text-sm font-medium text-white required-field">Date of Birth</label>
+                <input
+                  type="date"
+                  id="birthDate"
+                  name="birthDate"
+                  required
+                  class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
+                />
+              </div>
+              <div>
+                <label for="gender" class="block text-sm font-medium text-white required-field">Gender</label>
+                <select
+                  id="gender"
+                  name="gender"
+                  required
+                  class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
+                >
+                  <option value="">Select</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div>
+                <label for="school" class="block text-sm font-medium text-white">School Attending</label>
+                <input
+                  type="text"
+                  id="school"
+                  name="school"
+                  class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
+                />
+              </div>
+              <div>
+                <label for="grade" class="block text-sm font-medium text-white">Grade (2023–24)</label>
+                <select
+                  id="grade"
+                  name="grade"
+                  class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
+                >
+                  <option value="">Select</option>
+                  <option value="pre-k">Pre-K</option>
+                  <option value="k">Kindergarten</option>
+                  <option value="1">1st</option>
+                  <option value="2">2nd</option>
+                  <option value="3">3rd</option>
+                  <option value="4">4th</option>
+                  <option value="5">5th</option>
+                  <option value="6">6th</option>
+                  <option value="7">7th</option>
+                  <option value="8">8th</option>
+                  <option value="9">9th</option>
+                  <option value="10">10th</option>
+                  <option value="11">11th</option>
+                  <option value="12">12th</option>
+                </select>
+              </div>
+            </div>
+
+            <h3 class="text-2xl font-semibold text-white mt-8 mb-6">Parent/Guardian Information</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label for="parentName" class="block text-sm font-medium text-white required-field">Parent/Guardian Name</label>
+                <input
+                  type="text"
+                  id="parentName"
+                  name="parentName"
+                  required
+                  class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
+                />
+              </div>
+              <div>
+                <label for="relationship" class="block text-sm font-medium text-white required-field">Relationship</label>
+                <input
+                  type="text"
+                  id="relationship"
+                  name="relationship"
+                  required
+                  class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
+                />
+              </div>
+              <div>
+                <label for="email" class="block text-sm font-medium text-white required-field">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
+                />
+              </div>
+              <div>
+                <label for="phone" class="block text-sm font-medium text-white required-field">Phone Number</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  required
+                  class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
+                />
+              </div>
+              <div class="md:col-span-2">
+                <label for="address" class="block text-sm font-medium text-white required-field">Address</label>
+                <input
+                  type="text"
+                  id="address"
+                  name="address"
+                  required
+                  class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
+                />
+              </div>
+              <div>
+                <label for="city" class="block text-sm font-medium text-white required-field">City</label>
+                <input
+                  type="text"
+                  id="city"
+                  name="city"
+                  required
+                  class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
+                />
+              </div>
+              <div>
+                <label for="state" class="block text-sm font-medium text-white required-field">State</label>
+                <select
+                  id="state"
+                  name="state"
+                  required
+                  class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
+                >
+                  <option value="">Select</option>
+                  <option value="AL">Alabama</option>
+                  <option value="AK">Alaska</option>
+                  <!-- Add all other states here -->
+                  <option value="WI">Wisconsin</option>
+                  <option value="WY">Wyoming</option>
+                </select>
+              </div>
+              <div>
+                <label for="zip" class="block text-sm font-medium text-white required-field">ZIP Code</label>
+                <input
+                  type="text"
+                  id="zip"
+                  name="zip"
+                  required
+                  class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
+                />
+              </div>
+            </div>
+
+            <h3 class="text-2xl font-semibold text-white mt-8 mb-6">Emergency Contact</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label for="emergencyName" class="block text-sm font-medium text-white required-field">Name</label>
+                <input
+                  type="text"
+                  id="emergencyName"
+                  name="emergencyName"
+                  required
+                  class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
+                />
+              </div>
+              <div>
+                <label for="emergencyRelationship" class="block text-sm font-medium text-white required-field">Relationship</label>
+                <input
+                  type="text"
+                  id="emergencyRelationship"
+                  name="emergencyRelationship"
+                  required
+                  class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
+                />
+              </div>
+              <div>
+                <label for="emergencyPhone" class="block text-sm font-medium text-white required-field">Phone Number</label>
+                <input
+                  type="tel"
+                  id="emergencyPhone"
+                  name="emergencyPhone"
+                  required
+                  class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
+                />
+              </div>
+            </div>
+
+            <h3 class="text-2xl font-semibold text-white mt-8 mb-6">Soccer Experience</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label for="experience" class="block text-sm font-medium text-white">Years of Experience</label>
+                <select
+                  id="experience"
+                  name="experience"
+                  class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
+                >
+                  <option value="none">None</option>
+                  <option value="1">1 year</option>
+                  <option value="2">2 years</option>
+                  <option value="3">3 years</option>
+                  <option value="4+">4+ years</option>
+                </select>
+              </div>
+              <div>
+                <label for="position" class="block text-sm font-medium text-white">Preferred Position(s)</label>
+                <input
+                  type="text"
+                  id="position"
+                  name="position"
+                  class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
+                />
+              </div>
+            </div>
+
+            <div class="mt-8">
+              <label class="inline-flex items-center">
+                <input
+                  type="checkbox"
+                  name="newsletter"
+                  class="rounded border-gray-700 text-trfc-gold focus:ring-trfc-gold"
+                />
+                <span class="ml-2 text-white">Subscribe to league updates</span>
+              </label>
+            </div>
+
+            <div class="mt-8 flex justify-between">
+              <button
+                type="button"
+                class="px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600"
+                data-prev="enrollment"
+                disabled
+              >
+                <i class="fas fa-arrow-left mr-2"></i> Back
+              </button>
+              <button
+                type="button"
+                class="next-tab px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-trfc-gold hover:bg-[#e6c300] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-trfc-gold"
+                data-next="medical"
+              >
+                Next: Medical <i class="fas fa-arrow-right ml-2"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Medical Section -->
+          <div id="medical" class="form-section mt-6">
+            <h3 class="text-2xl font-semibold text-white mb-6">Medical Release</h3>
+            <div class="bg-trfc-dark p-6 rounded-lg mb-6">
+              <h4 class="text-lg font-medium text-white mb-4">Medical Information</h4>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label for="physician" class="block text-sm font-medium text-white">Physician's Name</label>
+                  <input
+                    type="text"
+                    id="physician"
+                    name="physician"
+                    class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
+                  />
+                </div>
+                <div>
+                  <label for="physicianPhone" class="block text-sm font-medium text-white">Physician's Phone</label>
+                  <input
+                    type="tel"
+                    id="physicianPhone"
+                    name="physicianPhone"
+                    class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
+                  />
+                </div>
+              </div>
+
+              <div class="mt-6">
+                <label for="medicalConditions" class="block text-sm font-medium text-white">Medical Conditions/Allergies</label>
+                <textarea
+                  id="medicalConditions"
+                  name="medicalConditions"
+                  rows="3"
+                  class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
+                ></textarea>
+                <p class="mt-2 text-sm text-gray-400">List any medical conditions or allergies.</p>
+              </div>
+
+              <div class="mt-6">
+                <label for="medications" class="block text-sm font-medium text-white">Current Medications</label>
+                <textarea
+                  id="medications"
+                  name="medications"
+                  rows="3"
+                  class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
+                ></textarea>
+                <p class="mt-2 text-sm text-gray-400">List any medications the player is taking.</p>
+              </div>
+
+              <div class="mt-6">
+                <label for="insuranceProvider" class="block text-sm font-medium text-white">Insurance Provider</label>
+                <input
+                  type="text"
+                  id="insuranceProvider"
+                  name="insuranceProvider"
+                  class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
+                />
+              </div>
+              <div class="mt-6">
+                <label for="policyNumber" class="block text-sm font-medium text-white">Policy Number</label>
+                <input
+                  type="text"
+                  id="policyNumber"
+                  name="policyNumber"
+                  class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
+                />
+              </div>
+            </div>
+
+            <div class="bg-trfc-dark p-6 rounded-lg">
+              <h4 class="text-lg font-medium text-white mb-4">Emergency Medical Authorization</h4>
+              <p class="text-gray-400 mb-4">
+                I authorize Rovers FC staff to seek emergency medical treatment for my child if I cannot be reached.
+              </p>
+
+              <div class="mt-4">
+                <label class="inline-flex items-center">
+                  <input
+                    type="checkbox"
+                    name="medicalAuthorization"
+                    required
+                    class="rounded border-gray-700 text-trfc-gold focus:ring-trfc-gold"
+                  />
+                  <span class="ml-2 text-white required-field">I authorize emergency treatment</span>
+                </label>
+              </div>
+
+              <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label for="parentSignature" class="block text-sm font-medium text-white required-field">Parent/Guardian Signature</label>
+                  <input
+                    type="text"
+                    id="parentSignature"
+                    name="parentSignature"
+                    required
+                    class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
+                  />
+                </div>
+                <div>
+                  <label for="signatureDate" class="block text-sm font-medium text-white required-field">Date</label>
+                  <input
+                    type="date"
+                    id="signatureDate"
+                    name="signatureDate"
+                    required
+                    class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 flex justify-between">
+              <button
+                type="button"
+                class="prev-tab px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-trfc-blue hover:bg-[#197fef] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-trfc-blue"
+                data-prev="enrollment"
+              >
+                <i class="fas fa-arrow-left mr-2"></i> Back: Enrollment
+              </button>
+              <button
+                type="button"
+                class="next-tab px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-trfc-gold hover:bg-[#e6c300] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-trfc-gold"
+                data-next="waiver"
+              >
+                Next: Waiver <i class="fas fa-arrow-right ml-2"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Waiver Section -->
+          <div id="waiver" class="form-section mt-6">
+            <h3 class="text-2xl font-semibold text-white mb-6">Liability Waiver</h3>
+            <div class="bg-trfc-dark p-6 rounded-lg mb-6">
+              <h4 class="text-lg font-medium text-white mb-4">Assumption of Risk</h4>
+              <p class="text-gray-400 mb-4">
+                I understand that soccer is a physical sport and that participation may involve risks of injury.
+              </p>
+
+              <h4 class="text-lg font-medium text-white mt-6 mb-4">Release of Liability</h4>
+              <p class="text-gray-400 mb-4">
+                I release Rovers FC and its staff from any claims arising from my child's participation.
+              </p>
+
+              <h4 class="text-lg font-medium text-white mt-6 mb-4">Photo/Video Release</h4>
+              <p class="text-gray-400 mb-4">
+                I grant permission for Rovers FC to use images of my child for promotional purposes.
+              </p>
+
+              <div class="mt-4">
+                <label class="inline-flex items-center">
+                  <input
+                    type="checkbox"
+                    name="assumptionRisk"
+                    required
+                    class="rounded border-gray-700 text-trfc-gold focus:ring-trfc-gold"
+                  />
+                  <span class="ml-2 text-white required-field">I acknowledge Assumption of Risk</span>
+                </label>
+              </div>
+
+              <div class="mt-4">
+                <label class="inline-flex items-center">
+                  <input
+                    type="checkbox"
+                    name="liabilityRelease"
+                    required
+                    class="rounded border-gray-700 text-trfc-gold focus:ring-trfc-gold"
+                  />
+                  <span class="ml-2 text-white required-field">I agree to Release of Liability</span>
+                </label>
+              </div>
+
+              <div class="mt-4">
+                <label class="inline-flex items-center">
+                  <input
+                    type="checkbox"
+                    name="photoRelease"
+                    class="rounded border-gray-700 text-trfc-gold focus:ring-trfc-gold"
+                  />
+                  <span class="ml-2 text-white">I grant Photo/Video Release (optional)</span>
+                </label>
+              </div>
+
+              <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label for="waiverSignature" class="block text-sm font-medium text-white required-field">Parent/Guardian Signature</label>
+                  <input
+                    type="text"
+                    id="waiverSignature"
+                    name="waiverSignature"
+                    required
+                    class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
+                  />
+                </div>
+                <div>
+                  <label for="waiverDate" class="block text-sm font-medium text-white required-field">Date</label>
+                  <input
+                    type="date"
+                    id="waiverDate"
+                    name="waiverDate"
+                    required
+                    class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 flex justify-between">
+              <button
+                type="button"
+                class="prev-tab px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-trfc-blue hover:bg-[#197fef] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-trfc-blue"
+                data-prev="medical"
+              >
+                <i class="fas fa-arrow-left mr-2"></i> Back: Medical
+              </button>
+              <button
+                type="button"
+                class="next-tab px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-trfc-gold hover:bg-[#e6c300] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-trfc-gold"
+                data-next="documents"
+              >
+                Next: Documents <i class="fas fa-arrow-right ml-2"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Documents Section -->
+          <div id="documents" class="form-section mt-6">
+            <h3 class="text-2xl font-semibold text-white mb-6">Document Submission</h3>
+            <div class="bg-trfc-dark p-6 rounded-lg mb-6">
+              <h4 class="text-lg font-medium text-white mb-4">Required Documents</h4>
+              <p class="text-gray-400 mb-6">Upload the following documents to complete enrollment.</p>
+
+              <div class="space-y-6">
+                <div class="file-upload p-4 rounded-lg bg-trfc-dark">
+                  <label class="block text-sm font-medium text-white mb-2 required-field">Proof of Age</label>
+                  <div class="flex items-center justify-center w-full">
+                    <label
+                      for="proofAge"
+                      class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-700 border-dashed rounded-lg cursor-pointer bg-trfc-dark hover:bg-gray-800"
+                    >
+                      <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                        <i class="fas fa-cloud-upload-alt text-3xl text-gray-500 mb-2"></i>
+                        <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">Click to upload</span> or drag</p>
+                        <p class="text-xs text-gray-400">PDF, JPG, PNG (Max 5MB)</p>
+                      </div>
+                      <input id="proofAge" name="proofAge" type="file" class="hidden" required />
+                    </label>
+                  </div>
+                  <div id="proofAgePreview" class="mt-2 hidden text-gray-300">
+                    File: <span id="proofAgeFileName" class="font-medium"></span>
+                    <button type="button" class="ml-2 text-red-500 hover:text-red-700" onclick="removeFile('proofAge')">
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="file-upload p-4 rounded-lg bg-trfc-dark">
+                  <label class="block text-sm font-medium text-white mb-2 required-field">Proof of Residency</label>
+                  <div class="flex items-center justify-center w-full">
+                    <label
+                      for="proofResidency"
+                      class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-700 border-dashed rounded-lg cursor-pointer bg-trfc-dark hover:bg-gray-800"
+                    >
+                      <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                        <i class="fas fa-cloud-upload-alt text-3xl text-gray-500 mb-2"></i>
+                        <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">Click to upload</span> or drag</p>
+                        <p class="text-xs text-gray-400">PDF, JPG, PNG (Max 5MB)</p>
+                      </div>
+                      <input id="proofResidency" name="proofResidency" type="file" class="hidden" required />
+                    </label>
+                  </div>
+                  <div id="proofResidencyPreview" class="mt-2 hidden text-gray-300">
+                    File: <span id="proofResidencyFileName" class="font-medium"></span>
+                    <button type="button" class="ml-2 text-red-500 hover:text-red-700" onclick="removeFile('proofResidency')">
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="file-upload p-4 rounded-lg bg-trfc-dark">
+                  <label class="block text-sm font-medium text-white mb-2 required-field">Physical Exam Form</label>
+                  <div class="flex items-center justify-center w-full">
+                    <label
+                      for="physicalExam"
+                      class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-700 border-dashed rounded-lg cursor-pointer bg-trfc-dark hover:bg-gray-800"
+                    >
+                      <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                        <i class="fas fa-cloud-upload-alt text-3xl text-gray-500 mb-2"></i>
+                        <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">Click to upload</span> or drag</p>
+                        <p class="text-xs text-gray-400">PDF, JPG, PNG (Max 5MB)</p>
+                      </div>
+                      <input id="physicalExam" name="physicalExam" type="file" class="hidden" required />
+                    </label>
+                  </div>
+                  <div id="physicalExamPreview" class="mt-2 hidden text-gray-300">
+                    File: <span id="physicalExamFileName" class="font-medium"></span>
+                    <button type="button" class="ml-2 text-red-500 hover:text-red-700" onclick="removeFile('physicalExam')">
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-trfc-dark p-6 rounded-lg mb-6">
+              <h4 class="text-lg font-medium text-white mb-4">Payment Information</h4>
+              <p class="text-gray-400 mb-4">
+                Enrollment fee: $150 per player. Choose your payment method below.
+              </p>
+
+              <div class="mt-4">
+                <label class="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="online"
+                    class="h-4 w-4 text-trfc-gold focus:ring-trfc-gold border-gray-700"
+                    checked
+                  />
+                  <span class="ml-2 text-white">Pay Online Now</span>
+                </label>
+                <label class="inline-flex items-center ml-6">
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="check"
+                    class="h-4 w-4 text-trfc-gold focus:ring-trfc-gold border-gray-700"
+                  />
+                  <span class="ml-2 text-white">Pay by Check</span>
+                </label>
+              </div>
+
+              <div id="onlinePayment" class="mt-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label for="cardName" class="block text-sm font-medium text-white">Name on Card</label>
+                    <input
+                      type="text"
+                      id="cardName"
+                      name="cardName"
+                      class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
+                    />
+                  </div>
+                  <div>
+                    <label for="cardNumber" class="block text-sm font-medium text-white">Card Number</label>
+                    <input
+                      type="text"
+                      id="cardNumber"
+                      name="cardNumber"
+                      class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
+                    />
+                  </div>
+                  <div>
+                    <label for="cardExpiry" class="block text-sm font-medium text-white">Expiry (MM/YY)</label>
+                    <input
+                      type="text"
+                      id="cardExpiry"
+                      name="cardExpiry"
+                      placeholder="MM/YY"
+                      class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
+                    />
+                  </div>
+                  <div>
+                    <label for="cardCvv" class="block text-sm font-medium text-white">CVV</label>
+                    <input
+                      type="text"
+                      id="cardCvv"
+                      name="cardCvv"
+                      class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-6">
+                <label class="inline-flex items-center">
+                  <input
+                    type="checkbox"
+                    name="paymentAgreement"
+                    required
+                    class="rounded border-gray-700 text-trfc-gold focus:ring-trfc-gold"
+                  />
+                  <span class="ml-2 text-white required-field">I agree to pay $150 enrollment fee</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="mt-8 flex justify-between">
+              <button
+                type="button"
+                class="prev-tab px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-trfc-blue hover:bg-[#197fef] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-trfc-blue"
+                data-prev="waiver"
+              >
+                <i class="fas fa-arrow-left mr-2"></i> Back: Waiver
+              </button>
+              <button
+                type="submit"
+                class="px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-trfc-gold hover:bg-[#e6c300] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-trfc-gold"
+              >
+                Complete Enrollment <i class="fas fa-check ml-2"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-black text-white pt-16 pb-8">
+    <div class="container mx-auto px-4">
+      <div class="grid md:grid-cols-4 gap-12 mb-12">
+        <div>
+          <div class="flex items-center mb-6">
+            <img src="https://i.imgur.com/JpT6gSi.png" alt="Logo" class="h-12 w-12 mr-3">
+            <div>
+              <h3 class="text-xl font-bold font-title">ROVERS<span class="text-gold"> FC</span></h3>
+              <p class="text-xs text-skyblue">Texarkana Rovers Football Club</p>
+            </div>
+          </div>
+          <p class="text-gray-400 mb-4">
+            Developing elite soccer athletes through professional coaching, competitive play, and character development.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-skyblue"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-gray-400 hover:text-skyblue"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-gray-400 hover:text-skyblue"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-gray-400 hover:text-skyblue"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-bold mb-6 text-gold">QUICK LINKS</h4>
+          <ul class="space-y-3">
+            <li><a href="#" class="text-gray-400 hover:text-white">Home</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">About TRFC</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Schedules</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Registration</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Tryouts</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Office</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-bold mb-6 text-gold">PROGRAMS</h4>
+          <ul class="space-y-3">
+            <li><a href="#" class="text-gray-400 hover:text-white">Club</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Academy</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Camps & Clinics</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Goalkeeper Training</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Private Lessons</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Exhibition</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-bold mb-6 text-gold">CONTACT US</h4>
+          <ul class="space-y-3 text-gray-400">
+            <li class="flex items-start">
+              <i class="fas fa-map-marker-alt text-skyblue mr-3 mt-1"></i>
+              <span>123 Soccer Way<br>Texarkana, TX 75501</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-phone-alt text-skyblue mr-3"></i>
+              <span>(903) 748-7697</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-envelope text-skyblue mr-3"></i>
+              <span>info@roversfc.org</span>
+            </li>
+          </ul>
+
+          <h4 class="text-lg font-bold mt-8 mb-4 text-gold">NEWSLETTER</h4>
+          <form class="flex">
+            <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-md focus:outline-none text-black w-full">
+            <button type="submit" class="bg-gold text-black px-4 py-2 rounded-r-md font-bold"><i class="fas fa-paper-plane"></i></button>
+          </form>
+        </div>
+      </div>
+
+      <div class="pt-8 border-t border-gray-800">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <p class="text-gray-500 text-sm mb-4 md:mb-0">
+            © 2024 TRFC Rovers FC. All rights reserved.
+          </p>
+          <div class="flex space-x-6">
+            <a href="#" class="text-gray-500 hover:text-white text-sm">Privacy Policy</a>
+            <a href="#" class="text-gray-500 hover:text-white text-sm">Terms of Service</a>
+            <a href="#" class="text-gray-500 hover:text-white text-sm">Sitemap</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Success Modal -->
+  <div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-lg p-8 max-w-md w-full">
+      <div class="text-center">
+        <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-trfc-gold">
+          <i class="fas fa-check text-trfc-dark text-xl"></i>
+        </div>
+        <h3 class="text-lg font-medium text-trfc-dark mt-3">Enrollment Submitted!</h3>
+        <div class="mt-2">
+          <p class="text-sm text-gray-600">Thank you for enrolling. We will contact you soon.</p>
+        </div>
+        <div class="mt-6">
+          <button
+            type="button"
+            onclick="closeSuccessModal()"
+            class="px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-trfc-gold hover:bg-[#e6c300] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-trfc-gold"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Tab navigation
+    document.querySelectorAll('.tab-indicator').forEach(tab => {
+      tab.addEventListener('click', function() {
+        const tabId = this.getAttribute('data-tab');
+
+        // Update indicators
+        document.querySelectorAll('.tab-indicator').forEach(t => {
+          t.classList.remove('text-trfc-gold', 'border-trfc-gold');
+          t.classList.add('text-gray-400');
+        });
+        this.classList.remove('text-gray-400');
+        this.classList.add('text-trfc-gold', 'border-trfc-gold');
+
+        // Show selected section
+        document.querySelectorAll('.form-section').forEach(section => {
+          section.classList.remove('active');
+        });
+        document.getElementById(tabId).classList.add('active');
+      });
+    });
+
+    // Next/Previous buttons
+    document.querySelectorAll('.next-tab').forEach(button => {
+      button.addEventListener('click', function() {
+        const nextTabId = this.getAttribute('data-next');
+        document.querySelector(`.tab-indicator[data-tab="${nextTabId}"]`).click();
+      });
+    });
+    document.querySelectorAll('.prev-tab').forEach(button => {
+      button.addEventListener('click', function() {
+        const prevTabId = this.getAttribute('data-prev');
+        document.querySelector(`.tab-indicator[data-tab="${prevTabId}"]`).click();
+      });
+    });
+
+    // File upload preview
+    document.querySelectorAll('input[type="file"]').forEach(input => {
+      input.addEventListener('change', function() {
+        const file = this.files[0];
+        if (file) {
+          const previewId = `${this.id}Preview`;
+          const fileNameId = `${this.id}FileName`;
+          document.getElementById(previewId).classList.remove('hidden');
+          document.getElementById(fileNameId).textContent = file.name;
+        }
+      });
+    });
+    function removeFile(inputId) {
+      const input = document.getElementById(inputId);
+      input.value = '';
+      document.getElementById(`${inputId}Preview`).classList.add('hidden');
+    }
+
+    // Payment method toggle
+    document.querySelectorAll('input[name="paymentMethod"]').forEach(radio => {
+      radio.addEventListener('change', function() {
+        if (this.value === 'online') {
+          document.getElementById('onlinePayment').classList.remove('hidden');
+        } else {
+          document.getElementById('onlinePayment').classList.add('hidden');
+        }
+      });
+    });
+
+    // Form submission (documents)
+    document.getElementById('enrollmentForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      document.getElementById('successModal').classList.remove('hidden');
+    });
+    function closeSuccessModal() {
+      document.getElementById('successModal').classList.add('hidden');
+      document.querySelector('.tab-indicator[data-tab="enrollment"]').click();
+      document.getElementById('enrollmentForm').reset();
+      document.querySelectorAll('[id$="Preview"]').forEach(preview => {
+        preview.classList.add('hidden');
+      });
+    }
+  </script>
+
+</body>
+</html>

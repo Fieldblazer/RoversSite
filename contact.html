@@ -1,0 +1,455 @@
+<!DOCTYPE html Contact>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us | Texarkana Rovers FC</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            navy: '#001f3f',
+            skyblue: '#87CEEB',
+            gold: '#FFD700',
+            black: '#111827',
+            trfc: {
+              dark: '#0A0F1D',
+              blue: '#1E90FF',
+              gold: '#FFD700',
+            }
+          },
+          fontFamily: {
+            sans: ['Montserrat', 'sans-serif'],
+            title: ['Oswald', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap');
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #0A0F1D;
+      color: #FFFFFF;
+    }
+    .hover-scale {
+      transition: transform 0.3s ease;
+    }
+    .hover-scale:hover {
+      transform: scale(1.03);
+    }
+    .nav-link {
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background-color: #FFD700;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    .faq-content {
+      transition: max-height 0.3s ease;
+    }
+  </style>
+</head>
+<body class="bg-trfc-dark text-white">
+
+  <!-- Header / Nav -->
+  <nav class="bg-trfc-dark border-b border-gray-800 sticky top-0 z-50 shadow-lg">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center py-4">
+        <!-- Logo + Title -->
+        <div class="flex items-center space-x-4">
+          <a href="/index.html" class="flex-shrink-0 flex items-center">
+            <img
+              src="https://i.imgur.com/JpT6gSi.png"
+              alt="TERA Logo"
+              class="h-[5rem] w-[5rem]"
+            />
+            <div class="leading-tight whitespace-nowrap">
+              <h1 class="text-xl font-bold font-title text-white">
+                TEXARKANA ROVERS
+              </h1>
+              <p class="text-xl font-bold font-title text-gold">
+                FOOTBALL CLUB
+              </p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Desktop Links -->
+        <div class="hidden lg:flex space-x-8 items-center">
+          <a href="/about.html" class="nav-link text-white hover:text-gold">About</a>
+          <div class="dropdown relative">
+            <button class="nav-link text-white hover:text-gold flex items-center">
+              Club <i class="fas fa-chevron-down ml-1 text-xs"></i>
+            </button>
+            <!-- dropdown items if any -->
+          </div>
+          <div class="dropdown relative">
+            <button class="nav-link text-white hover:text-gold flex items-center">
+              Programs <i class="fas fa-chevron-down ml-1 text-xs"></i>
+            </button>
+          </div>
+          <a href="/enrollment.html" class="nav-link text-white hover:text-gold">Enrollment</a>
+          <a href="/tournaments.html" class="nav-link text-white hover:text-gold">Tournaments</a>
+          <a href="/news.html" class="nav-link text-white hover:text-gold">News</a>
+          <a href="/contact.html" class="nav-link text-white hover:text-gold">Contact</a>
+          <a
+            href="/apply.html"
+            class="bg-gold hover:bg-yellow-500 text-black font-bold px-6 py-2 rounded-md transition-all"
+          >
+            APPLY
+          </a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button class="lg:hidden text-white focus:outline-none">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="py-16 bg-trfc-dark">
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-gold mb-4">Get in Touch</h1>
+      <p class="text-gray-300 text-xl max-w-2xl mx-auto">
+        We'd love to hear from you! Reach out to our team for any questions or inquiries.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Cards -->
+  <section class="py-12 bg-trfc-dark">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <!-- Location Card -->
+        <div
+          class="hover-scale bg-gradient-to-b from-trfc-blue to-trfc-dark border-l-4 border-trfc-gold rounded-lg p-6 flex flex-col items-center text-center"
+        >
+          <div class="bg-trfc-gold text-trfc-dark p-3 rounded-full mb-4">
+            <i class="fas fa-map-marker-alt text-xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2">Our Location</h3>
+          <p class="text-gray-300">123 Rovers Street<br>Texarkana, TX 75501</p>
+        </div>
+        <!-- Phone Card -->
+        <div
+          class="hover-scale bg-gradient-to-b from-trfc-blue to-trfc-dark border-l-4 border-trfc-gold rounded-lg p-6 flex flex-col items-center text-center"
+        >
+          <div class="bg-trfc-gold text-trfc-dark p-3 rounded-full mb-4">
+            <i class="fas fa-phone-alt text-xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2">Phone Number</h3>
+          <p class="text-gray-300">+1 (903) 748-7697<br>Mon–Fri, 9am–5pm CST</p>
+        </div>
+        <!-- Email Card -->
+        <div
+          class="hover-scale bg-gradient-to-b from-trfc-blue to-trfc-dark border-l-4 border-trfc-gold rounded-lg p-6 flex flex-col items-center text-center"
+        >
+          <div class="bg-trfc-gold text-trfc-dark p-3 rounded-full mb-4">
+            <i class="fas fa-envelope text-xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2">Email Address</h3>
+          <p class="text-gray-300">info@roversfc.org<br>support@roversfc.org</p>
+        </div>
+      </div>
+
+      <!-- Contact Form & Map -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- Contact Form -->
+        <div class="bg-navy rounded-lg shadow-lg p-8">
+          <h2 class="text-2xl font-bold text-gold mb-6">Send Us a Message</h2>
+          <form id="contactForm">
+            <div class="mb-6">
+              <label for="name" class="block text-gray-300 mb-1">Full Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="w-full px-4 py-2 border border-gray-700 bg-trfc-dark text-white rounded-md focus:border-trfc-gold focus:ring-1 focus:ring-trfc-gold"
+                placeholder="John Doe"
+                required
+              />
+            </div>
+            <div class="mb-6">
+              <label for="email" class="block text-gray-300 mb-1">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="w-full px-4 py-2 border border-gray-700 bg-trfc-dark text-white rounded-md focus:border-trfc-gold focus:ring-1 focus:ring-trfc-gold"
+                placeholder="john@example.com"
+                required
+              />
+            </div>
+            <div class="mb-6">
+              <label for="subject" class="block text-gray-300 mb-1">Subject</label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                class="w-full px-4 py-2 border border-gray-700 bg-trfc-dark text-white rounded-md focus:border-trfc-gold focus:ring-1 focus:ring-trfc-gold"
+                placeholder="How can we help?"
+              />
+            </div>
+            <div class="mb-6">
+              <label for="message" class="block text-gray-300 mb-1">Your Message</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="4"
+                class="w-full px-4 py-2 border border-gray-700 bg-trfc-dark text-white rounded-md focus:border-trfc-gold focus:ring-1 focus:ring-trfc-gold"
+                placeholder="Tell us more about your needs..."
+                required
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              class="w-full bg-trfc-gold text-trfc-dark py-2 px-4 rounded-md hover:bg-[#e6c300] flex items-center justify-center transition duration-300"
+            >
+              <i class="fas fa-paper-plane mr-2"></i> Send Message
+            </button>
+          </form>
+        </div>
+
+        <!-- Map & Social Media -->
+        <div>
+          <!-- Map -->
+          <div class="bg-navy rounded-lg shadow-lg overflow-hidden mb-8">
+            <div class="relative" style="padding-top: 56.25%;">
+              <iframe
+                class="absolute inset-0 w-full h-full"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.0487155848417!2d-122.4194154846822!3d37.77492997975938!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80859a6d00690021%3A0x4a501367f076adff!2sSan%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus"
+                allowfullscreen=""
+                loading="lazy"
+                frameborder="0"
+              ></iframe>
+            </div>
+            <div class="p-4">
+              <h3 class="text-lg font-bold text-white mb-2">Find Us on the Map</h3>
+              <p class="text-gray-300">Visit our headquarters in the heart of Texarkana.</p>
+            </div>
+          </div>
+
+          <!-- Social Media -->
+          <div class="bg-navy rounded-lg shadow-lg p-6">
+            <h3 class="text-lg font-bold text-white mb-4">Connect With Us</h3>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="bg-trfc-blue text-white p-3 rounded-full hover:bg-[#187bcd] transition duration-300"
+              >
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a
+                href="#"
+                class="bg-skyblue text-white p-3 rounded-full hover:bg-[#6ecfff] transition duration-300"
+              >
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a
+                href="#"
+                class="bg-[#d6249f] text-white p-3 rounded-full hover:bg-[#bf1a8a] transition duration-300"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a
+                href="#"
+                class="bg-[#0e76a8] text-white p-3 rounded-full hover:bg-[#0b5d80] transition duration-300"
+              >
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a
+                href="#"
+                class="bg-[#FF0000] text-white p-3 rounded-full hover:bg-[#cc0000] transition duration-300"
+              >
+                <i class="fab fa-youtube"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <div class="mt-16">
+        <h2 class="text-2xl font-bold text-gold mb-8 text-center">Frequently Asked Questions</h2>
+        <div class="bg-trfc-dark rounded-lg border border-gray-700 divide-y divide-gray-700">
+          <!-- FAQ 1 -->
+          <div class="p-6">
+            <button
+              class="w-full flex justify-between items-center text-left"
+              onclick="toggleFAQ(1)"
+            >
+              <span class="text-xl font-semibold text-white">
+                How can I schedule a tryout?
+              </span>
+              <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300" id="faqIcon1"></i>
+            </button>
+            <div class="mt-3 text-gray-300 hidden" id="faqContent1">
+              You can schedule a tryout by visiting our Enrollment page, filling out the registration form, or contacting us directly at info@roversfc.org. Tryouts are held every spring and fall.
+            </div>
+          </div>
+          <!-- FAQ 2 -->
+          <div class="p-6">
+            <button
+              class="w-full flex justify-between items-center text-left"
+              onclick="toggleFAQ(2)"
+            >
+              <span class="text-xl font-semibold text-white">
+                What age groups do you offer?
+              </span>
+              <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300" id="faqIcon2"></i>
+            </button>
+            <div class="mt-3 text-gray-300 hidden" id="faqContent2">
+              We offer programs ranging from U6 to U18, including our Kit Academy for U6–U10, Rovers FC teams for U10–U16, and specialized camps & clinics throughout the year.
+            </div>
+          </div>
+          <!-- FAQ 3 -->
+          <div class="p-6">
+            <button
+              class="w-full flex justify-between items-center text-left"
+              onclick="toggleFAQ(3)"
+            >
+              <span class="text-xl font-semibold text-white">
+                Do you offer scholarships?
+              </span>
+              <i class="fas fa-chevron-down text-gray-400 transition-transform duration-300" id="faqIcon3"></i>
+            </button>
+            <div class="mt-3 text-gray-300 hidden" id="faqContent3">
+              Yes, we have a limited number of need-based scholarships. Please contact us at info@roversfc.org for more information and eligibility requirements.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+    <footer class="bg-black text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center mb-6">
+                        <img src="https://i.imgur.com/JpT6gSi.png" alt="Logo" class="h-12 w-12 mr-3">
+                        <div>
+                            <h3 class="text-xl font-bold font-title">ROVERS<span class="text-gold"> FC</span></h3>
+                            <p class="text-xs text-skyblue">Texarkana Rovers Football Club</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Developing elite soccer athletes through professional coaching, competitive play, and character development.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-skyblue"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-skyblue"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-skyblue"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-skyblue"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-6 text-gold">QUICK LINKS</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">About TRFC</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Schedules</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Registration</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Tryouts</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Office</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-6 text-gold">PROGRAMS</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Club</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Academy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Camps & Clinics</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Goalkeeper Training</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Private Lessons</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Exhibition</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-6 text-gold">CONTACT US</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-skyblue mr-3 mt-1"></i>
+                            <span>123 Soccer Way<br>Texarkana, TX 75501</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt text-skyblue mr-3"></i>
+                            <span>(903) 748-7697</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-skyblue mr-3"></i>
+                            <span>info@roversfc.org</span>
+                        </li>
+                    </ul>
+                    
+                    <h4 class="text-lg font-bold mt-8 mb-4 text-gold">NEWSLETTER</h4>
+                    <form class="flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-md focus:outline-none text-black w-full">
+                        <button type="submit" class="bg-gold text-black px-4 py-2 rounded-r-md font-bold"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-800">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-500 text-sm mb-4 md:mb-0">
+                        © 2024 TRFC Rovers FC. All rights reserved.
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-500 hover:text-white text-sm">Privacy Policy</a>
+                        <a href="#" class="text-gray-500 hover:text-white text-sm">Terms of Service</a>
+                        <a href="#" class="text-gray-500 hover:text-white text-sm">Sitemap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+  <script>
+    // Contact Form Submission (placeholder)
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      alert('Thank you for your message! We will get back to you soon.');
+      this.reset();
+    });
+
+    // FAQ Toggle
+    function toggleFAQ(id) {
+      const content = document.getElementById(`faqContent${id}`);
+      const icon = document.getElementById(`faqIcon${id}`);
+      if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        icon.classList.add('rotate-180');
+      } else {
+        content.classList.add('hidden');
+        icon.classList.remove('rotate-180');
+      }
+    }
+  </script>
+</body>
+</html>

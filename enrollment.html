@@ -171,25 +171,30 @@
       <div class="p-6">
         <!-- Tabs -->
         <div class="flex border-b border-gray-700">
+          <!-- Each tab‐header button now explicitly has type="button" -->
           <button
+            type="button"
             class="tab-indicator px-6 py-3 font-medium text-trfc-gold border-b-2 border-trfc-gold active"
             data-tab="enrollment"
           >
             Enrollment
           </button>
           <button
+            type="button"
             class="tab-indicator px-6 py-3 font-medium text-gray-400 hover:text-trfc-gold"
             data-tab="medical"
           >
             Medical
           </button>
           <button
+            type="button"
             class="tab-indicator px-6 py-3 font-medium text-gray-400 hover:text-trfc-gold"
             data-tab="waiver"
           >
             Waiver
           </button>
           <button
+            type="button"
             class="tab-indicator px-6 py-3 font-medium text-gray-400 hover:text-trfc-gold"
             data-tab="documents"
           >
@@ -1168,14 +1173,7 @@
       });
     });
 
-      <!-- … -->
-  <!-- Success Modal (already in your HTML) -->
-  <div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-    <!-- …modal contents… -->
-  </div>
-
-  <!-- Form‐submit handler: replaces the old snippet -->
-  <script>
+    // Final form‐submit handler
     document
       .getElementById("enrollmentForm")
       .addEventListener("submit", async function(e) {
@@ -1216,5 +1214,3 @@
   </script>
 </body>
 </html>
-
- 

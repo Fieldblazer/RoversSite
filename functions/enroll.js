@@ -24,8 +24,7 @@ export async function onRequestPost({ request, env }) {
     );
   }
 
-  // 3) Extract every field you need (text inputs). Adjust
-  // names to match your <input name="..."> exactly.
+  // 3) Extract every field you need (text inputs). Adjust names to match your <input name="..."> exactly.
   const firstName      = formData.get("firstName")?.trim()      || "";
   const lastName       = formData.get("lastName")?.trim()       || "";
   const birthDate      = formData.get("birthDate")?.trim()      || "";
@@ -53,11 +52,11 @@ export async function onRequestPost({ request, env }) {
   const parentSignature = formData.get("parentSignature")?.trim() || "";
   const signatureDate   = formData.get("signatureDate")?.trim()   || "";
 
-  // (You can similarly grab waiver and document fields if you wish.)
-
   // 4) Validate any required fields:
   if (!firstName || !lastName || !email || !parentSignature) {
-    console.error("🐝 Missing required fields. firstName, lastName, email, or parentSignature was blank.");
+    console.error(
+      "🐝 Missing required fields. firstName, lastName, email, or parentSignature was blank."
+    );
     return new Response(
       JSON.stringify({ success: false, error: "Missing required fields." }),
       { status: 400, headers: { "Content-Type": "application/json" } }
@@ -121,9 +120,9 @@ Date: ${signatureDate}
       method: "POST",
       headers: {
         Authorization: "Basic " + btoa(`api:${mailgunKey}`),
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/x-www-form-urlencoded",
       },
-      body
+      body,
     });
   } catch (err) {
     console.error("🐝 Mailgun fetch error:", err);
@@ -141,13 +140,13 @@ Date: ${signatureDate}
     return new Response(
       JSON.stringify({
         success: false,
-        error: `Mailgun error: ${mgResponse.status} – ${respText}`
+        error: `Mailgun error: ${mgResponse.status} – ${respText}`,
       }),
       { status: 500, headers: { "Content-Type": "application/json" } }
     );
   }
 
-  // 6) All good → return JSON success  
+  // 6) All good → return JSON success
   return new Response(
     JSON.stringify({ success: true }),
     { status: 200, headers: { "Content-Type": "application/json" } }

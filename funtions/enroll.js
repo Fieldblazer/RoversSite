@@ -8,21 +8,14 @@
  *   4) Returns JSON { success: true } or an error
  */
 
-export async function onRequestPost({ request, env, context }) {
-  // 1) Log so you can verify this code is running
-  console.log("🐝 enroll.js called at " + new Date().toISOString());
-
-  // 2) Parse incoming form data (must be enctype="multipart/form-data" on your <form>)
-  let formData;
-  try {
-    formData = await request.formData();
-  } catch (err) {
-    console.error("🐝 Failed to parse formData:", err);
-    return new Response(
-      JSON.stringify({ success: false, error: "Invalid form submission." }),
-      { status: 400, headers: { "Content-Type": "application/json" } }
-    );
-  }
+// functions/enroll.js
+export async function onRequestPost({ request, env }) {
+  console.log("🐝 stub onRequestPost invoked");
+  return new Response(JSON.stringify({ success: true }), {
+    status: 200,
+    headers: { "Content-Type": "application/json" }
+  });
+}
 
   // 3) Extract every field you need (text inputs). Adjust names to match your <input name="...">
   const firstName    = formData.get("firstName")?.trim()      || "";

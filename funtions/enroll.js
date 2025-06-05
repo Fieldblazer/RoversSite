@@ -1,140 +1,155 @@
 // functions/enroll.js
 
 /**
- * This Cloudflare Pages Function handles POST requests from the enrollment form.
- * It uses Mailgun’s sandbox domain to send the collected form data via email.
+ * Cloudflare Pages Function: handles POST /api/enroll
+ *   1) Logs an entry so you can watch in the Pages Function logs
+ *   2) Parses all form fields
+ *   3) Sends a plain-text summary via Mailgun (sandbox)
+ *   4) Returns JSON { success: true } or an error
  */
 
-export async function onRequestPost({ request, env }) {
+export async function onRequestPost({ request, env, context }) {
+  // 1) Log so you can verify this code is running
+  console.log("🐝 enroll.js called at " + new Date().toISOString());
+
+  // 2) Parse incoming form data (must be enctype="multipart/form-data" on your <form>)
+  let formData;
   try {
-    // 1. Parse the incoming multipart/form-data
-    const formData = await request.formData();
+    formData = await request.formData();
+  } catch (err) {
+    console.error("🐝 Failed to parse formData:", err);
+    return new Response(
+      JSON.stringify({ success: false, error: "Invalid form submission." }),
+      { status: 400, headers: { "Content-Type": "application/json" } }
+    );
+  }
 
-    // 2. Extract text fields from the form
-    const firstName   = formData.get("firstName")?.trim()   || "";
-    const lastName    = formData.get("lastName")?.trim()    || "";
-    const birthDate   = formData.get("birthDate")?.trim()   || "";
-    const gender      = formData.get("gender")?.trim()      || "";
-    const school      = formData.get("school")?.trim()      || "";
-    const grade       = formData.get("grade")?.trim()       || "";
+  // 3) Extract every field you need (text inputs). Adjust names to match your <input name="...">
+  const firstName    = formData.get("firstName")?.trim()      || "";
+  const lastName     = formData.get("lastName")?.trim()       || "";
+  const birthDate    = formData.get("birthDate")?.trim()      || "";
+  const gender       = formData.get("gender")?.trim()         || "";
+  const school       = formData.get("school")?.trim()         || "";
+  const grade        = formData.get("grade")?.trim()          || "";
 
-    const parentName  = formData.get("parentName")?.trim()  || "";
-    const relationship= formData.get("relationship")?.trim()|| "";
-    const email       = formData.get("email")?.trim()       || "";
-    const phone       = formData.get("phone")?.trim()       || "";
-    const address     = formData.get("address")?.trim()     || "";
-    const city        = formData.get("city")?.trim()        || "";
-    const state       = formData.get("state")?.trim()       || "";
-    const zip         = formData.get("zip")?.trim()         || "";
+  const parentName   = formData.get("parentName")?.trim()     || "";
+  const relationship = formData.get("relationship")?.trim()   || "";
+  const email        = formData.get("email")?.trim()          || "";
+  const phone        = formData.get("phone")?.trim()          || "";
+  const address      = formData.get("address")?.trim()        || "";
+  const city         = formData.get("city")?.trim()           || "";
+  const state        = formData.get("state")?.trim()          || "";
+  const zip          = formData.get("zip")?.trim()            || "";
 
-    const emergencyName        = formData.get("emergencyName")?.trim()        || "";
-    const emergencyRelationship= formData.get("emergencyRelationship")?.trim()|| "";
-    const emergencyPhone       = formData.get("emergencyPhone")?.trim()       || "";
+  const emergencyName        = formData.get("emergencyName")?.trim()        || "";
+  const emergencyRelationship = formData.get("emergencyRelationship")?.trim() || "";
+  const emergencyPhone       = formData.get("emergencyPhone")?.trim()       || "";
 
-    const experience = formData.get("experience")?.trim() || "";
-    const position   = formData.get("position")?.trim()   || "";
+  const experience   = formData.get("experience")?.trim()   || "";
+  const position     = formData.get("position")?.trim()     || "";
+  const newsletter   = formData.get("newsletter")           ? "Yes" : "No";
 
-    const newsletter = formData.get("newsletter") === "on" ? "Yes" : "No";
+  const parentSignature = formData.get("parentSignature")?.trim() || "";
+  const signatureDate   = formData.get("signatureDate")?.trim()   || "";
 
-    // 3. Extract file uploads (they will be File objects if provided)
-    const proofAgeFile       = formData.get("proofAge");       // File or null
-    const proofResidencyFile = formData.get("proofResidency"); // File or null
-    const physicalExamFile   = formData.get("physicalExam");   // File or null
+  // (You can similarly grab waiver and document fields as needed,
+  //  but here we’ll send a minimal summary.)
 
-    // 4. Basic validation: ensure required fields are present
-    // (You can expand this as needed.)
-    if (!firstName || !lastName || !email) {
-      return new Response(
-        JSON.stringify({ success: false, error: "Missing required fields (firstName, lastName, or email)." }),
-        { status: 400, headers: { "Content-Type": "application/json" } }
-      );
-    }
+  // 4) Check any required fields:
+  if (!firstName || !lastName || !email || !parentSignature) {
+    console.error("🐝 Missing required fields:");
+    return new Response(
+      JSON.stringify({ success: false, error: "Missing required fields." }),
+      { status: 400, headers: { "Content-Type": "application/json" } }
+    );
+  }
 
-    // 5. Build a plain-text summary of all form fields
-    let emailBody = `
-New enrollment received:
+  // 5) Build Mailgun parameters (URLSearchParams for x-www-form-urlencoded)
+  const mailgunDomain = env.MAILGUN_DOMAIN;   // e.g. sandbox-abcdef123.mailgun.org
+  const mailgunKey    = env.MAILGUN_API_KEY;  // e.g. key-1234567890abcdef
+  const mgEndpoint    = `https://api.mailgun.net/v3/${mailgunDomain}/messages`;
 
---- Player Information ---
-First Name: ${firstName}
-Last Name: ${lastName}
-Date of Birth: ${birthDate}
+  // *** IMPORTANT: in sandbox mode, you can only send to "Authorized Recipients" ***
+  // Make sure you have added & verified this address under Mailgun → Authorized Recipients
+  const recipient = "your.verified.email@example.com";
+
+  const body = new URLSearchParams();
+  body.append("from", `Rovers FC Sandbox <postmaster@${mailgunDomain}>`);
+  body.append("to", recipient);
+  body.append("subject", "📥 New Rovers FC Enrollment Submission");
+  body.append(
+    "text",
+    `
+A new enrollment was submitted:
+
+— Player Info —
+Name: ${firstName} ${lastName}
+DOB: ${birthDate}
 Gender: ${gender}
-School Attending: ${school}
+School: ${school}
 Grade: ${grade}
 
---- Parent/Guardian Information ---
-Parent Name: ${parentName}
+— Parent/Guardian —
+Name: ${parentName}
 Relationship: ${relationship}
 Email: ${email}
 Phone: ${phone}
 Address: ${address}, ${city}, ${state} ${zip}
 
---- Emergency Contact ---
-Emergency Contact Name: ${emergencyName}
-Emergency Contact Relationship: ${emergencyRelationship}
-Emergency Contact Phone: ${emergencyPhone}
+— Emergency Contact —
+Name: ${emergencyName}
+Relationship: ${emergencyRelationship}
+Phone: ${emergencyPhone}
 
---- Soccer Experience ---
-Years of Experience: ${experience}
-Preferred Position(s): ${position}
-Subscribe to newsletter: ${newsletter}
-`;
+— Soccer Experience —
+Years: ${experience}
+Position(s): ${position}
+Subscribed to newsletter? ${newsletter}
 
-    // 6. If files were uploaded, append their filenames to the body
-    if (proofAgeFile?.name) {
-      emailBody += `\nProof of Age: ${proofAgeFile.name}`;
-    }
-    if (proofResidencyFile?.name) {
-      emailBody += `\nProof of Residency: ${proofResidencyFile.name}`;
-    }
-    if (physicalExamFile?.name) {
-      emailBody += `\nPhysical Exam Form: ${physicalExamFile.name}`;
-    }
+— Signature —
+Parent Signature: ${parentSignature}
+Date: ${signatureDate}
 
-    // 7. Prepare the Mailgun API call
-    // Replace with your actual sandbox domain (e.g. "sandboxXYZ.mailgun.org")
-    const MAILGUN_DOMAIN = "sandbox3d4826c69b374263844c2414e3e9b0ac.mailgun.org";
+(End of submission.)
+    `.trim()
+  );
 
-    // Mailgun endpoint for sending messages
-    const mailgunUrl = `https://api.mailgun.net/v3/${MAILGUN_DOMAIN}/messages`;
-
-    // Build the form data to post to Mailgun
-    const mgFormData = new URLSearchParams();
-    mgFormData.append("from", `Enrollment Bot <postmaster@${MAILGUN_DOMAIN}>`);
-    // Change the "to" address to whichever email you’ve added under “Authorized Recipients” in the Mailgun sandbox
-    mgFormData.append("to", "you@yourdomain.com"); 
-    mgFormData.append("subject", `New Enrollment: ${firstName} ${lastName}`);
-    mgFormData.append("text", emailBody);
-
-    // 8. Send the HTTP request to Mailgun
-    const mgResponse = await fetch(mailgunUrl, {
+  console.log("🐝 Sending to Mailgun…");
+  let mgResponse;
+  try {
+    mgResponse = await fetch(mgEndpoint, {
       method: "POST",
       headers: {
-        // Basic Auth with API key: “api:YOUR_API_KEY” base64-encoded
-        Authorization: "Basic " + btoa(`api:${env.MAILGUN_API_KEY}`),
-        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: "Basic " + btoa(`api:${mailgunKey}`),
+        "Content-Type": "application/x-www-form-urlencoded"
       },
-      body: mgFormData.toString(),
+      body
     });
-
-    if (!mgResponse.ok) {
-      const errorText = await mgResponse.text();
-      return new Response(
-        JSON.stringify({
-          success: false,
-          error: `Mailgun error: ${mgResponse.status} ${errorText}`
-        }),
-        { status: 502, headers: { "Content-Type": "application/json" } }
-      );
-    }
-
-    // 9. Redirect the user to a thank-you page after successful submission
-    return Response.redirect("/thank-you.html");
-  } catch (e) {
-    // Catch any unexpected errors
+  } catch (err) {
+    console.error("🐝 Mailgun fetch error:", err);
     return new Response(
-      JSON.stringify({ success: false, error: e.message }),
+      JSON.stringify({ success: false, error: "Unable to reach Mailgun." }),
+      { status: 502, headers: { "Content-Type": "application/json" } }
+    );
+  }
+
+  const respText = await mgResponse.text();
+  console.log("🐝 Mailgun response status:", mgResponse.status);
+  console.log("🐝 Mailgun response body:", respText);
+
+  if (!mgResponse.ok) {
+    return new Response(
+      JSON.stringify({
+        success: false,
+        error: `Mailgun error: ${mgResponse.status} – ${respText}`
+      }),
       { status: 500, headers: { "Content-Type": "application/json" } }
     );
   }
+
+  // 6) All good → return JSON success  
+  return new Response(
+    JSON.stringify({ success: true }), 
+    { status: 200, headers: { "Content-Type": "application/json" } }
+  );
 }

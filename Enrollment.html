@@ -127,7 +127,8 @@
               Programs <i class="fas fa-chevron-down ml-1 text-xs"></i>
             </button>
           </div>
-          <a href="enrollment.html" class="nav-link text-white hover:text-gold font-bold">
+          <!-- Notice the leading slash here so it won’t go to index.html by mistake -->
+          <a href="/enrollment.html" class="nav-link text-white hover:text-gold font-bold">
             Enrollment
           </a>
           <a href="/tournaments.html" class="nav-link text-white hover:text-gold">Tournaments</a>
@@ -196,19 +197,22 @@
           </button>
         </div>
 
-        <!-- Single form wrapping ALL tabs -->
+        <!-- SINGLE FORM wrapping all four sections -->
         <form
           id="enrollmentForm"
           action="/api/enroll"
           method="POST"
           enctype="multipart/form-data"
         >
-          <!-- Enrollment Section -->
+          <!-- ENROLLMENT SECTION -->
           <div id="enrollment" class="form-section active mt-6">
             <h3 class="text-2xl font-semibold text-white mb-6">Player Information</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label for="firstName" class="block text-sm font-medium text-white required-field">First Name</label>
+                <label
+                  for="firstName"
+                  class="block text-sm font-medium text-white required-field"
+                >First Name</label>
                 <input
                   type="text"
                   id="firstName"
@@ -218,7 +222,10 @@
                 />
               </div>
               <div>
-                <label for="lastName" class="block text-sm font-medium text-white required-field">Last Name</label>
+                <label
+                  for="lastName"
+                  class="block text-sm font-medium text-white required-field"
+                >Last Name</label>
                 <input
                   type="text"
                   id="lastName"
@@ -228,7 +235,10 @@
                 />
               </div>
               <div>
-                <label for="birthDate" class="block text-sm font-medium text-white required-field">Date of Birth</label>
+                <label
+                  for="birthDate"
+                  class="block text-sm font-medium text-white required-field"
+                >Date of Birth</label>
                 <input
                   type="date"
                   id="birthDate"
@@ -238,7 +248,10 @@
                 />
               </div>
               <div>
-                <label for="gender" class="block text-sm font-medium text-white required-field">Gender</label>
+                <label
+                  for="gender"
+                  class="block text-sm font-medium text-white required-field"
+                >Gender</label>
                 <select
                   id="gender"
                   name="gender"
@@ -252,7 +265,10 @@
                 </select>
               </div>
               <div>
-                <label for="school" class="block text-sm font-medium text-white">School Attending</label>
+                <label
+                  for="school"
+                  class="block text-sm font-medium text-white"
+                >School Attending</label>
                 <input
                   type="text"
                   id="school"
@@ -261,7 +277,10 @@
                 />
               </div>
               <div>
-                <label for="grade" class="block text-sm font-medium text-white">Grade (2023–24)</label>
+                <label
+                  for="grade"
+                  class="block text-sm font-medium text-white"
+                >Grade (2023–24)</label>
                 <select
                   id="grade"
                   name="grade"
@@ -289,7 +308,10 @@
             <h3 class="text-2xl font-semibold text-white mt-8 mb-6">Parent/Guardian Information</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label for="parentName" class="block text-sm font-medium text-white required-field">Parent/Guardian Name</label>
+                <label
+                  for="parentName"
+                  class="block text-sm font-medium text-white required-field"
+                >Parent/Guardian Name</label>
                 <input
                   type="text"
                   id="parentName"
@@ -299,7 +321,10 @@
                 />
               </div>
               <div>
-                <label for="relationship" class="block text-sm font-medium text-white required-field">Relationship</label>
+                <label
+                  for="relationship"
+                  class="block text-sm font-medium text-white required-field"
+                >Relationship</label>
                 <input
                   type="text"
                   id="relationship"
@@ -309,7 +334,10 @@
                 />
               </div>
               <div>
-                <label for="email" class="block text-sm font-medium text-white required-field">Email</label>
+                <label
+                  for="email"
+                  class="block text-sm font-medium text-white required-field"
+                >Email</label>
                 <input
                   type="email"
                   id="email"
@@ -319,7 +347,10 @@
                 />
               </div>
               <div>
-                <label for="phone" class="block text-sm font-medium text-white required-field">Phone Number</label>
+                <label
+                  for="phone"
+                  class="block text-sm font-medium text-white required-field"
+                >Phone Number</label>
                 <input
                   type="tel"
                   id="phone"
@@ -329,7 +360,10 @@
                 />
               </div>
               <div class="md:col-span-2">
-                <label for="address" class="block text-sm font-medium text-white required-field">Address</label>
+                <label
+                  for="address"
+                  class="block text-sm font-medium text-white required-field"
+                >Address</label>
                 <input
                   type="text"
                   id="address"
@@ -339,7 +373,10 @@
                 />
               </div>
               <div>
-                <label for="city" class="block text-sm font-medium text-white required-field">City</label>
+                <label
+                  for="city"
+                  class="block text-sm font-medium text-white required-field"
+                >City</label>
                 <input
                   type="text"
                   id="city"
@@ -349,7 +386,10 @@
                 />
               </div>
               <div>
-                <label for="state" class="block text-sm font-medium text-white required-field">State</label>
+                <label
+                  for="state"
+                  class="block text-sm font-medium text-white required-field"
+                >State</label>
                 <select
                   id="state"
                   name="state"
@@ -365,7 +405,10 @@
                 </select>
               </div>
               <div>
-                <label for="zip" class="block text-sm font-medium text-white required-field">ZIP Code</label>
+                <label
+                  for="zip"
+                  class="block text-sm font-medium text-white required-field"
+                >ZIP Code</label>
                 <input
                   type="text"
                   id="zip"
@@ -379,7 +422,10 @@
             <h3 class="text-2xl font-semibold text-white mt-8 mb-6">Emergency Contact</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label for="emergencyName" class="block text-sm font-medium text-white required-field">Name</label>
+                <label
+                  for="emergencyName"
+                  class="block text-sm font-medium text-white required-field"
+                >Name</label>
                 <input
                   type="text"
                   id="emergencyName"
@@ -389,7 +435,10 @@
                 />
               </div>
               <div>
-                <label for="emergencyRelationship" class="block text-sm font-medium text-white required-field">Relationship</label>
+                <label
+                  for="emergencyRelationship"
+                  class="block text-sm font-medium text-white required-field"
+                >Relationship</label>
                 <input
                   type="text"
                   id="emergencyRelationship"
@@ -399,7 +448,10 @@
                 />
               </div>
               <div>
-                <label for="emergencyPhone" class="block text-sm font-medium text-white required-field">Phone Number</label>
+                <label
+                  for="emergencyPhone"
+                  class="block text-sm font-medium text-white required-field"
+                >Phone Number</label>
                 <input
                   type="tel"
                   id="emergencyPhone"
@@ -413,7 +465,10 @@
             <h3 class="text-2xl font-semibold text-white mt-8 mb-6">Soccer Experience</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label for="experience" class="block text-sm font-medium text-white">Years of Experience</label>
+                <label
+                  for="experience"
+                  class="block text-sm font-medium text-white"
+                >Years of Experience</label>
                 <select
                   id="experience"
                   name="experience"
@@ -427,7 +482,10 @@
                 </select>
               </div>
               <div>
-                <label for="position" class="block text-sm font-medium text-white">Preferred Position(s)</label>
+                <label
+                  for="position"
+                  class="block text-sm font-medium text-white"
+                >Preferred Position(s)</label>
                 <input
                   type="text"
                   id="position"
@@ -467,14 +525,17 @@
             </div>
           </div>
 
-          <!-- Medical Section -->
+          <!-- MEDICAL SECTION -->
           <div id="medical" class="form-section mt-6">
             <h3 class="text-2xl font-semibold text-white mb-6">Medical Release</h3>
             <div class="bg-trfc-dark p-6 rounded-lg mb-6">
               <h4 class="text-lg font-medium text-white mb-4">Medical Information</h4>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label for="physician" class="block text-sm font-medium text-white">Physician's Name</label>
+                  <label
+                    for="physician"
+                    class="block text-sm font-medium text-white"
+                  >Physician's Name</label>
                   <input
                     type="text"
                     id="physician"
@@ -483,7 +544,10 @@
                   />
                 </div>
                 <div>
-                  <label for="physicianPhone" class="block text-sm font-medium text-white">Physician's Phone</label>
+                  <label
+                    for="physicianPhone"
+                    class="block text-sm font-medium text-white"
+                  >Physician's Phone</label>
                   <input
                     type="tel"
                     id="physicianPhone"
@@ -494,7 +558,10 @@
               </div>
 
               <div class="mt-6">
-                <label for="medicalConditions" class="block text-sm font-medium text-white">Medical Conditions/Allergies</label>
+                <label
+                  for="medicalConditions"
+                  class="block text-sm font-medium text-white"
+                >Medical Conditions/Allergies</label>
                 <textarea
                   id="medicalConditions"
                   name="medicalConditions"
@@ -505,7 +572,10 @@
               </div>
 
               <div class="mt-6">
-                <label for="medications" class="block text-sm font-medium text-white">Current Medications</label>
+                <label
+                  for="medications"
+                  class="block text-sm font-medium text-white"
+                >Current Medications</label>
                 <textarea
                   id="medications"
                   name="medications"
@@ -516,7 +586,10 @@
               </div>
 
               <div class="mt-6">
-                <label for="insuranceProvider" class="block text-sm font-medium text-white">Insurance Provider</label>
+                <label
+                  for="insuranceProvider"
+                  class="block text-sm font-medium text-white"
+                >Insurance Provider</label>
                 <input
                   type="text"
                   id="insuranceProvider"
@@ -525,7 +598,10 @@
                 />
               </div>
               <div class="mt-6">
-                <label for="policyNumber" class="block text-sm font-medium text-white">Policy Number</label>
+                <label
+                  for="policyNumber"
+                  class="block text-sm font-medium text-white"
+                >Policy Number</label>
                 <input
                   type="text"
                   id="policyNumber"
@@ -555,7 +631,10 @@
 
               <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label for="parentSignature" class="block text-sm font-medium text-white required-field">Parent/Guardian Signature</label>
+                  <label
+                    for="parentSignature"
+                    class="block text-sm font-medium text-white required-field"
+                  >Parent/Guardian Signature</label>
                   <input
                     type="text"
                     id="parentSignature"
@@ -565,7 +644,10 @@
                   />
                 </div>
                 <div>
-                  <label for="signatureDate" class="block text-sm font-medium text-white required-field">Date</label>
+                  <label
+                    for="signatureDate"
+                    class="block text-sm font-medium text-white required-field"
+                  >Date</label>
                   <input
                     type="date"
                     id="signatureDate"
@@ -595,7 +677,7 @@
             </div>
           </div>
 
-          <!-- Waiver Section -->
+          <!-- WAIVER SECTION -->
           <div id="waiver" class="form-section mt-6">
             <h3 class="text-2xl font-semibold text-white mb-6">Liability Waiver</h3>
             <div class="bg-trfc-dark p-6 rounded-lg mb-6">
@@ -651,7 +733,10 @@
 
               <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label for="waiverSignature" class="block text-sm font-medium text-white required-field">Parent/Guardian Signature</label>
+                  <label
+                    for="waiverSignature"
+                    class="block text-sm font-medium text-white required-field"
+                  >Parent/Guardian Signature</label>
                   <input
                     type="text"
                     id="waiverSignature"
@@ -661,7 +746,10 @@
                   />
                 </div>
                 <div>
-                  <label for="waiverDate" class="block text-sm font-medium text-white required-field">Date</label>
+                  <label
+                    for="waiverDate"
+                    class="block text-sm font-medium text-white required-field"
+                  >Date</label>
                   <input
                     type="date"
                     id="waiverDate"
@@ -691,7 +779,7 @@
             </div>
           </div>
 
-          <!-- Documents Section -->
+          <!-- DOCUMENTS SECTION -->
           <div id="documents" class="form-section mt-6">
             <h3 class="text-2xl font-semibold text-white mb-6">Document Submission</h3>
             <div class="bg-trfc-dark p-6 rounded-lg mb-6">
@@ -700,7 +788,9 @@
 
               <div class="space-y-6">
                 <div class="file-upload p-4 rounded-lg bg-trfc-dark">
-                  <label class="block text-sm font-medium text-white mb-2 required-field">Proof of Age</label>
+                  <label
+                    class="block text-sm font-medium text-white mb-2 required-field"
+                  >Proof of Age</label>
                   <div class="flex items-center justify-center w-full">
                     <label
                       for="proofAge"
@@ -723,7 +813,9 @@
                 </div>
 
                 <div class="file-upload p-4 rounded-lg bg-trfc-dark">
-                  <label class="block text-sm font-medium text-white mb-2 required-field">Proof of Residency</label>
+                  <label
+                    class="block text-sm font-medium text-white mb-2 required-field"
+                  >Proof of Residency</label>
                   <div class="flex items-center justify-center w-full">
                     <label
                       for="proofResidency"
@@ -746,7 +838,9 @@
                 </div>
 
                 <div class="file-upload p-4 rounded-lg bg-trfc-dark">
-                  <label class="block text-sm font-medium text-white mb-2 required-field">Physical Exam Form</label>
+                  <label
+                    class="block text-sm font-medium text-white mb-2 required-field"
+                  >Physical Exam Form</label>
                   <div class="flex items-center justify-center w-full">
                     <label
                       for="physicalExam"
@@ -801,7 +895,10 @@
               <div id="onlinePayment" class="mt-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label for="cardName" class="block text-sm font-medium text-white">Name on Card</label>
+                    <label
+                      for="cardName"
+                      class="block text-sm font-medium text-white"
+                    >Name on Card</label>
                     <input
                       type="text"
                       id="cardName"
@@ -810,7 +907,10 @@
                     />
                   </div>
                   <div>
-                    <label for="cardNumber" class="block text-sm font-medium text-white">Card Number</label>
+                    <label
+                      for="cardNumber"
+                      class="block text-sm font-medium text-white"
+                    >Card Number</label>
                     <input
                       type="text"
                       id="cardNumber"
@@ -819,7 +919,10 @@
                     />
                   </div>
                   <div>
-                    <label for="cardExpiry" class="block text-sm font-medium text-white">Expiry (MM/YY)</label>
+                    <label
+                      for="cardExpiry"
+                      class="block text-sm font-medium text-white"
+                    >Expiry (MM/YY)</label>
                     <input
                       type="text"
                       id="cardExpiry"
@@ -829,7 +932,10 @@
                     />
                   </div>
                   <div>
-                    <label for="cardCvv" class="block text-sm font-medium text-white">CVV</label>
+                    <label
+                      for="cardCvv"
+                      class="block text-sm font-medium text-white"
+                    >CVV</label>
                     <input
                       type="text"
                       id="cardCvv"
@@ -900,24 +1006,24 @@
         <div>
           <h4 class="text-lg font-bold mb-6 text-gold">QUICK LINKS</h4>
           <ul class="space-y-3">
-            <li><a href="#" class="text-gray-400 hover:text-white">Home</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">About TRFC</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">Schedules</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">Registration</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">Tryouts</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">Office</a></li>
+            <li><a href="/" class="text-gray-400 hover:text-white">Home</a></li>
+            <li><a href="/about.html" class="text-gray-400 hover:text-white">About TRFC</a></li>
+            <li><a href="/tournaments.html" class="text-gray-400 hover:text-white">Schedules</a></li>
+            <li><a href="/enrollment.html" class="text-gray-400 hover:text-white">Registration</a></li>
+            <li><a href="/apply.html" class="text-gray-400 hover:text-white">Tryouts</a></li>
+            <li><a href="/contact.html" class="text-gray-400 hover:text-white">Office</a></li>
           </ul>
         </div>
 
         <div>
           <h4 class="text-lg font-bold mb-6 text-gold">PROGRAMS</h4>
           <ul class="space-y-3">
-            <li><a href="#" class="text-gray-400 hover:text-white">Club</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">Academy</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">Camps & Clinics</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">Goalkeeper Training</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">Private Lessons</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">Exhibition</a></li>
+            <li><a href="/club.html" class="text-gray-400 hover:text-white">Club</a></li>
+            <li><a href="/academy.html" class="text-gray-400 hover:text-white">Academy</a></li>
+            <li><a href="/camps.html" class="text-gray-400 hover:text-white">Camps & Clinics</a></li>
+            <li><a href="/goalkeeper.html" class="text-gray-400 hover:text-white">Goalkeeper Training</a></li>
+            <li><a href="/lessons.html" class="text-gray-400 hover:text-white">Private Lessons</a></li>
+            <li><a href="/exhibition.html" class="text-gray-400 hover:text-white">Exhibition</a></li>
           </ul>
         </div>
 
@@ -940,8 +1046,17 @@
 
           <h4 class="text-lg font-bold mt-8 mb-4 text-gold">NEWSLETTER</h4>
           <form class="flex">
-            <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-md focus:outline-none text-black w-full">
-            <button type="submit" class="bg-gold text-black px-4 py-2 rounded-r-md font-bold"><i class="fas fa-paper-plane"></i></button>
+            <input
+              type="email"
+              placeholder="Your email"
+              class="px-4 py-2 rounded-l-md focus:outline-none text-black w-full"
+            />
+            <button
+              type="submit"
+              class="bg-gold text-black px-4 py-2 rounded-r-md font-bold"
+            >
+              <i class="fas fa-paper-plane"></i>
+            </button>
           </form>
         </div>
       </div>
@@ -949,20 +1064,23 @@
       <div class="pt-8 border-t border-gray-800">
         <div class="flex flex-col md:flex-row justify-between items-center">
           <p class="text-gray-500 text-sm mb-4 md:mb-0">
-            © 2024 TRFC Rovers FC. All rights reserved.
+            © 2024 Rovers FC. All rights reserved.
           </p>
           <div class="flex space-x-6">
-            <a href="#" class="text-gray-500 hover:text-white text-sm">Privacy Policy</a>
-            <a href="#" class="text-gray-500 hover:text-white text-sm">Terms of Service</a>
-            <a href="#" class="text-gray-500 hover:text-white text-sm">Sitemap</a>
+            <a href="/privacy.html" class="text-gray-500 hover:text-white text-sm">Privacy Policy</a>
+            <a href="/terms.html" class="text-gray-500 hover:text-white text-sm">Terms of Service</a>
+            <a href="/sitemap.xml" class="text-gray-500 hover:text-white text-sm">Sitemap</a>
           </div>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- Success Modal -->
-  <div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+  <!-- Success Modal (triggered on final form submit) -->
+  <div
+    id="successModal"
+    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden"
+  >
     <div class="bg-white rounded-lg p-8 max-w-md w-full">
       <div class="text-center">
         <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-trfc-gold">
@@ -991,7 +1109,7 @@
       tab.addEventListener('click', function() {
         const tabId = this.getAttribute('data-tab');
 
-        // Update indicators
+        // Update indicator styles
         document.querySelectorAll('.tab-indicator').forEach(t => {
           t.classList.remove('text-trfc-gold', 'border-trfc-gold');
           t.classList.add('text-gray-400');
@@ -999,7 +1117,7 @@
         this.classList.remove('text-gray-400');
         this.classList.add('text-trfc-gold', 'border-trfc-gold');
 
-        // Show selected section
+        // Show only the selected section
         document.querySelectorAll('.form-section').forEach(section => {
           section.classList.remove('active');
         });
@@ -1021,7 +1139,7 @@
       });
     });
 
-    // File upload preview
+    // File upload preview logic
     document.querySelectorAll('input[type="file"]').forEach(input => {
       input.addEventListener('change', function() {
         const file = this.files[0];
@@ -1050,13 +1168,14 @@
       });
     });
 
-    // Form submission (documents)
+    // Only show the success modal when the final form is submitted
     document.getElementById('enrollmentForm').addEventListener('submit', function(e) {
       e.preventDefault();
       document.getElementById('successModal').classList.remove('hidden');
     });
     function closeSuccessModal() {
       document.getElementById('successModal').classList.add('hidden');
+      // Reset back to the very first tab
       document.querySelector('.tab-indicator[data-tab="enrollment"]').click();
       document.getElementById('enrollmentForm').reset();
       document.querySelectorAll('[id$="Preview"]').forEach(preview => {
@@ -1067,3 +1186,4 @@
 
 </body>
 </html>
+

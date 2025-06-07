@@ -862,201 +862,208 @@
 </div>
 
           <!-- DOCUMENTS SECTION -->
-          <div id="documents" class="form-section mt-6">
-            <h3 class="text-2xl font-semibold text-white mb-6">Document Submission</h3>
-            <div class="bg-trfc-dark p-6 rounded-lg mb-6">
-              <h4 class="text-lg font-medium text-white mb-4">Required Documents</h4>
-              <p class="text-gray-400 mb-6">Upload the following documents to complete enrollment.</p>
+<!-- REPLACE your current Documents section with this updated version -->
+<div id="documents" class="form-section mt-6">
+  <h3 class="text-2xl font-semibold text-white mb-6">Document Submission</h3>
+  
+  <!-- Document Method Selection -->
+  <div class="bg-trfc-dark p-6 rounded-lg mb-6">
+    <h4 class="text-lg font-medium text-white mb-4">📄 Document Options</h4>
+    <p class="text-gray-400 mb-4">Choose how you'd like to provide the required documents:</p>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+      <label class="inline-flex items-center p-4 border-2 border-gray-600 rounded-lg hover:border-trfc-gold cursor-pointer transition-colors">
+        <input
+          type="radio"
+          name="documentMethod"
+          value="upload"
+          class="h-4 w-4 text-trfc-gold focus:ring-trfc-gold border-gray-700"
+          checked
+        />
+        <div class="ml-3">
+          <span class="text-white font-medium">📤 Upload Documents Now</span>
+          <p class="text-gray-400 text-sm">Upload PDF, JPG, or PNG files</p>
+        </div>
+      </label>
+      
+      <label class="inline-flex items-center p-4 border-2 border-gray-600 rounded-lg hover:border-trfc-gold cursor-pointer transition-colors">
+        <input
+          type="radio"
+          name="documentMethod"
+          value="print"
+          class="h-4 w-4 text-trfc-gold focus:ring-trfc-gold border-gray-700"
+        />
+        <div class="ml-3">
+          <span class="text-white font-medium">🖨️ Print Forms to Complete Later</span>
+          <p class="text-gray-400 text-sm">Download and print blank forms</p>
+        </div>
+      </label>
+    </div>
+  </div>
 
-              <div class="space-y-6">
-                <div class="file-upload p-4 rounded-lg bg-trfc-dark">
-                  <label
-                    class="block text-sm font-medium text-white mb-2 required-field"
-                  >Proof of Age</label>
-                  <div class="flex items-center justify-center w-full">
-                    <label
-                      for="proofAge"
-                      class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-700 border-dashed rounded-lg cursor-pointer bg-trfc-dark hover:bg-gray-800"
-                    >
-                      <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                        <i class="fas fa-cloud-upload-alt text-3xl text-gray-500 mb-2"></i>
-                        <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">Click to upload</span> or drag</p>
-                        <p class="text-xs text-gray-400">PDF, JPG, PNG (Max 5MB)</p>
-                      </div>
-                      <input id="proofAge" name="proofAge" type="file" class="hidden" required />
-                    </label>
-                  </div>
-                  <div id="proofAgePreview" class="mt-2 hidden text-gray-300">
-                    File: <span id="proofAgeFileName" class="font-medium"></span>
-                    <button type="button" class="ml-2 text-red-500 hover:text-red-700" onclick="removeFile('proofAge')">
-                      <i class="fas fa-times"></i>
-                    </button>
-                  </div>
-                </div>
+  <!-- Upload Documents Section -->
+  <div id="uploadDocumentsSection" class="bg-trfc-dark p-6 rounded-lg mb-6">
+    <h4 class="text-lg font-medium text-white mb-4">Required Documents</h4>
+    <p class="text-gray-400 mb-6">Upload the following documents to complete enrollment.</p>
 
-                <div class="file-upload p-4 rounded-lg bg-trfc-dark">
-                  <label
-                    class="block text-sm font-medium text-white mb-2 required-field"
-                  >Proof of Residency</label>
-                  <div class="flex items-center justify-center w-full">
-                    <label
-                      for="proofResidency"
-                      class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-700 border-dashed rounded-lg cursor-pointer bg-trfc-dark hover:bg-gray-800"
-                    >
-                      <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                        <i class="fas fa-cloud-upload-alt text-3xl text-gray-500 mb-2"></i>
-                        <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">Click to upload</span> or drag</p>
-                        <p class="text-xs text-gray-400">PDF, JPG, PNG (Max 5MB)</p>
-                      </div>
-                      <input id="proofResidency" name="proofResidency" type="file" class="hidden" required />
-                    </label>
-                  </div>
-                  <div id="proofResidencyPreview" class="mt-2 hidden text-gray-300">
-                    File: <span id="proofResidencyFileName" class="font-medium"></span>
-                    <button type="button" class="ml-2 text-red-500 hover:text-red-700" onclick="removeFile('proofResidency')">
-                      <i class="fas fa-times"></i>
-                    </button>
-                  </div>
-                </div>
-
-                <div class="file-upload p-4 rounded-lg bg-trfc-dark">
-                  <label
-                    class="block text-sm font-medium text-white mb-2 required-field"
-                  >Physical Exam Form</label>
-                  <div class="flex items-center justify-center w-full">
-                    <label
-                      for="physicalExam"
-                      class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-700 border-dashed rounded-lg cursor-pointer bg-trfc-dark hover:bg-gray-800"
-                    >
-                      <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                        <i class="fas fa-cloud-upload-alt text-3xl text-gray-500 mb-2"></i>
-                        <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">Click to upload</span> or drag</p>
-                        <p class="text-xs text-gray-400">PDF, JPG, PNG (Max 5MB)</p>
-                      </div>
-                      <input id="physicalExam" name="physicalExam" type="file" class="hidden" required />
-                    </label>
-                  </div>
-                  <div id="physicalExamPreview" class="mt-2 hidden text-gray-300">
-                    File: <span id="physicalExamFileName" class="font-medium"></span>
-                    <button type="button" class="ml-2 text-red-500 hover:text-red-700" onclick="removeFile('physicalExam')">
-                      <i class="fas fa-times"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
+    <div class="space-y-6">
+      <div class="file-upload p-4 rounded-lg bg-trfc-dark">
+        <label class="block text-sm font-medium text-white mb-2 required-field">Proof of Age</label>
+        <div class="flex items-center justify-center w-full">
+          <label for="proofAge" class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-700 border-dashed rounded-lg cursor-pointer bg-trfc-dark hover:bg-gray-800">
+            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+              <i class="fas fa-cloud-upload-alt text-3xl text-gray-500 mb-2"></i>
+              <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">Click to upload</span> or drag</p>
+              <p class="text-xs text-gray-400">PDF, JPG, PNG (Max 5MB)</p>
             </div>
+            <input id="proofAge" name="proofAge" type="file" class="hidden" required />
+          </label>
+        </div>
+        <div id="proofAgePreview" class="mt-2 hidden text-gray-300">
+          File: <span id="proofAgeFileName" class="font-medium"></span>
+          <button type="button" class="ml-2 text-red-500 hover:text-red-700" onclick="removeFile('proofAge')">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
 
-            <div class="bg-trfc-dark p-6 rounded-lg mb-6">
-              <h4 class="text-lg font-medium text-white mb-4">Payment Information</h4>
-              <p class="text-gray-400 mb-4">
-                Enrollment fee: $150 per player. Choose your payment method below.
-              </p>
-
-              <div class="mt-4">
-                <label class="inline-flex items-center">
-                  <input
-                    type="radio"
-                    name="paymentMethod"
-                    value="online"
-                    class="h-4 w-4 text-trfc-gold focus:ring-trfc-gold border-gray-700"
-                    checked
-                  />
-                  <span class="ml-2 text-white">Pay Online Now</span>
-                </label>
-                <label class="inline-flex items-center ml-6">
-                  <input
-                    type="radio"
-                    name="paymentMethod"
-                    value="check"
-                    class="h-4 w-4 text-trfc-gold focus:ring-trfc-gold border-gray-700"
-                  />
-                  <span class="ml-2 text-white">Pay by Check</span>
-                </label>
-              </div>
-
-              <div id="onlinePayment" class="mt-6">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label
-                      for="cardName"
-                      class="block text-sm font-medium text-white"
-                    >Name on Card</label>
-                    <input
-                      type="text"
-                      id="cardName"
-                      name="cardName"
-                      class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
-                    />
-                  </div>
-                  <div>
-                    <label
-                      for="cardNumber"
-                      class="block text-sm font-medium text-white"
-                    >Card Number</label>
-                    <input
-                      type="text"
-                      id="cardNumber"
-                      name="cardNumber"
-                      class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
-                    />
-                  </div>
-                  <div>
-                    <label
-                      for="cardExpiry"
-                      class="block text-sm font-medium text-white"
-                    >Expiry (MM/YY)</label>
-                    <input
-                      type="text"
-                      id="cardExpiry"
-                      name="cardExpiry"
-                      placeholder="MM/YY"
-                      class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
-                    />
-                  </div>
-                  <div>
-                    <label
-                      for="cardCvv"
-                      class="block text-sm font-medium text-white"
-                    >CVV</label>
-                    <input
-                      type="text"
-                      id="cardCvv"
-                      name="cardCvv"
-                      class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div class="mt-6">
-                <label class="inline-flex items-center">
-                  <input
-                    type="checkbox"
-                    name="paymentAgreement"
-                    required
-                    class="rounded border-gray-700 text-trfc-gold focus:ring-trfc-gold"
-                  />
-                  <span class="ml-2 text-white required-field">I agree to pay $150 enrollment fee</span>
-                </label>
-              </div>
+      <div class="file-upload p-4 rounded-lg bg-trfc-dark">
+        <label class="block text-sm font-medium text-white mb-2 required-field">Proof of Residency</label>
+        <div class="flex items-center justify-center w-full">
+          <label for="proofResidency" class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-700 border-dashed rounded-lg cursor-pointer bg-trfc-dark hover:bg-gray-800">
+            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+              <i class="fas fa-cloud-upload-alt text-3xl text-gray-500 mb-2"></i>
+              <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">Click to upload</span> or drag</p>
+              <p class="text-xs text-gray-400">PDF, JPG, PNG (Max 5MB)</p>
             </div>
+            <input id="proofResidency" name="proofResidency" type="file" class="hidden" required />
+          </label>
+        </div>
+        <div id="proofResidencyPreview" class="mt-2 hidden text-gray-300">
+          File: <span id="proofResidencyFileName" class="font-medium"></span>
+          <button type="button" class="ml-2 text-red-500 hover:text-red-700" onclick="removeFile('proofResidency')">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
 
-            <div class="mt-8 flex justify-between">
-              <button
-                type="button"
-                class="prev-tab px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-trfc-blue hover:bg-[#197fef] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-trfc-blue"
-                data-prev="waiver"
-              >
-                <i class="fas fa-arrow-left mr-2"></i> Back: Waiver
-              </button>
-              <button
-                type="submit"
-                class="px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-trfc-gold hover:bg-[#e6c300] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-trfc-gold"
-              >
-                Complete Enrollment <i class="fas fa-check ml-2"></i>
-              </button>
+      <div class="file-upload p-4 rounded-lg bg-trfc-dark">
+        <label class="block text-sm font-medium text-white mb-2 required-field">Physical Exam Form</label>
+        <div class="flex items-center justify-center w-full">
+          <label for="physicalExam" class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-700 border-dashed rounded-lg cursor-pointer bg-trfc-dark hover:bg-gray-800">
+            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+              <i class="fas fa-cloud-upload-alt text-3xl text-gray-500 mb-2"></i>
+              <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">Click to upload</span> or drag</p>
+              <p class="text-xs text-gray-400">PDF, JPG, PNG (Max 5MB)</p>
             </div>
-          </div>
+            <input id="physicalExam" name="physicalExam" type="file" class="hidden" required />
+          </label>
+        </div>
+        <div id="physicalExamPreview" class="mt-2 hidden text-gray-300">
+          File: <span id="physicalExamFileName" class="font-medium"></span>
+          <button type="button" class="ml-2 text-red-500 hover:text-red-700" onclick="removeFile('physicalExam')">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Print Forms Section -->
+  <div id="printFormsSection" class="hidden bg-trfc-dark p-6 rounded-lg mb-6">
+    <h4 class="text-lg font-medium text-white mb-4">📋 Printable Forms</h4>
+    <p class="text-gray-400 mb-4">Download, print, and complete these forms. Bring completed forms to your first practice or mail to our office.</p>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+      <a href="/forms/proof-of-age-form.pdf" target="_blank" class="block p-4 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors">
+        <div class="text-center">
+          <i class="fas fa-file-pdf text-3xl text-red-400 mb-2"></i>
+          <h5 class="text-white font-medium">Proof of Age Form</h5>
+          <p class="text-gray-400 text-sm">Birth certificate alternative</p>
+        </div>
+      </a>
+      
+      <a href="/forms/proof-of-residency-form.pdf" target="_blank" class="block p-4 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors">
+        <div class="text-center">
+          <i class="fas fa-file-pdf text-3xl text-red-400 mb-2"></i>
+          <h5 class="text-white font-medium">Proof of Residency Form</h5>
+          <p class="text-gray-400 text-sm">Address verification</p>
+        </div>
+      </a>
+      
+      <a href="/forms/physical-exam-form.pdf" target="_blank" class="block p-4 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors">
+        <div class="text-center">
+          <i class="fas fa-file-pdf text-3xl text-red-400 mb-2"></i>
+          <h5 class="text-white font-medium">Physical Exam Form</h5>
+          <p class="text-gray-400 text-sm">Medical clearance</p>
+        </div>
+      </a>
+    </div>
+    
+    <div class="bg-yellow-900 border border-yellow-600 rounded-lg p-4">
+      <h5 class="text-yellow-200 font-medium mb-2">📬 Delivery Options:</h5>
+      <ul class="text-yellow-200 text-sm space-y-1">
+        <li>• <strong>Bring to Practice:</strong> Hand deliver on your first practice day</li>
+        <li>• <strong>Mail:</strong> Texarkana Rovers FC, 123 Soccer Way, Texarkana, TX 75501</li>
+        <li>• <strong>Email:</strong> Scan and email to docs@roversfc.org</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Payment Information (unchanged) -->
+  <div class="bg-trfc-dark p-6 rounded-lg mb-6">
+    <h4 class="text-lg font-medium text-white mb-4">Payment Information</h4>
+    <p class="text-gray-400 mb-4">Enrollment fee: $150 per player. Choose your payment method below.</p>
+
+    <div class="mt-4">
+      <label class="inline-flex items-center">
+        <input type="radio" name="paymentMethod" value="online" class="h-4 w-4 text-trfc-gold focus:ring-trfc-gold border-gray-700" checked />
+        <span class="ml-2 text-white">Pay Online Now</span>
+      </label>
+      <label class="inline-flex items-center ml-6">
+        <input type="radio" name="paymentMethod" value="check" class="h-4 w-4 text-trfc-gold focus:ring-trfc-gold border-gray-700" />
+        <span class="ml-2 text-white">Pay by Check</span>
+      </label>
+    </div>
+
+    <div id="onlinePayment" class="mt-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label for="cardName" class="block text-sm font-medium text-white">Name on Card</label>
+          <input type="text" id="cardName" name="cardName" class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold" />
+        </div>
+        <div>
+          <label for="cardNumber" class="block text-sm font-medium text-white">Card Number</label>
+          <input type="text" id="cardNumber" name="cardNumber" class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold" />
+        </div>
+        <div>
+          <label for="cardExpiry" class="block text-sm font-medium text-white">Expiry (MM/YY)</label>
+          <input type="text" id="cardExpiry" name="cardExpiry" placeholder="MM/YY" class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold" />
+        </div>
+        <div>
+          <label for="cardCvv" class="block text-sm font-medium text-white">CVV</label>
+          <input type="text" id="cardCvv" name="cardCvv" class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold" />
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6">
+      <label class="inline-flex items-center">
+        <input type="checkbox" name="paymentAgreement" required class="rounded border-gray-700 text-trfc-gold focus:ring-trfc-gold" />
+        <span class="ml-2 text-white required-field">I agree to pay $150 enrollment fee</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="mt-8 flex justify-between">
+    <button type="button" class="prev-tab px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-trfc-blue hover:bg-[#197fef] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-trfc-blue" data-prev="waiver">
+      <i class="fas fa-arrow-left mr-2"></i> Back: Waiver
+    </button>
+    <button type="submit" class="px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-trfc-gold hover:bg-[#e6c300] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-trfc-gold">
+      Complete Enrollment <i class="fas fa-check ml-2"></i>
+    </button>
+  </div>
+</div>
         </form>
       </div>
     </div>
@@ -1442,6 +1449,106 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
+
+// ADD this to your existing validation script (after the payment method toggle section)
+
+// Document method toggle functionality
+document.querySelectorAll('input[name="documentMethod"]').forEach(radio => {
+  radio.addEventListener('change', function() {
+    const uploadSection = document.getElementById('uploadDocumentsSection');
+    const printSection = document.getElementById('printFormsSection');
+    const fileInputs = document.querySelectorAll('input[type="file"]');
+    
+    if (this.value === 'print') {
+      // Show print section, hide upload section
+      if (uploadSection) uploadSection.classList.add('hidden');
+      if (printSection) printSection.classList.remove('hidden');
+      
+      // Make file uploads not required
+      fileInputs.forEach(input => {
+        input.removeAttribute('required');
+        input.value = ''; // Clear any uploaded files
+        // Hide any file previews
+        const preview = document.getElementById(`${input.id}Preview`);
+        if (preview) preview.classList.add('hidden');
+      });
+      
+      // Update validation - remove file requirements from documents tab
+      if (requiredFieldsByTab && requiredFieldsByTab.documents) {
+        requiredFieldsByTab.documents = requiredFieldsByTab.documents.filter(field => 
+          !['proofAge', 'proofResidency', 'physicalExam'].includes(field)
+        );
+      }
+      
+    } else {
+      // Show upload section, hide print section  
+      if (uploadSection) uploadSection.classList.remove('hidden');
+      if (printSection) printSection.classList.add('hidden');
+      
+      // Make file uploads required again
+      fileInputs.forEach(input => {
+        input.setAttribute('required', 'required');
+      });
+      
+      // Restore validation - add file requirements back to documents tab
+      if (requiredFieldsByTab && requiredFieldsByTab.documents) {
+        const fileFields = ['proofAge', 'proofResidency', 'physicalExam'];
+        fileFields.forEach(field => {
+          if (!requiredFieldsByTab.documents.includes(field)) {
+            requiredFieldsByTab.documents.push(field);
+          }
+        });
+      }
+    }
+    
+    // Clear any existing validation errors
+    clearValidationErrors();
+  });
+});
+
+// Update the validateTab function to handle document method
+// REPLACE your existing validateTab function with this updated version:
+function validateTab(tabId) {
+  const requiredFields = requiredFieldsByTab[tabId] || [];
+  const missingFields = [];
+  
+  requiredFields.forEach(fieldName => {
+    const field = document.querySelector(`[name="${fieldName}"]`);
+    if (!field) return;
+    
+    let isValid = false;
+    
+    if (field.type === 'checkbox' || field.type === 'radio') {
+      // For checkboxes and radio buttons
+      if (field.type === 'radio') {
+        // Check if any radio button with this name is selected
+        const radioGroup = document.querySelectorAll(`[name="${fieldName}"]`);
+        isValid = Array.from(radioGroup).some(radio => radio.checked);
+      } else {
+        isValid = field.checked;
+      }
+    } else if (field.type === 'file') {
+      // For file uploads - check if print option is selected
+      const documentMethod = document.querySelector('input[name="documentMethod"]:checked');
+      if (documentMethod && documentMethod.value === 'print') {
+        isValid = true; // Skip file validation if print option selected
+      } else {
+        isValid = field.files && field.files.length > 0;
+      }
+    } else {
+      // For text inputs, selects, textareas
+      isValid = field.value && field.value.trim() !== '';
+    }
+    
+    if (!isValid) {
+      const label = document.querySelector(`label[for="${fieldName}"]`);
+      const fieldLabel = label ? label.textContent.replace('*', '').trim() : fieldName;
+      missingFields.push(fieldLabel);
+    }
+  });
+  
+  return missingFields;
+}
 
   // Final form submission with complete validation
   const enrollmentForm = document.getElementById("enrollmentForm");

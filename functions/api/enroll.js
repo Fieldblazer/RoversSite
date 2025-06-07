@@ -18,6 +18,9 @@ export async function onRequestPost({ request, env, context }) {
     );
   }
 
+  // Handle document submission method
+  const documentMethod = formData.get("documentMethod") || "upload";
+
   // Handle file uploads
   const files = {
     proofAge: formData.get("proofAge"),
@@ -25,18 +28,21 @@ export async function onRequestPost({ request, env, context }) {
     physicalExam: formData.get("physicalExam")
   };
 
-  // Check which files were uploaded
+  // Check which files were uploaded (only if upload method selected)
   const uploadedFiles = {};
-  for (const [key, file] of Object.entries(files)) {
-    if (file && file.size > 0) {
-      uploadedFiles[key] = {
-        name: file.name,
-        size: file.size,
-        type: file.type
-      };
+  if (documentMethod === "upload") {
+    for (const [key, file] of Object.entries(files)) {
+      if (file && file.size > 0) {
+        uploadedFiles[key] = {
+          name: file.name,
+          size: file.size,
+          type: file.type
+        };
+      }
     }
   }
 
+  console.log("🐝 Document method:", documentMethod);
   console.log("🐝 Uploaded files:", uploadedFiles);
 
   // Capture ALL form fields
@@ -95,7 +101,10 @@ export async function onRequestPost({ request, env, context }) {
     cardNumber: formData.get("cardNumber") || "(not provided)",
     cardExpiry: formData.get("cardExpiry") || "(not provided)",
     cardCvv: formData.get("cardCvv") || "(not provided)",
-    paymentAgreement: formData.get("paymentAgreement") ? "Yes" : "No"
+    paymentAgreement: formData.get("paymentAgreement") ? "Yes" : "No",
+    
+    // Document submission method
+    documentMethod: documentMethod
   };
 
   console.log("🐝 Captured enrollment data:", enrollmentData);
@@ -189,8 +198,14 @@ export async function onRequestPost({ request, env, context }) {
       </div>
 
       <div style="background-color: white; padding: 20px; margin: 20px 0;">
-        <h3 style="color: #1E90FF; border-bottom: 2px solid #FFD700; padding-bottom: 10px;">Uploaded Documents</h3>
+        <h3 style="color: #1E90FF; border-bottom: 2px solid #FFD700; padding-bottom: 10px;">Document Submission</h3>
+        <table style="width: 100%; border-collapse: collapse;">
+          <tr><td style="padding: 5px; font-weight: bold;">Submission Method:</td><td style="padding: 5px;">${enrollmentData.documentMethod === "upload" ? "📤 Upload Files" : "🖨️ Print Forms"}</td></tr>
+        </table>
+        
+        ${enrollmentData.documentMethod === "upload" ? `
         ${Object.keys(uploadedFiles).length > 0 ? `
+        <h4 style="color: #1E90FF; margin-top: 15px; margin-bottom: 10px;">Uploaded Documents:</h4>
         <table style="width: 100%; border-collapse: collapse;">
           ${Object.entries(uploadedFiles).map(([key, file]) => {
             const displayName = key === 'proofAge' ? 'Proof of Age' : 
@@ -203,7 +218,16 @@ export async function onRequestPost({ request, env, context }) {
           <strong>📎 Attached Files:</strong> The uploaded documents are attached to this email.
         </p>
         ` : `
-        <p style="color: #666; font-style: italic;">No documents were uploaded with this enrollment.</p>
+        <p style="color: #666; font-style: italic; margin-top: 10px;">No documents were uploaded.</p>
+        `}
+        ` : `
+        <div style="margin-top: 15px; padding: 15px; background-color: #e8f4fd; border: 1px solid #1E90FF; border-radius: 4px;">
+          <h4 style="color: #0c5460; margin: 0 0 10px 0;">📋 Parent chose to print and complete forms</h4>
+          <p style="color: #0c5460; margin: 0; font-size: 14px;">
+            <strong>Required forms:</strong> Proof of Age, Proof of Residency, Physical Exam<br>
+            <strong>Delivery:</strong> Bring to first practice, mail to office, or email scanned copies
+          </p>
+        </div>
         `}
       </div>
 
@@ -252,6 +276,8 @@ Waiver Agreements:
 Payment Method: ${enrollmentData.paymentMethod}
 Payment Agreement: ${enrollmentData.paymentAgreement}
 
+Document Submission: ${enrollmentData.documentMethod === "upload" ? "Upload Files" : "Print Forms"}
+${enrollmentData.documentMethod === "upload" ? `
 Documents Uploaded:
 ${Object.keys(uploadedFiles).length > 0 ? 
   Object.entries(uploadedFiles).map(([key, file]) => {
@@ -261,7 +287,10 @@ ${Object.keys(uploadedFiles).length > 0 ?
     return `- ${displayName}: ${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
   }).join('\n') 
   : '- No documents uploaded'
-}
+}` : `
+Documents: Parent will print and complete forms offline
+Required: Proof of Age, Proof of Residency, Physical Exam
+Delivery: Bring to practice, mail to office, or email scanned copies`}
 
 Submitted: ${new Date().toLocaleDateString()}
   `;
@@ -281,14 +310,16 @@ Submitted: ${new Date().toLocaleDateString()}
     mailgunFormData.append('html', htmlBody);
     mailgunFormData.append('text', textBody);
     
-    // Attach uploaded files
-    for (const [key, file] of Object.entries(files)) {
-      if (file && file.size > 0) {
-        // Create a meaningful filename
-        const fileExtension = file.name.split('.').pop();
-        const cleanFileName = `${enrollmentData.firstName}_${enrollmentData.lastName}_${key}.${fileExtension}`;
-        mailgunFormData.append('attachment', file, cleanFileName);
-        console.log(`🐝 Attaching file: ${cleanFileName} (${file.size} bytes)`);
+    // Attach uploaded files (only if upload method selected)
+    if (documentMethod === "upload") {
+      for (const [key, file] of Object.entries(files)) {
+        if (file && file.size > 0) {
+          // Create a meaningful filename
+          const fileExtension = file.name.split('.').pop();
+          const cleanFileName = `${enrollmentData.firstName}_${enrollmentData.lastName}_${key}.${fileExtension}`;
+          mailgunFormData.append('attachment', file, cleanFileName);
+          console.log(`🐝 Attaching file: ${cleanFileName} (${file.size} bytes)`);
+        }
       }
     }
     

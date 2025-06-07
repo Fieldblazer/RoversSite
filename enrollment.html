@@ -390,25 +390,9 @@
                   class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
                 />
               </div>
-              <div>
-                <label
-                  for="state"
-                  class="block text-sm font-medium text-white required-field"
-                >State</label>
-                <select
-                  id="state"
-                  name="state"
-                  required
-                  class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
-                >
-                  <option value="">Select</option>
-                  <option value="AL">Alabama</option>
-                  <option value="AK">Alaska</option>
-                  <!-- Add all other states here -->
-                  <option value="WI">Wisconsin</option>
-                  <option value="WY">Wyoming</option>
-                </select>
-              </div>
+
+              <!-- Updated State Selection (replace the existing state select) -->
+
               <div>
                 <label
                   for="zip"
@@ -682,107 +666,182 @@
             </div>
           </div>
 
-          <!-- WAIVER SECTION -->
-          <div id="waiver" class="form-section mt-6">
-            <h3 class="text-2xl font-semibold text-white mb-6">Liability Waiver</h3>
-            <div class="bg-trfc-dark p-6 rounded-lg mb-6">
-              <h4 class="text-lg font-medium text-white mb-4">Assumption of Risk</h4>
-              <p class="text-gray-400 mb-4">
-                I understand that soccer is a physical sport and that participation may involve risks of injury.
-              </p>
+<!-- Updated Waiver Section (replace the entire waiver form-section) -->
+<div id="waiver" class="form-section mt-6">
+  <h3 class="text-2xl font-semibold text-white mb-6">Waiver of Liability and Release Form</h3>
+  
+  <div class="bg-trfc-dark p-6 rounded-lg mb-6">
+    <div class="text-gray-300 space-y-4 mb-6">
+      <p class="text-sm italic">
+        This form must be completed for each soccer player. If the player is under 18 years old, 
+        it must be signed by the player's parent or legal guardian. No player will be allowed to 
+        participate in Texarkana Rovers FC practices or games without this form being properly executed and on file.
+      </p>
+    </div>
 
-              <h4 class="text-lg font-medium text-white mt-6 mb-4">Release of Liability</h4>
-              <p class="text-gray-400 mb-4">
-                I release Rovers FC and its staff from any claims arising from my child's participation.
-              </p>
+    <h4 class="text-lg font-medium text-white mb-4">Player Status Agreement</h4>
+    <div class="bg-gray-800 p-4 rounded mb-4">
+      <p class="text-gray-300 text-sm mb-4">
+        I understand that my player status will be kept in good standing. I will not compromise myself 
+        in such a way as to do harm to Texarkana Rovers FC, knowing that players may be dismissed from 
+        participation, with possible loss of payment or dues, for violent conduct or unsporting behavior 
+        on or off the field of play. I agree to pay for any and all damages to any property or indemnities 
+        caused by me willfully, negligently, or otherwise.
+      </p>
+      <label class="inline-flex items-center">
+        <input
+          type="checkbox"
+          name="playerStatusAgreement"
+          required
+          class="rounded border-gray-700 text-trfc-gold focus:ring-trfc-gold"
+        />
+        <span class="ml-2 text-white required-field">I agree to maintain good player status</span>
+      </label>
+    </div>
 
-              <h4 class="text-lg font-medium text-white mt-6 mb-4">Photo/Video Release</h4>
-              <p class="text-gray-400 mb-4">
-                I grant permission for Rovers FC to use images of my child for promotional purposes.
-              </p>
+    <h4 class="text-lg font-medium text-white mb-4">Risk Acknowledgment</h4>
+    <div class="bg-gray-800 p-4 rounded mb-4">
+      <p class="text-gray-300 text-sm mb-4">
+        I acknowledge that soccer is a physical, contact sport that involves the inherent risk of injury. 
+        I assume all risks and hazards associated with participation in the sport. I am in proper physical 
+        condition to participate in soccer practices and games and have no illness, disease or existing 
+        injury or physical defect that would be aggravated by participation. I will inform my coach if 
+        this status changes. I acknowledge that this risk may involve loss or damage to me or my property, 
+        including the risk of death, or other unforeseen consequences, including those which may be due to 
+        the unavailability of immediate emergency medical care. I have a current medical consent form in force. 
+        I shall wear shinguards, properly-fitted and appropriate shoes, and other protective equipment 
+        (e.g., mouth-pieces), as provided by soccer rules, to all events. I shall not wear any items that 
+        are prohibited by the rules or Texarkana Rovers FC.
+      </p>
+      <label class="inline-flex items-center">
+        <input
+          type="checkbox"
+          name="riskAcknowledgment"
+          required
+          class="rounded border-gray-700 text-trfc-gold focus:ring-trfc-gold"
+        />
+        <span class="ml-2 text-white required-field">I acknowledge the risks of soccer participation</span>
+      </label>
+    </div>
 
-              <div class="mt-4">
-                <label class="inline-flex items-center">
-                  <input
-                    type="checkbox"
-                    name="assumptionRisk"
-                    required
-                    class="rounded border-gray-700 text-trfc-gold focus:ring-trfc-gold"
-                  />
-                  <span class="ml-2 text-white required-field">I acknowledge Assumption of Risk</span>
-                </label>
-              </div>
+    <h4 class="text-lg font-medium text-white mb-4">Insurance and Medical Expenses</h4>
+    <div class="bg-gray-800 p-4 rounded mb-4">
+      <p class="text-gray-300 text-sm mb-4">
+        I acknowledge that Texarkana Rovers FC does not have personal injury or health insurance that 
+        covers my participation. Therefore, I should have a current, active, personal injury insurance 
+        policy in force, which covers my participation. Under any condition, I am responsible for any 
+        and all medical expenses arising from my participation, both in practices and games and while 
+        traveling to and from these events. I have the right and responsibility to inspect the equipment 
+        and facilities prior to events and, if I believe that anything may be unsafe, I will advise the 
+        coach or supervisor of the condition and may refuse to participate. Participation assumes consent.
+      </p>
+      <label class="inline-flex items-center">
+        <input
+          type="checkbox"
+          name="insuranceAcknowledgment"
+          required
+          class="rounded border-gray-700 text-trfc-gold focus:ring-trfc-gold"
+        />
+        <span class="ml-2 text-white required-field">I acknowledge insurance and medical expense responsibilities</span>
+      </label>
+    </div>
 
-              <div class="mt-4">
-                <label class="inline-flex items-center">
-                  <input
-                    type="checkbox"
-                    name="liabilityRelease"
-                    required
-                    class="rounded border-gray-700 text-trfc-gold focus:ring-trfc-gold"
-                  />
-                  <span class="ml-2 text-white required-field">I agree to Release of Liability</span>
-                </label>
-              </div>
+    <h4 class="text-lg font-medium text-white mb-4">Photo and Media Release</h4>
+    <div class="bg-gray-800 p-4 rounded mb-4">
+      <p class="text-gray-300 text-sm mb-4">
+        I authorize my photograph, picture or likeness, and voice to appear in any documentary, promotion 
+        (including advertising), television, video, or radio coverage of Texarkana Rovers FC, without compensation.
+      </p>
+      <label class="inline-flex items-center">
+        <input
+          type="checkbox"
+          name="photoRelease"
+          required
+          class="rounded border-gray-700 text-trfc-gold focus:ring-trfc-gold"
+        />
+        <span class="ml-2 text-white required-field">I authorize photo and media use</span>
+      </label>
+    </div>
 
-              <div class="mt-4">
-                <label class="inline-flex items-center">
-                  <input
-                    type="checkbox"
-                    name="photoRelease"
-                    class="rounded border-gray-700 text-trfc-gold focus:ring-trfc-gold"
-                  />
-                  <span class="ml-2 text-white">I grant Photo/Video Release (optional)</span>
-                </label>
-              </div>
+    <h4 class="text-lg font-medium text-white mb-4">Complete Liability Release</h4>
+    <div class="bg-gray-800 p-4 rounded mb-4">
+      <p class="text-gray-300 text-sm mb-4">
+        I hereby release, waive liability, discharge, hold harmless, indemnify, and covenant not to sue, 
+        the United States Soccer Federation, the Texas State Soccer Association, Texarkana Rovers Football Club, 
+        their associated directors, administrators, officers, managers, employees, coaches, referees, trainers, 
+        volunteers, sponsors and advertisers, and other agents, estates or executors, including family members, 
+        from any and all liability incurred in the conduct of, and my participation in, their soccer programs. 
+        This includes owners, lessors, and lessees of premises, municipalities, government agencies, successors, 
+        heirs, and assigns.
+      </p>
+      <p class="text-gray-300 text-sm mb-4 font-medium">
+        I have completely read this document and fully understand its contents. I acknowledge that I have 
+        given up substantial rights by accepting this document and that I do so voluntarily. My signature 
+        attests to this on behalf of myself and my executors, personal representatives, administrators, 
+        heirs, next-of-kin, successors, and assigns.
+      </p>
+      <label class="inline-flex items-center">
+        <input
+          type="checkbox"
+          name="liabilityRelease"
+          required
+          class="rounded border-gray-700 text-trfc-gold focus:ring-trfc-gold"
+        />
+        <span class="ml-2 text-white required-field">I agree to the complete liability release</span>
+      </label>
+    </div>
 
-              <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label
-                    for="waiverSignature"
-                    class="block text-sm font-medium text-white required-field"
-                  >Parent/Guardian Signature</label>
-                  <input
-                    type="text"
-                    id="waiverSignature"
-                    name="waiverSignature"
-                    required
-                    class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
-                  />
-                </div>
-                <div>
-                  <label
-                    for="waiverDate"
-                    class="block text-sm font-medium text-white required-field"
-                  >Date</label>
-                  <input
-                    type="date"
-                    id="waiverDate"
-                    name="waiverDate"
-                    required
-                    class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
-                  />
-                </div>
-              </div>
-            </div>
+    <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <label
+          for="waiverSignature"
+          class="block text-sm font-medium text-white required-field"
+        >Parent/Guardian Signature</label>
+        <input
+          type="text"
+          id="waiverSignature"
+          name="waiverSignature"
+          required
+          placeholder="Type your full legal name"
+          class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
+        />
+        <p class="mt-1 text-xs text-gray-400">
+          As the parent/legal guardian, I agree to this waiver on behalf of the minor participant named above.
+        </p>
+      </div>
+      <div>
+        <label
+          for="waiverDate"
+          class="block text-sm font-medium text-white required-field"
+        >Date</label>
+        <input
+          type="date"
+          id="waiverDate"
+          name="waiverDate"
+          required
+          class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold"
+        />
+      </div>
+    </div>
+  </div>
 
-            <div class="mt-8 flex justify-between">
-              <button
-                type="button"
-                class="prev-tab px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-trfc-blue hover:bg-[#197fef] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-trfc-blue"
-                data-prev="medical"
-              >
-                <i class="fas fa-arrow-left mr-2"></i> Back: Medical
-              </button>
-              <button
-                type="button"
-                class="next-tab px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-trfc-gold hover:bg-[#e6c300] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-trfc-gold"
-                data-next="documents"
-              >
-                Next: Documents <i class="fas fa-arrow-right ml-2"></i>
-              </button>
-            </div>
-          </div>
+  <div class="mt-8 flex justify-between">
+    <button
+      type="button"
+      class="prev-tab px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-trfc-blue hover:bg-[#197fef] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-trfc-blue"
+      data-prev="medical"
+    >
+      <i class="fas fa-arrow-left mr-2"></i> Back: Medical
+    </button>
+    <button
+      type="button"
+      class="next-tab px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-trfc-gold hover:bg-[#e6c300] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-trfc-gold"
+      data-next="documents"
+    >
+      Next: Documents <i class="fas fa-arrow-right ml-2"></i>
+    </button>
+  </div>
+</div>
 
           <!-- DOCUMENTS SECTION -->
           <div id="documents" class="form-section mt-6">
@@ -1142,109 +1201,341 @@
 
   <!-- Combined Tab‐Navigation, Next/Prev, File Preview, Payment Toggle, and Form Submit logic: -->
   <script>
-    // 1) Tab navigation: clicking a .tab-indicator shows that section
-    document.querySelectorAll('.tab-indicator').forEach(tab => {
-      tab.addEventListener('click', function() {
-        const tabId = this.getAttribute('data-tab');
+    // Enhanced Tab Navigation, Validation, and Form Submit logic
+document.addEventListener('DOMContentLoaded', function() {
 
-        // remove active style from all indicators
-        document.querySelectorAll('.tab-indicator').forEach(t => {
-          t.classList.remove('text-trfc-gold', 'border-trfc-gold');
-          t.classList.add('text-gray-400');
-        });
-        // add active style to clicked indicator
-        this.classList.remove('text-gray-400');
-        this.classList.add('text-trfc-gold', 'border-trfc-gold');
+  // Define required fields for each tab
+  const requiredFieldsByTab = {
+    enrollment: [
+      'firstName', 'lastName', 'birthDate', 'gender', 'parentName', 
+      'relationship', 'email', 'phone', 'address', 'city', 'state', 'zip',
+      'emergencyName', 'emergencyRelationship', 'emergencyPhone'
+    ],
+    medical: [
+      'medicalAuthorization', 'parentSignature', 'signatureDate'
+    ],
+    waiver: [
+      'playerStatusAgreement', 'riskAcknowledgment', 'insuranceAcknowledgment',
+      'photoRelease', 'liabilityRelease', 'waiverSignature', 'waiverDate'
+    ],
+    documents: [
+      'proofAge', 'proofResidency', 'physicalExam', 'paymentAgreement'
+    ]
+  };
 
-        // hide all .form-section, then show the one matching data-tab
-        document.querySelectorAll('.form-section').forEach(section => {
-          section.classList.remove('active');
-        });
-        document.getElementById(tabId).classList.add('active');
-      });
-    });
-
-    // 2) Next/Previous tab buttons
-    document.querySelectorAll('.next-tab').forEach(button => {
-      button.addEventListener('click', function() {
-        const nextTabId = this.getAttribute('data-next');
-        document.querySelector(`.tab-indicator[data-tab="${nextTabId}"]`).click();
-      });
-    });
-    document.querySelectorAll('.prev-tab').forEach(button => {
-      button.addEventListener('click', function() {
-        const prevTabId = this.getAttribute('data-prev');
-        document.querySelector(`.tab-indicator[data-tab="${prevTabId}"]`).click();
-      });
-    });
-
-    // 3) File‐upload preview
-    document.querySelectorAll('input[type="file"]').forEach(input => {
-      input.addEventListener('change', function() {
-        const file = this.files[0];
-        if (file) {
-          const previewId = `${this.id}Preview`;
-          const fileNameId = `${this.id}FileName`;
-          document.getElementById(previewId).classList.remove('hidden');
-          document.getElementById(fileNameId).textContent = file.name;
-        }
-      });
-    });
-    function removeFile(inputId) {
-      const input = document.getElementById(inputId);
-      input.value = '';
-      document.getElementById(`${inputId}Preview`).classList.add('hidden');
-    }
-
-    // 4) Payment‐method toggle (online vs. check)
-    document.querySelectorAll('input[name="paymentMethod"]').forEach(radio => {
-      radio.addEventListener('change', function() {
-        if (this.value === 'online') {
-          document.getElementById('onlinePayment').classList.remove('hidden');
+  // Function to validate a specific tab
+  function validateTab(tabId) {
+    const requiredFields = requiredFieldsByTab[tabId] || [];
+    const missingFields = [];
+    
+    requiredFields.forEach(fieldName => {
+      const field = document.querySelector(`[name="${fieldName}"]`);
+      if (!field) return;
+      
+      let isValid = false;
+      
+      if (field.type === 'checkbox' || field.type === 'radio') {
+        // For checkboxes and radio buttons
+        if (field.type === 'radio') {
+          // Check if any radio button with this name is selected
+          const radioGroup = document.querySelectorAll(`[name="${fieldName}"]`);
+          isValid = Array.from(radioGroup).some(radio => radio.checked);
         } else {
-          document.getElementById('onlinePayment').classList.add('hidden');
+          isValid = field.checked;
+        }
+      } else if (field.type === 'file') {
+        // For file uploads
+        isValid = field.files && field.files.length > 0;
+      } else {
+        // For text inputs, selects, textareas
+        isValid = field.value && field.value.trim() !== '';
+      }
+      
+      if (!isValid) {
+        const label = document.querySelector(`label[for="${fieldName}"]`);
+        const fieldLabel = label ? label.textContent.replace('*', '').trim() : fieldName;
+        missingFields.push(fieldLabel);
+      }
+    });
+    
+    return missingFields;
+  }
+
+  // Function to show validation errors
+  function showValidationError(missingFields, targetTab) {
+    const tabNames = {
+      enrollment: 'Enrollment',
+      medical: 'Medical',
+      waiver: 'Waiver',
+      documents: 'Documents'
+    };
+    
+    const errorMessage = `
+      <div style="background-color: #fee; border: 2px solid #f00; border-radius: 8px; padding: 15px; margin: 20px 0;">
+        <h4 style="color: #d00; margin: 0 0 10px 0;">⚠️ Required Information Missing</h4>
+        <p style="margin: 0 0 10px 0; color: #333;">
+          Please complete the following required fields in the <strong>${tabNames[targetTab]}</strong> section before continuing:
+        </p>
+        <ul style="margin: 0; padding-left: 20px; color: #333;">
+          ${missingFields.map(field => `<li>${field}</li>`).join('')}
+        </ul>
+      </div>
+    `;
+    
+    // Remove any existing error messages
+    const existingErrors = document.querySelectorAll('.validation-error');
+    existingErrors.forEach(error => error.remove());
+    
+    // Add error message to the current tab
+    const currentSection = document.querySelector('.form-section.active');
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'validation-error';
+    errorDiv.innerHTML = errorMessage;
+    currentSection.insertBefore(errorDiv, currentSection.firstChild);
+    
+    // Scroll to top of form to show error
+    currentSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Function to clear validation errors
+  function clearValidationErrors() {
+    const existingErrors = document.querySelectorAll('.validation-error');
+    existingErrors.forEach(error => error.remove());
+  }
+
+  // Function to update tab indicator styles
+  function updateTabIndicators(activeTabId) {
+    document.querySelectorAll('.tab-indicator').forEach(tab => {
+      const tabId = tab.getAttribute('data-tab');
+      tab.classList.remove('text-trfc-gold', 'border-trfc-gold', 'active');
+      tab.classList.add('text-gray-400');
+      
+      if (tabId === activeTabId) {
+        tab.classList.remove('text-gray-400');
+        tab.classList.add('text-trfc-gold', 'border-trfc-gold', 'active');
+      }
+    });
+  }
+
+  // Function to switch to a tab
+  function switchToTab(tabId) {
+    // Hide all sections
+    document.querySelectorAll('.form-section').forEach(section => {
+      section.classList.remove('active');
+    });
+    
+    // Show target section
+    document.getElementById(tabId).classList.add('active');
+    
+    // Update tab indicators
+    updateTabIndicators(tabId);
+    
+    // Clear any validation errors
+    clearValidationErrors();
+  }
+
+  // Tab navigation with validation
+  document.querySelectorAll('.tab-indicator').forEach(tab => {
+    tab.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetTabId = this.getAttribute('data-tab');
+      const currentTab = document.querySelector('.tab-indicator.active');
+      const currentTabId = currentTab ? currentTab.getAttribute('data-tab') : 'enrollment';
+      
+      // If clicking on the same tab, do nothing
+      if (targetTabId === currentTabId) return;
+      
+      // Validate current tab before switching
+      const missingFields = validateTab(currentTabId);
+      
+      if (missingFields.length > 0) {
+        showValidationError(missingFields, currentTabId);
+        return; // Don't switch tabs
+      }
+      
+      // Switch to the new tab
+      switchToTab(targetTabId);
+    });
+  });
+
+  // Next/Previous button navigation with validation
+  document.querySelectorAll('.next-tab').forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      const nextTabId = this.getAttribute('data-next');
+      const currentTab = document.querySelector('.tab-indicator.active');
+      const currentTabId = currentTab ? currentTab.getAttribute('data-tab') : 'enrollment';
+      
+      // Validate current tab
+      const missingFields = validateTab(currentTabId);
+      
+      if (missingFields.length > 0) {
+        showValidationError(missingFields, currentTabId);
+        return;
+      }
+      
+      // Switch to next tab
+      switchToTab(nextTabId);
+    });
+  });
+
+  document.querySelectorAll('.prev-tab').forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      const prevTabId = this.getAttribute('data-prev');
+      switchToTab(prevTabId);
+    });
+  });
+
+  // File upload preview functionality
+  document.querySelectorAll('input[type="file"]').forEach(input => {
+    input.addEventListener('change', function() {
+      const file = this.files[0];
+      const previewId = `${this.id}Preview`;
+      const fileNameId = `${this.id}FileName`;
+      const preview = document.getElementById(previewId);
+      const fileName = document.getElementById(fileNameId);
+      
+      if (file && preview && fileName) {
+        preview.classList.remove('hidden');
+        fileName.textContent = file.name;
+      }
+    });
+  });
+
+  // Remove file function
+  window.removeFile = function(inputId) {
+    const input = document.getElementById(inputId);
+    const preview = document.getElementById(`${inputId}Preview`);
+    if (input) input.value = '';
+    if (preview) preview.classList.add('hidden');
+  };
+
+  // Payment method toggle
+  document.querySelectorAll('input[name="paymentMethod"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+      const onlinePayment = document.getElementById('onlinePayment');
+      if (onlinePayment) {
+        if (this.value === 'online') {
+          onlinePayment.classList.remove('hidden');
+        } else {
+          onlinePayment.classList.add('hidden');
+        }
+      }
+    });
+  });
+
+  // Final form submission with complete validation
+  const enrollmentForm = document.getElementById("enrollmentForm");
+  if (enrollmentForm) {
+    enrollmentForm.addEventListener("submit", async function(e) {
+      e.preventDefault();
+      
+      // Validate all tabs before submission
+      let allValid = true;
+      let allMissingFields = [];
+      
+      Object.keys(requiredFieldsByTab).forEach(tabId => {
+        const missingFields = validateTab(tabId);
+        if (missingFields.length > 0) {
+          allValid = false;
+          allMissingFields.push({
+            tab: tabId,
+            fields: missingFields
+          });
         }
       });
-    });
-
-    // 5) Final form‐submit handler (POST to /api/enroll)
-    document
-      .getElementById("enrollmentForm")
-      .addEventListener("submit", async function(e) {
-        e.preventDefault();
-
-        // Build a FormData object from <form>
-        const form = document.getElementById("enrollmentForm");
-        const formData = new FormData(form);
-
-        // Send it as a POST to your Pages Function at /api/enroll
-        const resp = await fetch("/api/enroll", {
+      
+      if (!allValid) {
+        // Show error for the first tab with missing fields
+        const firstInvalidTab = allMissingFields[0];
+        switchToTab(firstInvalidTab.tab);
+        showValidationError(firstInvalidTab.fields, firstInvalidTab.tab);
+        
+        // Show summary of all missing fields
+        const tabNames = {
+          enrollment: 'Enrollment',
+          medical: 'Medical', 
+          waiver: 'Waiver',
+          documents: 'Documents'
+        };
+        
+        const summaryMessage = allMissingFields.map(tab => 
+          `${tabNames[tab.tab]}: ${tab.fields.join(', ')}`
+        ).join('\n');
+        
+        alert(`Please complete all required fields:\n\n${summaryMessage}`);
+        return;
+      }
+      
+      // Show loading state
+      const submitButton = this.querySelector('button[type="submit"]');
+      const originalText = submitButton.innerHTML;
+      submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Submitting...';
+      submitButton.disabled = true;
+      
+      try {
+        // Build FormData and submit
+        const formData = new FormData(this);
+        const response = await fetch("/api/enroll", {
           method: "POST",
           body: formData
         });
-
-        if (resp.ok) {
-          // Show the “Enrollment Submitted!” modal
-          document.getElementById("successModal").classList.remove("hidden");
+        
+        if (response.ok) {
+          // Show success modal
+          const successModal = document.getElementById("successModal");
+          if (successModal) {
+            successModal.classList.remove("hidden");
+          }
         } else {
-          // If your Pages Function returned { error: "…"}, show an alert
+          // Handle error
           let data = {};
           try {
-            data = await resp.json();
+            data = await response.json();
           } catch (_) {}
-          alert("Error submitting form: " + (data.error || resp.statusText));
+          alert("Error submitting form: " + (data.error || response.statusText));
         }
-      });
+      } catch (error) {
+        alert("Error submitting form: " + error.message);
+      } finally {
+        // Restore button state
+        submitButton.innerHTML = originalText;
+        submitButton.disabled = false;
+      }
+    });
+  }
 
-    function closeSuccessModal() {
-      document.getElementById("successModal").classList.add("hidden");
-      // Reset everything back to the first tab
-      document.querySelector('.tab-indicator[data-tab="enrollment"]').click();
-      document.getElementById("enrollmentForm").reset();
-      document.querySelectorAll('[id$="Preview"]').forEach(preview => {
-        preview.classList.add("hidden");
-      });
+  // Success modal close function
+  window.closeSuccessModal = function() {
+    const successModal = document.getElementById("successModal");
+    if (successModal) {
+      successModal.classList.add("hidden");
     }
+    
+    // Reset form and go back to first tab
+    switchToTab('enrollment');
+    if (enrollmentForm) {
+      enrollmentForm.reset();
+    }
+    
+    // Hide all file previews
+    document.querySelectorAll('[id$="Preview"]').forEach(preview => {
+      preview.classList.add("hidden");
+    });
+  };
+
+  // Real-time validation feedback
+  document.querySelectorAll('input, select, textarea').forEach(field => {
+    field.addEventListener('blur', function() {
+      // Clear errors when user starts fixing them
+      if (this.value.trim() !== '' || (this.type === 'checkbox' && this.checked)) {
+        clearValidationErrors();
+      }
+    });
+  });
+
+});
   </script>
 </body>
 </html>

@@ -81,9 +81,11 @@ export async function onRequestPost({ request, env, context }) {
     signatureDate: formData.get("signatureDate") || "(not provided)",
     
     // Waiver Information
-    assumptionRisk: formData.get("assumptionRisk") ? "Yes" : "No",
-    liabilityRelease: formData.get("liabilityRelease") ? "Yes" : "No",
+    playerStatusAgreement: formData.get("playerStatusAgreement") ? "Yes" : "No",
+    riskAcknowledgment: formData.get("riskAcknowledgment") ? "Yes" : "No",
+    insuranceAcknowledgment: formData.get("insuranceAcknowledgment") ? "Yes" : "No",
     photoRelease: formData.get("photoRelease") ? "Yes" : "No",
+    liabilityRelease: formData.get("liabilityRelease") ? "Yes" : "No",
     waiverSignature: formData.get("waiverSignature") || "(not provided)",
     waiverDate: formData.get("waiverDate") || "(not provided)",
     
@@ -164,9 +166,11 @@ export async function onRequestPost({ request, env, context }) {
       <div style="background-color: white; padding: 20px; margin: 20px 0;">
         <h3 style="color: #1E90FF; border-bottom: 2px solid #FFD700; padding-bottom: 10px;">Waiver Agreements</h3>
         <table style="width: 100%; border-collapse: collapse;">
-          <tr><td style="padding: 5px; font-weight: bold;">Assumption of Risk:</td><td style="padding: 5px;">${enrollmentData.assumptionRisk}</td></tr>
-          <tr><td style="padding: 5px; font-weight: bold;">Liability Release:</td><td style="padding: 5px;">${enrollmentData.liabilityRelease}</td></tr>
+          <tr><td style="padding: 5px; font-weight: bold;">Player Status Agreement:</td><td style="padding: 5px;">${enrollmentData.playerStatusAgreement}</td></tr>
+          <tr><td style="padding: 5px; font-weight: bold;">Risk Acknowledgment:</td><td style="padding: 5px;">${enrollmentData.riskAcknowledgment}</td></tr>
+          <tr><td style="padding: 5px; font-weight: bold;">Insurance Acknowledgment:</td><td style="padding: 5px;">${enrollmentData.insuranceAcknowledgment}</td></tr>
           <tr><td style="padding: 5px; font-weight: bold;">Photo Release:</td><td style="padding: 5px;">${enrollmentData.photoRelease}</td></tr>
+          <tr><td style="padding: 5px; font-weight: bold;">Liability Release:</td><td style="padding: 5px;">${enrollmentData.liabilityRelease}</td></tr>
           <tr><td style="padding: 5px; font-weight: bold;">Waiver Signature:</td><td style="padding: 5px;">${enrollmentData.waiverSignature}</td></tr>
           <tr><td style="padding: 5px; font-weight: bold;">Waiver Date:</td><td style="padding: 5px;">${enrollmentData.waiverDate}</td></tr>
         </table>
@@ -239,9 +243,11 @@ Medical Information:
 - Medical Authorization: ${enrollmentData.medicalAuthorization}
 
 Waiver Agreements:
-- Assumption of Risk: ${enrollmentData.assumptionRisk}
-- Liability Release: ${enrollmentData.liabilityRelease}
+- Player Status Agreement: ${enrollmentData.playerStatusAgreement}
+- Risk Acknowledgment: ${enrollmentData.riskAcknowledgment}
+- Insurance Acknowledgment: ${enrollmentData.insuranceAcknowledgment}
 - Photo Release: ${enrollmentData.photoRelease}
+- Liability Release: ${enrollmentData.liabilityRelease}
 
 Payment Method: ${enrollmentData.paymentMethod}
 Payment Agreement: ${enrollmentData.paymentAgreement}

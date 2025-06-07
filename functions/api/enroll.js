@@ -254,7 +254,7 @@ Submitted: ${new Date().toLocaleDateString()}
     
     // Create FormData for Mailgun
     const mailgunFormData = new FormData();
-    mailgunFormData.append('from', `RoversFC Enrollment <mailgun@${env.MAILGUN_DOMAIN}>`);
+    mailgunFormData.append('from', `RoversFC Enrollment <noreply@txkrovers.com>`);
     mailgunFormData.append('to', 'texarkanarovers@gmail.com');
     mailgunFormData.append('subject', `New Enrollment: ${enrollmentData.firstName} ${enrollmentData.lastName}`);
     mailgunFormData.append('html', htmlBody);

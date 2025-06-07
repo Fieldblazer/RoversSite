@@ -1498,6 +1498,126 @@ function validateTab(tabId) {
 
 });
   </script>
+<!-- Your existing validation script stays here -->
+<script>
+// Enhanced Tab Navigation, Validation, and Form Submit logic
+document.addEventListener('DOMContentLoaded', function() {
+  // ... your existing validation code ...
+});
+</script>
+
+<!-- ADD this mobile menu script AFTER your validation script -->
+<script>
+// Mobile menu functionality for enrollment page
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuButton = document.querySelector('button[class*="lg:hidden"]');
+    
+    // Only run if mobile menu button exists and mobile menu doesn't already exist
+    if (mobileMenuButton && !document.getElementById('mobile-menu')) {
+        const mobileMenu = document.createElement('div');
+        mobileMenu.className = 'hidden fixed inset-0 bg-black bg-opacity-90 z-50 p-4 overflow-y-auto';
+        mobileMenu.id = 'mobile-menu';
+        
+        // Same mobile menu HTML as your index.html
+        mobileMenu.innerHTML = `
+            <div class="flex justify-between items-center mb-8">
+                <div class="flex items-center space-x-2">
+                    <img src="https://i.imgur.com/RSMWGid.png" alt="Logo" class="h-10 w-10">
+                    <div>
+                        <h2 class="text-xl font-bold">TEXARKANA <span class="text-gold">ROVERS</span></h2>
+                        <p class="text-xs text-skyblue">FOOTBALL CLUB</p>
+                    </div>
+                </div>
+                <button id="close-mobile-menu" class="text-white text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="space-y-6">
+                <a href="/about.html" class="block text-white text-lg py-2">About</a>
+                
+                <div>
+                    <button class="flex items-center justify-between w-full text-white text-left text-lg py-2">
+                        Club <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                    </button>
+                    <div class="pl-4 mt-2 hidden">
+                        <a href="/kit-academy.html" class="block py-2 text-gray-300 hover:text-white">Kit Academy</a>
+                        <a href="/rovers-fc.html" class="block py-2 text-gray-300 hover:text-white">Rovers FC</a>
+                        <a href="/schedules.html" class="block py-2 text-gray-300 hover:text-white">Schedules</a>
+                        <a href="/gear.html" class="block py-2 text-gray-300 hover:text-white">Gear</a>
+                        <a href="/scholarships.html" class="block py-2 text-gray-300 hover:text-white">Scholarships</a>
+                        <a href="/faq.html" class="block py-2 text-gray-300 hover:text-white">FAQ</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <button class="flex items-center justify-between w-full text-white text-left text-lg py-2">
+                        Programs <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                    </button>
+                    <div class="pl-4 mt-2 hidden">
+                        <a href="/open-training.html" class="block py-2 text-gray-300 hover:text-white">Open Training</a>
+                        <a href="/recreation-league.html" class="block py-2 text-gray-300 hover:text-white">Recreation League</a>
+                        <a href="/competitive.html" class="block py-2 text-gray-300 hover:text-white">Competitive</a>
+                        <a href="/community-outreach.html" class="block py-2 text-gray-300 hover:text-white">Community Outreach</a>
+                    </div>
+                </div>
+                
+                <a href="/enrollment.html" class="block text-white text-lg py-2 text-gold">Enrollment</a>
+                <a href="/tournaments.html" class="block text-white text-lg py-2">Tournaments</a>
+                <a href="/news.html" class="block text-white text-lg py-2">News</a>
+                <a href="/contact.html" class="block text-white text-lg py-2">Contact</a>
+                
+                <a href="/apply.html" class="bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-3 rounded-md font-bold text-center block mt-8">
+                    APPLY
+                </a>
+            </div>
+        `;
+        
+        document.body.appendChild(mobileMenu);
+        
+        // Toggle mobile menu
+        mobileMenuButton.addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        // Close mobile menu
+        document.getElementById('close-mobile-menu').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Mobile menu accordion functionality
+        const mobileMenuButtons = mobileMenu.querySelectorAll('div > button');
+        mobileMenuButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                const isExpanded = !content.classList.contains('hidden');
+                
+                // Close all other accordion items
+                mobileMenuButtons.forEach(btn => {
+                    if (btn !== this) {
+                        btn.nextElementSibling.classList.add('hidden');
+                        btn.querySelector('i').classList.remove('fa-chevron-up');
+                        btn.querySelector('i').classList.add('fa-chevron-down');
+                    }
+                });
+                
+                // Toggle current item
+                if (isExpanded) {
+                    content.classList.add('hidden');
+                    this.querySelector('i').classList.remove('fa-chevron-up');
+                    this.querySelector('i').classList.add('fa-chevron-down');
+                } else {
+                    content.classList.remove('hidden');
+                    this.querySelector('i').classList.remove('fa-chevron-down');
+                    this.querySelector('i').classList.add('fa-chevron-up');
+                }
+            });
+        });
+    }
+});
+</script>
 </body>
 </html>
 </body>

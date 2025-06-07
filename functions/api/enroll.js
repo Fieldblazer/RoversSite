@@ -18,6 +18,27 @@ export async function onRequestPost({ request, env, context }) {
     );
   }
 
+  // Handle file uploads
+  const files = {
+    proofAge: formData.get("proofAge"),
+    proofResidency: formData.get("proofResidency"),
+    physicalExam: formData.get("physicalExam")
+  };
+
+  // Check which files were uploaded
+  const uploadedFiles = {};
+  for (const [key, file] of Object.entries(files)) {
+    if (file && file.size > 0) {
+      uploadedFiles[key] = {
+        name: file.name,
+        size: file.size,
+        type: file.type
+      };
+    }
+  }
+
+  console.log("🐝 Uploaded files:", uploadedFiles);
+
   // Capture ALL form fields
   const enrollmentData = {
     // Player Information
@@ -156,11 +177,30 @@ export async function onRequestPost({ request, env, context }) {
         <table style="width: 100%; border-collapse: collapse;">
           <tr><td style="padding: 5px; font-weight: bold;">Payment Method:</td><td style="padding: 5px;">${enrollmentData.paymentMethod}</td></tr>
           <tr><td style="padding: 5px; font-weight: bold;">Payment Agreement:</td><td style="padding: 5px;">${enrollmentData.paymentAgreement}</td></tr>
-          ${enrollmentData.paymentMethod === 'online' ? `
+          ${enrollmentData.paymentMethod === 'online' && enrollmentData.cardNumber ? `
           <tr><td style="padding: 5px; font-weight: bold;">Card Name:</td><td style="padding: 5px;">${enrollmentData.cardName}</td></tr>
           <tr><td style="padding: 5px; font-weight: bold;">Card Number:</td><td style="padding: 5px;">****-****-****-${enrollmentData.cardNumber.slice(-4)}</td></tr>
           ` : ''}
         </table>
+      </div>
+
+      <div style="background-color: white; padding: 20px; margin: 20px 0;">
+        <h3 style="color: #1E90FF; border-bottom: 2px solid #FFD700; padding-bottom: 10px;">Uploaded Documents</h3>
+        ${Object.keys(uploadedFiles).length > 0 ? `
+        <table style="width: 100%; border-collapse: collapse;">
+          ${Object.entries(uploadedFiles).map(([key, file]) => {
+            const displayName = key === 'proofAge' ? 'Proof of Age' : 
+                              key === 'proofResidency' ? 'Proof of Residency' : 
+                              key === 'physicalExam' ? 'Physical Exam Form' : key;
+            return `<tr><td style="padding: 5px; font-weight: bold;">${displayName}:</td><td style="padding: 5px;">📎 ${file.name} (${(file.size / 1024).toFixed(1)} KB)</td></tr>`;
+          }).join('')}
+        </table>
+        <p style="margin-top: 15px; padding: 10px; background-color: #fff3cd; border: 1px solid #ffeaa7; border-radius: 4px; color: #856404;">
+          <strong>📎 Attached Files:</strong> The uploaded documents are attached to this email.
+        </p>
+        ` : `
+        <p style="color: #666; font-style: italic;">No documents were uploaded with this enrollment.</p>
+        `}
       </div>
 
       <div style="background-color: #FFD700; color: #0A0F1D; padding: 15px; text-align: center; margin-top: 20px;">
@@ -206,6 +246,17 @@ Waiver Agreements:
 Payment Method: ${enrollmentData.paymentMethod}
 Payment Agreement: ${enrollmentData.paymentAgreement}
 
+Documents Uploaded:
+${Object.keys(uploadedFiles).length > 0 ? 
+  Object.entries(uploadedFiles).map(([key, file]) => {
+    const displayName = key === 'proofAge' ? 'Proof of Age' : 
+                      key === 'proofResidency' ? 'Proof of Residency' : 
+                      key === 'physicalExam' ? 'Physical Exam Form' : key;
+    return `- ${displayName}: ${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+  }).join('\n') 
+  : '- No documents uploaded'
+}
+
 Submitted: ${new Date().toLocaleDateString()}
   `;
 
@@ -216,19 +267,32 @@ Submitted: ${new Date().toLocaleDateString()}
     const mailgunUrl = `https://api.mailgun.net/v3/${env.MAILGUN_DOMAIN}/messages`;
     console.log("🐝 Mailgun URL:", mailgunUrl);
     
+    // Create FormData for Mailgun (different from the incoming formData)
+    const mailgunFormData = new FormData();
+    mailgunFormData.append('from', `RoversFC Enrollment <mailgun@${env.MAILGUN_DOMAIN}>`);
+    mailgunFormData.append('to', 'texarkanarovers@gmail.com');
+    mailgunFormData.append('subject', `New Enrollment: ${enrollmentData.firstName} ${enrollmentData.lastName}`);
+    mailgunFormData.append('html', htmlBody);
+    mailgunFormData.append('text', textBody);
+    
+    // Attach uploaded files
+    for (const [key, file] of Object.entries(files)) {
+      if (file && file.size > 0) {
+        // Create a meaningful filename
+        const fileExtension = file.name.split('.').pop();
+        const cleanFileName = `${enrollmentData.firstName}_${enrollmentData.lastName}_${key}.${fileExtension}`;
+        mailgunFormData.append('attachment', file, cleanFileName);
+        console.log(`🐝 Attaching file: ${cleanFileName} (${file.size} bytes)`);
+      }
+    }
+    
     const response = await fetch(mailgunUrl, {
       method: 'POST',
       headers: {
-        'Authorization': `Basic ${btoa(`api:${env.MAILGUN_API_KEY}`)}`,
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': `Basic ${btoa(`api:${env.MAILGUN_API_KEY}`)}`
+        // Don't set Content-Type header when using FormData - let the browser set it
       },
-      body: new URLSearchParams({
-        from: `RoversFC Enrollment <mailgun@${env.MAILGUN_DOMAIN}>`,
-        to: 'texarkanarovers@gmail.com',
-        subject: `New Enrollment: ${enrollmentData.firstName} ${enrollmentData.lastName}`,
-        html: htmlBody,
-        text: textBody
-      })
+      body: mailgunFormData
     });
     
     console.log("🐝 Mailgun response status:", response.status);
@@ -240,7 +304,11 @@ Submitted: ${new Date().toLocaleDateString()}
     }
     
     return new Response(
-      JSON.stringify({ success: true, message: "Enrollment submitted successfully" }),
+      JSON.stringify({ 
+        success: true, 
+        message: "Enrollment submitted successfully",
+        filesAttached: Object.keys(uploadedFiles).length
+      }),
       { status: 200, headers: { "Content-Type": "application/json" } }
     );
   } catch (error) {

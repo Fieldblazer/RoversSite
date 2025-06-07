@@ -18,32 +18,18 @@ export async function onRequestPost({ request, env, context }) {
     );
   }
 
-  // Handle document submission method
-  const documentMethod = formData.get("documentMethod") || "upload";
-
-  // Handle file uploads
-  const files = {
-    proofAge: formData.get("proofAge"),
-    proofResidency: formData.get("proofResidency"),
-    physicalExam: formData.get("physicalExam")
-  };
-
-  // Check which files were uploaded (only if upload method selected)
-  const uploadedFiles = {};
-  if (documentMethod === "upload") {
-    for (const [key, file] of Object.entries(files)) {
-      if (file && file.size > 0) {
-        uploadedFiles[key] = {
-          name: file.name,
-          size: file.size,
-          type: file.type
-        };
-      }
-    }
+  // Handle file upload - only proof of age
+  const proofAgeFile = formData.get("proofAge");
+  let uploadedFile = null;
+  
+  if (proofAgeFile && proofAgeFile.size > 0) {
+    uploadedFile = {
+      name: proofAgeFile.name,
+      size: proofAgeFile.size,
+      type: proofAgeFile.type
+    };
+    console.log("🐝 Proof of age file uploaded:", uploadedFile);
   }
-
-  console.log("🐝 Document method:", documentMethod);
-  console.log("🐝 Uploaded files:", uploadedFiles);
 
   // Capture ALL form fields
   const enrollmentData = {
@@ -101,10 +87,7 @@ export async function onRequestPost({ request, env, context }) {
     cardNumber: formData.get("cardNumber") || "(not provided)",
     cardExpiry: formData.get("cardExpiry") || "(not provided)",
     cardCvv: formData.get("cardCvv") || "(not provided)",
-    paymentAgreement: formData.get("paymentAgreement") ? "Yes" : "No",
-    
-    // Document submission method
-    documentMethod: documentMethod
+    paymentAgreement: formData.get("paymentAgreement") ? "Yes" : "No"
   };
 
   console.log("🐝 Captured enrollment data:", enrollmentData);
@@ -199,35 +182,15 @@ export async function onRequestPost({ request, env, context }) {
 
       <div style="background-color: white; padding: 20px; margin: 20px 0;">
         <h3 style="color: #1E90FF; border-bottom: 2px solid #FFD700; padding-bottom: 10px;">Document Submission</h3>
+        ${uploadedFile ? `
         <table style="width: 100%; border-collapse: collapse;">
-          <tr><td style="padding: 5px; font-weight: bold;">Submission Method:</td><td style="padding: 5px;">${enrollmentData.documentMethod === "upload" ? "📤 Upload Files" : "🖨️ Print Forms"}</td></tr>
-        </table>
-        
-        ${enrollmentData.documentMethod === "upload" ? `
-        ${Object.keys(uploadedFiles).length > 0 ? `
-        <h4 style="color: #1E90FF; margin-top: 15px; margin-bottom: 10px;">Uploaded Documents:</h4>
-        <table style="width: 100%; border-collapse: collapse;">
-          ${Object.entries(uploadedFiles).map(([key, file]) => {
-            const displayName = key === 'proofAge' ? 'Proof of Age' : 
-                              key === 'proofResidency' ? 'Proof of Residency' : 
-                              key === 'physicalExam' ? 'Physical Exam Form' : key;
-            return `<tr><td style="padding: 5px; font-weight: bold;">${displayName}:</td><td style="padding: 5px;">📎 ${file.name} (${(file.size / 1024).toFixed(1)} KB)</td></tr>`;
-          }).join('')}
+          <tr><td style="padding: 5px; font-weight: bold;">Proof of Age:</td><td style="padding: 5px;">📎 ${uploadedFile.name} (${(uploadedFile.size / 1024).toFixed(1)} KB)</td></tr>
         </table>
         <p style="margin-top: 15px; padding: 10px; background-color: #fff3cd; border: 1px solid #ffeaa7; border-radius: 4px; color: #856404;">
-          <strong>📎 Attached Files:</strong> The uploaded documents are attached to this email.
+          <strong>📎 Attached File:</strong> The birth certificate is attached to this email.
         </p>
         ` : `
-        <p style="color: #666; font-style: italic; margin-top: 10px;">No documents were uploaded.</p>
-        `}
-        ` : `
-        <div style="margin-top: 15px; padding: 15px; background-color: #e8f4fd; border: 1px solid #1E90FF; border-radius: 4px;">
-          <h4 style="color: #0c5460; margin: 0 0 10px 0;">📋 Parent chose to print and complete forms</h4>
-          <p style="color: #0c5460; margin: 0; font-size: 14px;">
-            <strong>Required forms:</strong> Proof of Age, Proof of Residency, Physical Exam<br>
-            <strong>Delivery:</strong> Bring to first practice, mail to office, or email scanned copies
-          </p>
-        </div>
+        <p style="color: #666; font-style: italic;">No proof of age document was uploaded.</p>
         `}
       </div>
 
@@ -276,21 +239,8 @@ Waiver Agreements:
 Payment Method: ${enrollmentData.paymentMethod}
 Payment Agreement: ${enrollmentData.paymentAgreement}
 
-Document Submission: ${enrollmentData.documentMethod === "upload" ? "Upload Files" : "Print Forms"}
-${enrollmentData.documentMethod === "upload" ? `
-Documents Uploaded:
-${Object.keys(uploadedFiles).length > 0 ? 
-  Object.entries(uploadedFiles).map(([key, file]) => {
-    const displayName = key === 'proofAge' ? 'Proof of Age' : 
-                      key === 'proofResidency' ? 'Proof of Residency' : 
-                      key === 'physicalExam' ? 'Physical Exam Form' : key;
-    return `- ${displayName}: ${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
-  }).join('\n') 
-  : '- No documents uploaded'
-}` : `
-Documents: Parent will print and complete forms offline
-Required: Proof of Age, Proof of Residency, Physical Exam
-Delivery: Bring to practice, mail to office, or email scanned copies`}
+Document Uploaded:
+${uploadedFile ? `- Proof of Age: ${uploadedFile.name} (${(uploadedFile.size / 1024).toFixed(1)} KB)` : '- No proof of age document uploaded'}
 
 Submitted: ${new Date().toLocaleDateString()}
   `;
@@ -302,7 +252,7 @@ Submitted: ${new Date().toLocaleDateString()}
     const mailgunUrl = `https://api.mailgun.net/v3/${env.MAILGUN_DOMAIN}/messages`;
     console.log("🐝 Mailgun URL:", mailgunUrl);
     
-    // Create FormData for Mailgun (different from the incoming formData)
+    // Create FormData for Mailgun
     const mailgunFormData = new FormData();
     mailgunFormData.append('from', `RoversFC Enrollment <mailgun@${env.MAILGUN_DOMAIN}>`);
     mailgunFormData.append('to', 'texarkanarovers@gmail.com');
@@ -310,24 +260,19 @@ Submitted: ${new Date().toLocaleDateString()}
     mailgunFormData.append('html', htmlBody);
     mailgunFormData.append('text', textBody);
     
-    // Attach uploaded files (only if upload method selected)
-    if (documentMethod === "upload") {
-      for (const [key, file] of Object.entries(files)) {
-        if (file && file.size > 0) {
-          // Create a meaningful filename
-          const fileExtension = file.name.split('.').pop();
-          const cleanFileName = `${enrollmentData.firstName}_${enrollmentData.lastName}_${key}.${fileExtension}`;
-          mailgunFormData.append('attachment', file, cleanFileName);
-          console.log(`🐝 Attaching file: ${cleanFileName} (${file.size} bytes)`);
-        }
-      }
+    // Attach proof of age file if uploaded
+    if (proofAgeFile && proofAgeFile.size > 0) {
+      const fileExtension = proofAgeFile.name.split('.').pop();
+      const cleanFileName = `${enrollmentData.firstName}_${enrollmentData.lastName}_birth_certificate.${fileExtension}`;
+      mailgunFormData.append('attachment', proofAgeFile, cleanFileName);
+      console.log(`🐝 Attaching birth certificate: ${cleanFileName} (${proofAgeFile.size} bytes)`);
     }
     
     const response = await fetch(mailgunUrl, {
       method: 'POST',
       headers: {
         'Authorization': `Basic ${btoa(`api:${env.MAILGUN_API_KEY}`)}`
-        // Don't set Content-Type header when using FormData - let the browser set it
+        // Don't set Content-Type header when using FormData
       },
       body: mailgunFormData
     });
@@ -344,7 +289,7 @@ Submitted: ${new Date().toLocaleDateString()}
       JSON.stringify({ 
         success: true, 
         message: "Enrollment submitted successfully",
-        filesAttached: Object.keys(uploadedFiles).length
+        fileAttached: uploadedFile ? true : false
       }),
       { status: 200, headers: { "Content-Type": "application/json" } }
     );

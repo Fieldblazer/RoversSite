@@ -89,66 +89,131 @@
     }
   </style>
 </head>
-<body class="bg-trfc-dark">
-
-  <!-- Header / Nav -->
-  <nav class="bg-trfc-dark border-b border-gray-800 sticky top-0 z-50 shadow-lg">
-    <div class="container mx-auto px-4">
-      <div class="flex justify-between items-center py-4">
-        <!-- Logo + Title -->
-        <div class="flex items-center space-x-4">
-          <a href="/index.html" class="flex-shrink-0 flex items-center">
-            <img
-              src="https://i.imgur.com/JpT6gSi.png"
-              alt="TERA Logo"
-              class="h-[5rem] w-[5rem]"
-            />
-            <div class="leading-tight whitespace-nowrap">
-              <h1 class="text-xl font-bold font-title text-white">
-                TEXARKANA ROVERS
-              </h1>
-              <p class="text-xl font-bold font-title text-gold">
-                FOOTBALL CLUB
-              </p>
+<div class="bg-black text-white text-sm py-2 px-4">
+        <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0 text-center sm:text-left">
+            <div class="flex space-x-4">
+                <a href="#" class="hover:text-skyblue"><i class="fas fa-phone-alt mr-1"></i> (903) 748-7697</a>
+                <a href="#" class="hover:text-skyblue"><i class="fas fa-envelope mr-1"></i> info@roversfc.org</a>
             </div>
-          </a>
+            <div class="flex space-x-4">
+                <a href="https://www.facebook.com/TXKRovers" class="hover:text-gold"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="hover:text-gold"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="hover:text-gold"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="hover:text-gold"><i class="fab fa-youtube"></i></a>
+            </div>
         </div>
-
-        <!-- Desktop Links -->
-        <div class="hidden lg:flex space-x-8 items-center">
-          <a href="/about.html" class="nav-link text-white hover:text-gold">About</a>
-          <div class="dropdown relative">
-            <button class="nav-link text-white hover:text-gold flex items-center">
-              Club <i class="fas fa-chevron-down ml-1 text-xs"></i>
-            </button>
-          </div>
-          <div class="dropdown relative">
-            <button class="nav-link text-white hover:text-gold flex items-center">
-              Programs <i class="fas fa-chevron-down ml-1 text-xs"></i>
-            </button>
-          </div>
-          <!-- Notice the leading slash here so it won’t go to index.html by mistake -->
-          <a href="/enrollment.html" class="nav-link text-white hover:text-gold font-bold">
-            Enrollment
-          </a>
-          <a href="/tournaments.html" class="nav-link text-white hover:text-gold">Tournaments</a>
-          <a href="/#news" class="nav-link text-white hover:text-gold">News</a>
-          <a href="/contact.html" class="nav-link text-white hover:text-gold">Contact</a>
-          <a
-            href="/apply.html"
-            class="bg-gold hover:bg-[#e6c300] text-black font-bold px-6 py-2 rounded-md transition-all"
-          >
-            APPLY
-          </a>
-        </div>
-
-        <!-- Mobile Menu Button -->
-        <button class="lg:hidden text-white focus:outline-none">
-          <i class="fas fa-bars text-2xl"></i>
-        </button>
-      </div>
     </div>
-  </nav>
+
+    <!-- Main Nav -->
+<!-- REPLACE your navigation section in index.html with this updated version -->
+<nav class="bg-trfc-dark border-b border-gray-800 sticky top-0 z-50 shadow-lg">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex justify-between items-center py-4">
+
+      <!-- Logo + Title Block - Better spacing -->
+      <div class="flex items-center space-x-4 flex-shrink-0">
+        <img
+          src="https://i.imgur.com/RSMWGid.png"
+          alt="ROVERS Logo"
+          class="h-16 w-16"
+        />
+        <div class="leading-tight">
+          <h1 class="text-xl font-bold font-title text-white whitespace-nowrap">
+            TEXARKANA ROVERS
+          </h1>
+          <p class="text-xl font-bold font-title text-gold whitespace-nowrap">
+            FOOTBALL CLUB
+          </p>
+        </div>
+      </div>
+
+      <!-- Navigation Links - Better spacing and alignment -->
+      <div class="hidden lg:flex items-center space-x-6 xl:space-x-8">
+        <!-- HOME -->
+        <a href="/index.html" class="nav-link text-white hover:text-gold font-medium">
+          Home
+        </a>
+
+        <!-- ABOUT -->
+        <a href="/about.html" class="nav-link text-white hover:text-gold font-medium">
+          About
+        </a>
+
+        <!-- CLUB dropdown -->
+        <div class="relative group">
+          <button class="nav-link text-white hover:text-gold flex items-center font-medium">
+            Club <i class="fas fa-chevron-down ml-2 text-xs"></i>
+          </button>
+
+          <div class="absolute left-0 top-full w-44 bg-trfc-dark rounded-lg shadow-xl border border-gray-700
+                      hidden group-hover:block z-10 mt-1">
+            <a href="/kit-academy.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Kit Academy</a>
+            <a href="/rovers-fc.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Rovers FC</a>
+            <a href="/schedules.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Schedules</a>
+            <a href="/gear.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Gear</a>
+            <a href="/scholarships.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Scholarships</a>
+            <a href="/faq.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors rounded-b-lg">FAQ</a>
+          </div>
+        </div>
+
+        <!-- PROGRAMS dropdown -->
+        <div class="relative group">
+          <button class="nav-link text-white hover:text-gold flex items-center font-medium">
+            Programs <i class="fas fa-chevron-down ml-2 text-xs"></i>
+          </button>
+
+          <div class="absolute left-0 top-full w-48 bg-trfc-dark rounded-lg shadow-xl border border-gray-700
+                      hidden group-hover:block z-10 mt-1">
+            <a href="/open-training.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Open Training</a>
+            <a href="/recreation-league.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Recreation League</a>
+            <a href="/competitive.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Competitive</a>
+            <a href="/community-outreach.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors rounded-b-lg">Community Outreach</a>
+          </div>
+        </div>
+
+        <!-- Other static links -->
+        <a href="/enrollment.html" class="nav-link text-white hover:text-gold font-medium">Enrollment</a>
+        <a href="/news.html" class="nav-link text-white hover:text-gold font-medium">News</a>
+        <a href="/contact.html" class="nav-link text-white hover:text-gold font-medium">Contact</a>
+
+        <!-- APPLY Button - Better styling -->
+        <a
+          href="/apply.html"
+          class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-6 py-2.5 rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105 ml-2"
+        >
+          APPLY
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button class="lg:hidden text-white focus:outline-none p-2">
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
+
+    </div>
+  </div>
+</nav>
+
+
+
+
+<!-- Announcement Bar -->
+<div class="bg-trfc-blue text-white py-3">
+  <div class="container mx-auto px-4">
+    <div class="flex justify-center items-center text-center">
+      <!-- Bullhorn Icon -->
+      <i class="fas fa-bullhorn text-gold mr-3 text-xl"></i>
+
+      <!-- Announcement Text -->
+      <p class="font-bold">
+        <span class="text-white">2025 TRYOUTS: June 3 |</span>
+        <a href="#" class="text-gold hover:underline transition font-bold ml-1">
+          Register Now! 
+        </a>
+      </p>
+    </div>
+  </div>
+</div>
 
   <!-- Hero / Banner -->
   <section class="py-16 bg-gradient-to-r from-trfc-blue to-trfc-dark">
@@ -970,31 +1035,31 @@
             <a href="#" class="text-gray-400 hover:text-skyblue"><i class="fab fa-youtube"></i></a>
           </div>
         </div>
-
+        
         <div>
           <h4 class="text-lg font-bold mb-6 text-gold">QUICK LINKS</h4>
           <ul class="space-y-3">
-            <li><a href="/" class="text-gray-400 hover:text-white">Home</a></li>
+            <li><a href="/index.html" class="text-gray-400 hover:text-white">Home</a></li>
             <li><a href="/about.html" class="text-gray-400 hover:text-white">About TRFC</a></li>
-            <li><a href="/tournaments.html" class="text-gray-400 hover:text-white">Schedules</a></li>
+            <li><a href="/schedules.html" class="text-gray-400 hover:text-white">Schedules</a></li>
             <li><a href="/enrollment.html" class="text-gray-400 hover:text-white">Registration</a></li>
-            <li><a href="/apply.html" class="text-gray-400 hover:text-white">Tryouts</a></li>
-            <li><a href="/contact.html" class="text-gray-400 hover:text-white">Office</a></li>
+            <li><a href="/apply.html" class="text-gray-400 hover:text-white">Apply</a></li>
+            <li><a href="/contact.html" class="text-gray-400 hover:text-white">Contact</a></li>
           </ul>
         </div>
-
+        
         <div>
           <h4 class="text-lg font-bold mb-6 text-gold">PROGRAMS</h4>
           <ul class="space-y-3">
-            <li><a href="/club.html" class="text-gray-400 hover:text-white">Club</a></li>
-            <li><a href="/academy.html" class="text-gray-400 hover:text-white">Academy</a></li>
-            <li><a href="/camps.html" class="text-gray-400 hover:text-white">Camps & Clinics</a></li>
-            <li><a href="/goalkeeper.html" class="text-gray-400 hover:text-white">Goalkeeper Training</a></li>
-            <li><a href="/lessons.html" class="text-gray-400 hover:text-white">Private Lessons</a></li>
-            <li><a href="/exhibition.html" class="text-gray-400 hover:text-white">Exhibition</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Kit Academy</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Rovers FC</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Camps & Clinics</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Open Training</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Recreation League</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white">Competitive</a></li>
           </ul>
         </div>
-
+        
         <div>
           <h4 class="text-lg font-bold mb-6 text-gold">CONTACT US</h4>
           <ul class="space-y-3 text-gray-400">
@@ -1011,38 +1076,30 @@
               <span>info@roversfc.org</span>
             </li>
           </ul>
-
+          
           <h4 class="text-lg font-bold mt-8 mb-4 text-gold">NEWSLETTER</h4>
           <form class="flex">
-            <input
-              type="email"
-              placeholder="Your email"
-              class="px-4 py-2 rounded-l-md focus:outline-none text-black w-full"
-            />
-            <button
-              type="submit"
-              class="bg-gold text-black px-4 py-2 rounded-r-md font-bold"
-            >
-              <i class="fas fa-paper-plane"></i>
-            </button>
+            <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-md focus:outline-none text-black w-full">
+            <button type="submit" class="bg-gold text-black px-4 py-2 rounded-r-md font-bold"><i class="fas fa-paper-plane"></i></button>
           </form>
         </div>
       </div>
-
+      
       <div class="pt-8 border-t border-gray-800">
         <div class="flex flex-col md:flex-row justify-between items-center">
           <p class="text-gray-500 text-sm mb-4 md:mb-0">
-            © 2024 Rovers FC. All rights reserved.
+            © 2024 TRFC Rovers FC. All rights reserved.
           </p>
           <div class="flex space-x-6">
-            <a href="/privacy.html" class="text-gray-500 hover:text-white text-sm">Privacy Policy</a>
-            <a href="/terms.html" class="text-gray-500 hover:text-white text-sm">Terms of Service</a>
-            <a href="/sitemap.xml" class="text-gray-500 hover:text-white text-sm">Sitemap</a>
+            <a href="#" class="text-gray-500 hover:text-white text-sm">Privacy Policy</a>
+            <a href="#" class="text-gray-500 hover:text-white text-sm">Terms of Service</a>
+            <a href="#" class="text-gray-500 hover:text-white text-sm">Sitemap</a>
           </div>
         </div>
       </div>
     </div>
   </footer>
+
 
   <!-- Success Modal (triggered on final form submit) -->
   <div
@@ -1198,7 +1255,8 @@ document.addEventListener('DOMContentLoaded', function() {
     currentSection.insertBefore(errorDiv, currentSection.firstChild);
     
     // Scroll to top of form to show error
-    currentSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Scroll to top of page to show error
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   // Function to clear validation errors
@@ -1221,22 +1279,25 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Function to switch to a tab
-  function switchToTab(tabId) {
-    // Hide all sections
-    document.querySelectorAll('.form-section').forEach(section => {
-      section.classList.remove('active');
-    });
-    
-    // Show target section
-    document.getElementById(tabId).classList.add('active');
-    
-    // Update tab indicators
-    updateTabIndicators(tabId);
-    
-    // Clear any validation errors
-    clearValidationErrors();
-  }
+// Function to switch to a tab
+function switchToTab(tabId) {
+  // Hide all sections
+  document.querySelectorAll('.form-section').forEach(section => {
+    section.classList.remove('active');
+  });
+  
+  // Show target section
+  document.getElementById(tabId).classList.add('active');
+  
+  // Update tab indicators
+  updateTabIndicators(tabId);
+  
+  // Clear any validation errors
+  clearValidationErrors();
+  
+  // Scroll to top of page
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
   // Tab navigation with validation
   document.querySelectorAll('.tab-indicator').forEach(tab => {

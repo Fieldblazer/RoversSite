@@ -131,92 +131,94 @@
     <!-- Main Nav -->
 <!-- REPLACE your navigation section in index.html with this updated version -->
 <nav class="bg-trfc-dark border-b border-gray-800 sticky top-0 z-50 shadow-lg">
-  <div class="container mx-auto px-4">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
     <div class="flex justify-between items-center py-4">
 
-      <!-- Logo + Title Block -->
-      <div class="flex items-center space-x-4">
+      <!-- Logo + Title Block - Better spacing -->
+      <div class="flex items-center space-x-4 flex-shrink-0">
         <img
           src="https://i.imgur.com/RSMWGid.png"
           alt="ROVERS Logo"
-          class="h-[5rem] w-[5rem] shrink-0"
+          class="h-16 w-16"
         />
-        <div class="leading-tight whitespace-nowrap">
-          <h1 class="text-xl font-bold font-title text-white">
+        <div class="leading-tight">
+          <h1 class="text-xl font-bold font-title text-white whitespace-nowrap">
             TEXARKANA ROVERS
           </h1>
-          <p class="text-xl font-bold font-title text-gold">
+          <p class="text-xl font-bold font-title text-gold whitespace-nowrap">
             FOOTBALL CLUB
           </p>
         </div>
       </div>
 
       <!-- Navigation Links -->
-      <div class="hidden lg:flex space-x-8 items-center">
-        <!-- HOME (new addition) -->
-        <a href="/index.html" class="nav-link text-white hover:text-gold">
+      <div class="hidden lg:flex items-center space-x-6 xl:space-x-8">
+        <!-- HOME -->
+        <a href="/index.html" class="nav-link text-white hover:text-gold font-medium">
           Home
         </a>
 
-        <!-- ABOUT (direct link to about.html, no dropdown) -->
-        <a href="/about.html" class="nav-link text-white hover:text-gold">
+        <!-- ABOUT -->
+        <a href="/about.html" class="nav-link text-white hover:text-gold font-medium">
           About
         </a>
 
         <!-- CLUB dropdown -->
         <div class="relative group">
-          <button class="nav-link text-white hover:text-gold flex items-center">
-            Club <i class="fas fa-chevron-down ml-1 text-xs"></i>
+          <button class="nav-link text-white hover:text-gold flex items-center font-medium">
+            Club <i class="fas fa-chevron-down ml-2 text-xs"></i>
           </button>
 
-          <div class="absolute left-0 top-full w-40 bg-trfc-dark rounded shadow-lg
-                      hidden group-hover:block z-10">
-            <a href="/kit-academy.html"        class="block px-4 py-2 text-white hover:bg-gray-700">Kit Academy</a>
-            <a href="/rovers-fc.html"        class="block px-4 py-2 text-white hover:bg-gray-700">Rovers FC</a>
-            <a href="/schedules.html"    class="block px-4 py-2 text-white hover:bg-gray-700">Schedules</a>
-            <a href="/gear.html"         class="block px-4 py-2 text-white hover:bg-gray-700">Gear</a>
-            <a href="/scholarships.html" class="block px-4 py-2 text-white hover:bg-gray-700">Scholarships</a>
-            <a href="/faq.html"          class="block px-4 py-2 text-white hover:bg-gray-700">FAQ</a>
+          <div class="absolute left-0 top-full w-44 bg-trfc-dark rounded-lg shadow-xl border border-gray-700
+                      hidden group-hover:block z-10 mt-1">
+            <a href="/kit-academy.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Kit Academy</a>
+            <a href="/rovers-fc.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Rovers FC</a>
+            <a href="/schedules.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Schedules</a>
+            <a href="/gear.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Gear</a>
+            <a href="/scholarships.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Scholarships</a>
+            <a href="/faq.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors rounded-b-lg">FAQ</a>
           </div>
         </div>
 
         <!-- PROGRAMS dropdown -->
         <div class="relative group">
-          <button class="nav-link text-white hover:text-gold flex items-center">
-            Programs <i class="fas fa-chevron-down ml-1 text-xs"></i>
+          <button class="nav-link text-white hover:text-gold flex items-center font-medium">
+            Programs <i class="fas fa-chevron-down ml-2 text-xs"></i>
           </button>
 
-          <div class="absolute left-0 top-full w-40 bg-trfc-dark rounded shadow-lg
-                      hidden group-hover:block z-10">
-            <a href="/open-training.html"        class="block px-4 py-2 text-white hover:bg-gray-700">Open Training</a>
-            <a href="recreation-league.html"        class="block px-4 py-2 text-white hover:bg-gray-700">Recreation League</a>
-            <a href="/competitive.html"    class="block px-4 py-2 text-white hover:bg-gray-700">Competitive</a>
-            <a href="/community-outreach.html"         class="block px-4 py-2 text-white hover:bg-gray-700">Community Outreach</a>
+          <div class="absolute left-0 top-full w-48 bg-trfc-dark rounded-lg shadow-xl border border-gray-700
+                      hidden group-hover:block z-10 mt-1">
+            <a href="/open-training.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Open Training</a>
+            <a href="/recreation-league.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Recreation League</a>
+            <a href="/competitive.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Competitive</a>
+            <a href="/community-outreach.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors rounded-b-lg">Community Outreach</a>
           </div>
         </div>
 
         <!-- Other static links (TOURNAMENTS REMOVED) -->
-        <a href="/enrollment.html" class="nav-link text-white hover:text-gold">Enrollment</a>
-        <a href="/news.html" class="nav-link text-white hover:text-gold">News</a>
-        <a href="/contact.html" class="nav-link text-white hover:text-gold">Contact</a>
+        <a href="/enrollment.html" class="nav-link text-white hover:text-gold font-medium">Enrollment</a>
+        <a href="/news.html" class="nav-link text-white hover:text-gold font-medium">News</a>
+        <a href="/contact.html" class="nav-link text-white hover:text-gold font-medium">Contact</a>
 
-        <!-- Register Button -->
+
+       <!-- APPLY Button - Better styling -->
         <a
           href="/apply.html"
-          class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-6 py-2 rounded-md transition-all"
+          class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-6 py-2.5 rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105 ml-2"
         >
           APPLY
         </a>
       </div>
 
-      <!-- Hamburger Icon for Mobile -->
-      <button class="lg:hidden text-white focus:outline-none">
+     <!-- Mobile Menu Button -->
+      <button class="lg:hidden text-white focus:outline-none p-2">
         <i class="fas fa-bars text-2xl"></i>
       </button>
 
     </div>
   </div>
 </nav>
+
 
 
 
@@ -264,20 +266,20 @@
 
 
     <!-- Programs Section -->
-<section class="py-16 bg-trfc-dark">
-  <div class="container mx-auto px-4">
+<section class="py-20 bg-trfc-dark">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
     <div class="text-center mb-16">
-      <h2 class="text-3xl font-bold font-title mb-4">
+      <h2 class="text-3xl md:text-4xl font-bold font-title mb-6">
         OUR <span class="text-gold">PROGRAMS</span>
       </h2>
-      <div class="w-20 h-1 bg-gold mx-auto mb-4"></div>
-      <p class="text-gray-300 max-w-3xl mx-auto">
+      <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
+      <p class="text-gray-300 max-w-3xl mx-auto text-lg">
         Rovers FC offers a complete player pathway from recreational to elite competitive soccer,
         with age-appropriate training and competition.
       </p>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-8">
+    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
       <!-- CAMPS & CLINICS (with fade-overlay) -->
       <div class="relative team-card p-6 rounded-lg shadow-lg hover-scale overflow-hidden">
         <!-- Overlay: full-card, semi-transparent black -->
@@ -358,20 +360,19 @@
 
 
    <!-- News & Announcements -->
-<section id="news" class="py-16 bg-gray-900">
-    <div class="container mx-auto px-4">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl font-bold font-title mb-4">
-                NEWS & <span class="text-gold">ANNOUNCEMENTS</span>
-            </h2>
-            <div class="w-20 h-1 bg-gold mx-auto mb-4"></div>
-            <p class="text-gray-300 max-w-3xl mx-auto">
-                Stay updated with the latest news, events, and success stories from Rovers FC.
-            </p>
-        </div>
+<section id="news" class="py-20 bg-gray-900">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold font-title mb-6">
+        NEWS & <span class="text-gold">ANNOUNCEMENTS</span>
+      </h2>
+      <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
+      <p class="text-gray-300 max-w-3xl mx-auto text-lg">
+        Stay updated with the latest news, events, and success stories from Rovers FC.
+      </p>
+    </div>
 
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="news-card p-6 rounded-lg hover-scale">
+    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">            <div class="news-card p-6 rounded-lg hover-scale">
                 <div class="h-48 bg-gray-700 mb-4 rounded overflow-hidden">
                     <img src="https://i.imgur.com/eoli0Un.jpeg" alt="News" class="w-full h-full object-cover">
                 </div>
@@ -409,22 +410,24 @@
         </div>
 
         <div class="text-center mt-12">
-            <a href="#" class="btn-outline px-8 py-3 rounded-md font-bold inline-block">
-                VIEW ALL NEWS
-            </a>
-        </div>
+      <a href="/news.html" class="btn-outline px-8 py-4 rounded-lg font-bold inline-block hover:shadow-xl transition-all duration-300">
+        VIEW ALL NEWS
+      </a>
     </div>
+  </div>
 </section>
 
     <!-- Testimonials -->
-    <section class="py-16 bg-trfc-dark">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold font-title mb-4">WHY CHOOSE<span class="text-gold"> TRFC ?</span></h2>
-                <div class="w-20 h-1 bg-gold mx-auto mb-4"></div>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
+    <section class="py-20 bg-trfc-dark">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold font-title mb-6">
+        WHY CHOOSE <span class="text-gold">TRFC?</span>
+      </h2>
+      <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
+    </div>
+    
+    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 <div class="bg-gray-800 p-8 rounded-lg">
                     <div class="text-gold text-3xl mb-4">
                         <i class="fas fa-quote-left"></i>
@@ -508,9 +511,9 @@
 
 
     <!-- Footer -->
-    <footer class="bg-black text-white pt-16 pb-8">
-        <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-4 gap-12 mb-12">
+    <footer class="bg-black text-white pt-20 pb-8">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="grid md:grid-cols-4 gap-12 mb-12">
                 <div>
                     <div class="flex items-center mb-6">
                         <img src="https://i.imgur.com/JpT6gSi.png" alt="Logo" class="h-12 w-12 mr-3">
@@ -580,19 +583,19 @@
             </div>
             
             <div class="pt-8 border-t border-gray-800">
-                <div class="flex flex-col md:flex-row justify-between items-center">
-                    <p class="text-gray-500 text-sm mb-4 md:mb-0">
-                        © 2024 TRFC Rovers FC. All rights reserved.
-                    </p>
-                    <div class="flex space-x-6">
-                        <a href="#" class="text-gray-500 hover:text-white text-sm">Privacy Policy</a>
-                        <a href="#" class="text-gray-500 hover:text-white text-sm">Terms of Service</a>
-                        <a href="#" class="text-gray-500 hover:text-white text-sm">Sitemap</a>
-                    </div>
-                </div>
-            </div>
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-500 text-sm mb-4 md:mb-0">
+          © 2024 TRFC Rovers FC. All rights reserved.
+        </p>
+        <div class="flex space-x-6">
+          <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors">Privacy Policy</a>
+          <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors">Terms of Service</a>
+          <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors">Sitemap</a>
         </div>
-    </footer>
+      </div>
+    </div>
+  </div>
+</footer>
 
     <script>
         // REPLACE your existing mobile menu script with this corrected version

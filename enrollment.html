@@ -1279,6 +1279,20 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Update tab indicators
     updateTabIndicators(tabId);
+
+function switchToTab(tabId) {
+  // hide/show logic…
+  document.querySelectorAll('.form-section').forEach(s => s.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  updateTabIndicators(tabId);
+  clearValidationErrors();
+
+  // ← SCROLL TO TOP OF ENROLLMENT SECTION
+  document
+    .getElementById('enrollmentForm')
+    .scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
     
     // Clear any validation errors
     clearValidationErrors();

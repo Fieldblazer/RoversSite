@@ -667,37 +667,65 @@
   </footer>
 
   <script>
-    // Show / hide form
-    function showForm(role){
-      document.getElementById('roleName').textContent = role;
-      document.getElementById('roleInput').value = role;
-      document.getElementById('applyFormSection').classList.remove('hidden');
-      document.getElementById('applyFormSection').scrollIntoView({behavior:'smooth'});
-    }
-    function hideForm(){
-      document.getElementById('applyFormSection').classList.add('hidden');
+    // Show specific form based on position
+    function showForm(position) {
+      // Hide all forms first
+      hideAllForms();
+      
+      // Show the specific form
+      if (position === 'socialMedia') {
+        document.getElementById('socialMediaForm').classList.remove('hidden');
+        document.getElementById('socialMediaForm').scrollIntoView({behavior:'smooth'});
+      } else if (position === 'volunteer') {
+        document.getElementById('volunteerForm').classList.remove('hidden');
+        document.getElementById('volunteerForm').scrollIntoView({behavior:'smooth'});
+      } else if (position === 'sponsor') {
+        document.getElementById('sponsorForm').classList.remove('hidden');
+        document.getElementById('sponsorForm').scrollIntoView({behavior:'smooth'});
+      }
     }
 
-    // Form submission handler - POST to /api/apply
-    document.getElementById('applyForm').addEventListener('submit', async function(e) {
+    // Hide all forms
+    function hideAllForms() {
+      document.getElementById('socialMediaForm').classList.add('hidden');
+      document.getElementById('volunteerForm').classList.add('hidden');
+      document.getElementById('sponsorForm').classList.add('hidden');
+    }
+
+    // Form submission handlers
+    document.getElementById('socialMediaApplicationForm').addEventListener('submit', async function(e) {
       e.preventDefault();
-      
-      const submitButton = this.querySelector('button[type="submit"]');
+      await submitForm(this, 'Social Media Manager application');
+    });
+
+    document.getElementById('volunteerApplicationForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      await submitForm(this, 'Volunteer application');
+    });
+
+    document.getElementById('sponsorApplicationForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      await submitForm(this, 'Sponsorship inquiry');
+    });
+
+    // Universal form submission handler
+    async function submitForm(form, successMessage) {
+      const submitButton = form.querySelector('button[type="submit"]');
       const originalText = submitButton.innerHTML;
       submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Submitting...';
       submitButton.disabled = true;
       
       try {
-        const formData = new FormData(this);
+        const formData = new FormData(form);
         const response = await fetch('/api/apply', {
           method: 'POST',
           body: formData
         });
         
         if (response.ok) {
-          hideForm();
-          alert("Thank you! Your application has been submitted successfully.");
-          this.reset();
+          hideAllForms();
+          alert(`Thank you! Your ${successMessage} has been submitted successfully.`);
+          form.reset();
         } else {
           let data = {};
           try {
@@ -711,7 +739,7 @@
         submitButton.innerHTML = originalText;
         submitButton.disabled = false;
       }
-    });
+    }
 
     // Mobile menu functionality
     document.addEventListener('DOMContentLoaded', function() {

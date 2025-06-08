@@ -1269,34 +1269,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Function to switch to a tab
   function switchToTab(tabId) {
-    // Hide all sections
-    document.querySelectorAll('.form-section').forEach(section => {
-      section.classList.remove('active');
-    });
-    
-    // Show target section
-    document.getElementById(tabId).classList.add('active');
-    
-    // Update tab indicators
-    updateTabIndicators(tabId);
-
-function switchToTab(tabId) {
-  // hide/show logic…
+  // Hide all sections
   document.querySelectorAll('.form-section').forEach(s => s.classList.remove('active'));
+
+  // Show target section
   document.getElementById(tabId).classList.add('active');
+
+  // Update tab styles
   updateTabIndicators(tabId);
+
+  // Clear previous errors
   clearValidationErrors();
 
-  // ← SCROLL TO TOP OF ENROLLMENT SECTION
-  document
-    .getElementById('enrollmentForm')
-    .scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // Always scroll to the top of the form on tab switch
+  document.getElementById('enrollmentForm').window.scrollTo({ top: 0, behavior: 'smooth' });
+
 }
 
-    
-    // Clear any validation errors
-    clearValidationErrors();
-  }
 
   // Tab navigation with validation
   document.querySelectorAll('.tab-indicator').forEach(tab => {

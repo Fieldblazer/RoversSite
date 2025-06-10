@@ -559,8 +559,8 @@
     </div>
   </footer>
 
-    <script>
-    // Mobile menu functionality
+<script>
+// Mobile menu functionality
 document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuButton = document.querySelector('button[class*="lg:hidden"]');
     
@@ -672,29 +672,27 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
-});
-            }
+    
+    // FAQ accordion functionality
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', function() {
+            const answer = this.nextElementSibling;
+            const isExpanded = !answer.classList.contains('hidden');
+            const icon = this.querySelector('i');
             
-            // FAQ accordion functionality
-            const faqQuestions = document.querySelectorAll('.faq-question');
-            faqQuestions.forEach(question => {
-                question.addEventListener('click', function() {
-                    const answer = this.nextElementSibling;
-                    const isExpanded = !answer.classList.contains('hidden');
-                    const icon = this.querySelector('i');
-                    
-                    if (isExpanded) {
-                        answer.classList.add('hidden');
-                        icon.classList.remove('fa-chevron-up');
-                        icon.classList.add('fa-chevron-down');
-                    } else {
-                        answer.classList.remove('hidden');
-                        icon.classList.remove('fa-chevron-down');
-                        icon.classList.add('fa-chevron-up');
-                    }
-                });
-            });
+            if (isExpanded) {
+                answer.classList.add('hidden');
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            } else {
+                answer.classList.remove('hidden');
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            }
         });
-    </script>
+    });
+});
+</script>
 </body>
 </html>

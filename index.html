@@ -493,24 +493,24 @@
         <div>
           <h4 class="text-lg font-bold mb-6 text-gold">QUICK LINKS</h4>
           <ul class="space-y-3">
-            <li><a href="/index.html" class="text-gray-400 hover:text-white">Home</a></li>
-            <li><a href="/about.html" class="text-gray-400 hover:text-white">About TRFC</a></li>
-            <li><a href="/schedules.html" class="text-gray-400 hover:text-white">Schedules</a></li>
-            <li><a href="/enrollment.html" class="text-gray-400 hover:text-white">Registration</a></li>
-            <li><a href="/apply.html" class="text-gray-400 hover:text-white">Apply</a></li>
-            <li><a href="/contact.html" class="text-gray-400 hover:text-white">Contact</a></li>
+            <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
+            <li><a href="about.html" class="text-gray-400 hover:text-white">About TRFC</a></li>
+            <li><a href="coming-soon" class="text-gray-400 hover:text-white">Schedules</a></li>
+            <li><a href="enrollment.html" class="text-gray-400 hover:text-white">Registration</a></li>
+            <li><a href="apply.html" class="text-gray-400 hover:text-white">Apply</a></li>
+            <li><a href="contact.html" class="text-gray-400 hover:text-white">Contact</a></li>
           </ul>
         </div>
         
         <div>
           <h4 class="text-lg font-bold mb-6 text-gold">PROGRAMS</h4>
           <ul class="space-y-3">
-            <li><a href="#" class="text-gray-400 hover:text-white">Kit Academy</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">Rovers FC</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">Camps & Clinics</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">Open Training</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">Recreation League</a></li>
-            <li><a href="#" class="text-gray-400 hover:text-white">Competitive</a></li>
+            <li><a href="kit-academy.html" class="text-gray-400 hover:text-white">Kit Academy</a></li>
+            <li><a href="rovers-fc.html" class="text-gray-400 hover:text-white">Rovers FC</a></li>
+            <li><a href="coming-soon.html" class="text-gray-400 hover:text-white">Camps & Clinics</a></li>
+            <li><a href="open-training.html" class="text-gray-400 hover:text-white">Open Training</a></li>
+            <li><a href="coming-soon.html" class="text-gray-400 hover:text-white">Recreation League</a></li>
+            <li><a href="competitive.html" class="text-gray-400 hover:text-white">Competitive</a></li>
           </ul>
         </div>
         
@@ -555,127 +555,118 @@
   </footer>
 
     <script>
-        // REPLACE your existing mobile menu script with this corrected version
+        // Mobile menu functionality
 document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuButton = document.querySelector('button[class*="lg:hidden"]');
-    const mobileMenu = document.createElement('div');
-    mobileMenu.className = 'hidden fixed inset-0 bg-black bg-opacity-90 z-50 p-4 overflow-y-auto';
-    mobileMenu.id = 'mobile-menu';
     
-    // Create mobile menu content with CORRECT links matching your desktop nav
-    mobileMenu.innerHTML = `
-        <div class="flex justify-between items-center mb-8">
-            <div class="flex items-center space-x-2">
-                <img src="https://i.imgur.com/RSMWGid.png" alt="Logo" class="h-10 w-10">
-                <div>
-                    <h2 class="text-xl font-bold">TEXARKANA <span class="text-gold">ROVERS</span></h2>
-                    <p class="text-xs text-skyblue">FOOTBALL CLUB</p>
-                </div>
-            </div>
-            <button id="close-mobile-menu" class="text-white text-2xl">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
+    if (mobileMenuButton && !document.getElementById('mobile-menu')) {
+        const mobileMenu = document.createElement('div');
+        mobileMenu.className = 'hidden fixed inset-0 bg-black bg-opacity-90 z-50 p-4 overflow-y-auto';
+        mobileMenu.id = 'mobile-menu';
         
-        <div class="space-y-6">
-    <a href="/index.html" class="block text-white text-lg py-2">Home</a>  <!-- ADD THIS -->
-    <a href="/about.html" class="block text-white text-lg py-2">About</a>
-            
-            <!-- Club dropdown -->
-            <div>
-                <button class="flex items-center justify-between w-full text-white text-left text-lg py-2">
-                    Club <i class="fas fa-chevron-down ml-2 text-xs"></i>
-                </button>
-                <div class="pl-4 mt-2 hidden">
-                    <a href="/kit-academy.html" class="block py-2 text-gray-300 hover:text-white">Kit Academy</a>
-                    <a href="/rovers-fc.html" class="block py-2 text-gray-300 hover:text-white">Rovers FC</a>
-                    <a href="/schedules.html" class="block py-2 text-gray-300 hover:text-white">Schedules</a>
-                    <a href="/gear.html" class="block py-2 text-gray-300 hover:text-white">Gear</a>
-                    <a href="/scholarships.html" class="block py-2 text-gray-300 hover:text-white">Scholarships</a>
-                    <a href="/faq.html" class="block py-2 text-gray-300 hover:text-white">FAQ</a>
+        mobileMenu.innerHTML = `
+            <div class="flex justify-between items-center mb-8">
+                <div class="flex items-center space-x-2">
+                    <img src="https://i.imgur.com/1y6lprp.png" alt="Logo" class="h-10 w-10">
+                    <div>
+                        <h2 class="text-xl font-bold">TEXARKANA <span class="text-gold">ROVERS</span></h2>
+                        <p class="text-xs text-skyblue">FOOTBALL CLUB</p>
+                    </div>
                 </div>
+                <button id="close-mobile-menu" class="text-white text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
             
-            <!-- Programs dropdown -->
-            <div>
-                <button class="flex items-center justify-between w-full text-white text-left text-lg py-2">
-                    Programs <i class="fas fa-chevron-down ml-2 text-xs"></i>
-                </button>
-                <div class="pl-4 mt-2 hidden">
-                    <a href="/open-training.html" class="block py-2 text-gray-300 hover:text-white">Open Training</a>
-                    <a href="/recreation-league.html" class="block py-2 text-gray-300 hover:text-white">Recreation League</a>
-                    <a href="/competitive.html" class="block py-2 text-gray-300 hover:text-white">Competitive</a>
-                    <a href="/community-outreach.html" class="block py-2 text-gray-300 hover:text-white">Community Outreach</a>
+            <div class="space-y-6">
+                <a href="index.html" class="block text-white text-lg py-2">Home</a>
+                <a href="about.html" class="block text-white text-lg py-2">About</a>
+                
+                <div class="dropdown-container">
+                    <button class="dropdown-toggle flex items-center justify-between w-full text-white text-left text-lg py-2">
+                        Club <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                    </button>
+                    <div class="dropdown-content pl-4 mt-2 hidden">
+                        <a href="kit-academy.html" class="block py-2 text-gray-300 hover:text-white">Kit Academy</a>
+                        <a href="rovers-fc.html" class="block py-2 text-gray-300 hover:text-white">Rovers FC</a>
+                        <a href="coming-soon.html" class="block py-2 text-gray-300 hover:text-white">Schedules</a>
+                        <a href="coming-soon.html" class="block py-2 text-gray-300 hover:text-white">Gear</a>
+                        <a href="coming-soon.html" class="block py-2 text-gray-300 hover:text-white">Scholarships</a>
+                        <a href="faq.html" class="block py-2 text-gray-300 hover:text-white">FAQ</a>
+                    </div>
                 </div>
+                
+                <div class="dropdown-container">
+                    <button class="dropdown-toggle flex items-center justify-between w-full text-white text-left text-lg py-2">
+                        Programs <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                    </button>
+                    <div class="dropdown-content pl-4 mt-2 hidden">
+                        <a href="open-training.html" class="block py-2 text-gray-300 hover:text-white">Open Training</a>
+                        <a href="coming-soon.html" class="block py-2 text-gray-300 hover:text-white">Recreation League</a>
+                        <a href="competitive.html" class="block py-2 text-gray-300 hover:text-white">Competitive</a>
+                        <a href="community-outreach.html" class="block py-2 text-gray-300 hover:text-white">Community Outreach</a>
+                    </div>
+                </div>
+                
+                <a href="enrollment.html" class="block text-white text-lg py-2">Enrollment</a>
+                <a href="news.html" class="block text-white text-lg py-2">News</a>
+                <a href="contact.html" class="block text-white text-lg py-2">Contact</a>
+                
+                <a href="apply.html" class="bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-3 rounded-md font-bold text-center block mt-8">
+                    APPLY
+                </a>
             </div>
-            
-            <!-- Direct links matching desktop nav -->
-            <a href="/enrollment.html" class="block text-white text-lg py-2">Enrollment</a>
-    <!-- REMOVE tournaments line -->
-    <a href="/news.html" class="block text-white text-lg py-2">News</a>
-    <a href="/contact.html" class="block text-white text-lg py-2">Contact</a>
-    
-    <a href="/apply.html" class="bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-3 rounded-md font-bold text-center block mt-8">
-        APPLY
-    </a>
-</div>
-    `;
-    
-    document.body.appendChild(mobileMenu);
-    
-    // Toggle mobile menu
-    mobileMenuButton.addEventListener('click', function() {
-        document.getElementById('mobile-menu').classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-    });
-    
-    // Close mobile menu
-    document.getElementById('close-mobile-menu').addEventListener('click', function() {
-        document.getElementById('mobile-menu').classList.add('hidden');
-        document.body.style.overflow = 'auto';
-    });
-    
-    // Mobile menu accordion functionality
-    const mobileMenuButtons = mobileMenu.querySelectorAll('div > button');
-    mobileMenuButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const content = this.nextElementSibling;
-            const isExpanded = !content.classList.contains('hidden');
-            
-            // Close all other accordion items
-            mobileMenuButtons.forEach(btn => {
-                if (btn !== this) {
-                    btn.nextElementSibling.classList.add('hidden');
-                    btn.querySelector('i').classList.remove('fa-chevron-up');
-                    btn.querySelector('i').classList.add('fa-chevron-down');
+        `;
+        
+        document.body.appendChild(mobileMenu);
+        
+        // Open mobile menu
+        mobileMenuButton.addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        // Close mobile menu
+        document.getElementById('close-mobile-menu').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Handle dropdown toggles
+        const dropdownToggles = mobileMenu.querySelectorAll('.dropdown-toggle');
+        dropdownToggles.forEach(toggle => {
+            toggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const content = this.nextElementSibling;
+                const icon = this.querySelector('i');
+                const isOpen = !content.classList.contains('hidden');
+                
+                // Close all other dropdowns
+                dropdownToggles.forEach(otherToggle => {
+                    if (otherToggle !== this) {
+                        const otherContent = otherToggle.nextElementSibling;
+                        const otherIcon = otherToggle.querySelector('i');
+                        otherContent.classList.add('hidden');
+                        otherIcon.classList.remove('fa-chevron-up');
+                        otherIcon.classList.add('fa-chevron-down');
+                    }
+                });
+                
+                // Toggle current dropdown
+                if (isOpen) {
+                    content.classList.add('hidden');
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                } else {
+                    content.classList.remove('hidden');
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
                 }
             });
-            
-            // Toggle current item
-            if (isExpanded) {
-                content.classList.add('hidden');
-                this.querySelector('i').classList.remove('fa-chevron-up');
-                this.querySelector('i').classList.add('fa-chevron-down');
-            } else {
-                content.classList.remove('hidden');
-                this.querySelector('i').classList.remove('fa-chevron-down');
-                this.querySelector('i').classList.add('fa-chevron-up');
-            }
         });
-    });
-    
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
+    }
 });
     </script>
 </body>

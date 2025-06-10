@@ -375,54 +375,89 @@
   <!-- ================== END MISSION & VALUES ================== -->
 
   <!-- ================== OUR JOURNEY (TIMELINE) ================== -->
-  <section class="py-16 bg-trfc-dark">
+<section class="py-16 bg-trfc-dark">
   <div class="container mx-auto px-4">
     <h2 class="text-3xl font-bold text-center text-gold mb-16 fade-in">
       Our Journey
     </h2>
-
     <div class="relative max-w-3xl mx-auto">
+      <!-- Vertical Timeline Line -->
+      <div class="timeline-line absolute left-6 top-0 w-0.5 bg-trfc-gold" style="height: calc(100% - 120px);"></div>
+      
       <!-- Step 1: Club Foundation (Completed) -->
-      <div class="timeline-item completed fade-in">
-        <div class="dot"></div>
-        <h3 class="text-xl mb-2">Club Foundation</h3>
-        <p>2023 – Founded by local coach and former player Luis Vasquez with just 12 local players.</p>
+      <div class="timeline-item completed fade-in relative flex items-start mb-12 pl-16">
+        <div class="dot absolute left-4 top-2 w-4 h-4 bg-trfc-gold rounded-full border-4 border-trfc-dark"></div>
+        <div class="content">
+          <h3 class="text-xl mb-2 text-white font-bold">Club Foundation</h3>
+          <p class="text-gray-300">2023 – Founded by local coach and former player Luis Vasquez with just 12 local players.</p>
+        </div>
       </div>
-
+      
       <!-- Step 2: First Season (Completed) -->
-      <div class="timeline-item completed fade-in" style="animation-delay: 0.2s;">
-        <div class="dot"></div>
-        <h3 class="text-xl mb-2">First Season</h3>
-        <p>2024 – Competed and advanced to championship rounds of multiple regional events, securing sponsorships.</p>
+      <div class="timeline-item completed fade-in relative flex items-start mb-12 pl-16" style="animation-delay: 0.2s;">
+        <div class="dot absolute left-4 top-2 w-4 h-4 bg-trfc-gold rounded-full border-4 border-trfc-dark"></div>
+        <div class="content">
+          <h3 class="text-xl mb-2 text-white font-bold">First Season</h3>
+          <p class="text-gray-300">2024 – Competed and advanced to championship rounds of multiple regional events, securing sponsorships.</p>
+        </div>
       </div>
-
+      
       <!-- Step 3: Youth Academy (Completed) -->
-      <div class="timeline-item completed fade-in" style="animation-delay: 0.4s;">
-        <div class="dot"></div>
-        <h3 class="text-xl mb-2">Youth Academy</h3>
-        <p>2025 – Established our youth development program.</p>
+      <div class="timeline-item completed fade-in relative flex items-start mb-12 pl-16" style="animation-delay: 0.4s;">
+        <div class="dot absolute left-4 top-2 w-4 h-4 bg-trfc-gold rounded-full border-4 border-trfc-dark"></div>
+        <div class="content">
+          <h3 class="text-xl mb-2 text-white font-bold">Youth Academy</h3>
+          <p class="text-gray-300">2025 – Established our youth development program.</p>
+        </div>
       </div>
-
+      
       <!-- Step 4: Obtain 501c3 Non-Profit Status (In Progress) -->
-      <div class="timeline-item pending fade-in" style="animation-delay: 0.6s;">
-        <div class="dot"></div>
-        <h3 class="text-xl mb-2">Obtain 501c3 Non-Profit Status</h3>
-        <p>In Progress</p>
+      <div class="timeline-item pending fade-in relative flex items-start mb-12 pl-16" style="animation-delay: 0.6s;">
+        <div class="dot absolute left-4 top-2 w-4 h-4 bg-trfc-dark rounded-full border-4 border-trfc-gold"></div>
+        <div class="content">
+          <h3 class="text-xl mb-2 text-white font-bold">Obtain 501c3 Non-Profit Status</h3>
+          <p class="text-gray-300">In Progress</p>
+        </div>
       </div>
-
+      
       <!-- Step 5: City Recognized Organization (Pending) -->
-      <div class="timeline-item pending fade-in" style="animation-delay: 0.8s;">
-        <div class="dot"></div>
-        <h3 class="text-xl mb-2">City Recognized Organization</h3>
-        <p>In Progress</p>
+      <div class="timeline-item pending fade-in relative flex items-start pl-16" style="animation-delay: 0.8s;">
+        <div class="dot absolute left-4 top-2 w-4 h-4 bg-trfc-dark rounded-full border-4 border-gray-500"></div>
+        <div class="content">
+          <h3 class="text-xl mb-2 text-gray-400 font-bold">City Recognized Organization</h3>
+          <p class="text-gray-500">In Progress</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  .timeline-line {
+    /* Line stops at step 4, so we calculate the height to reach just before step 5 */
+    height: calc(75% - 60px) !important;
+  }
+  
+  .fade-in {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
 <!-- ================== END TIMELINE ================== -->
 
-  <!-- ================== MEET OUR LEADERSHIP ================== -->
-  <section class="py-16 bg-trfc-dark">
+<!-- ================== MEET OUR LEADERSHIP ================== -->
+<section class="py-16 bg-trfc-dark hidden">
   <div class="container mx-auto px-4">
     <div class="text-center mb-16 fade-in">
       <h2 class="text-3xl font-bold text-gold mb-4">Meet Our Leadership</h2>
@@ -544,7 +579,7 @@
     </div>
   </div>
 </section>
-  <!-- ================== END LEADERSHIP ================== -->
+<!-- ================== END LEADERSHIP ================== -->
 
   <!-- ================== COMMUNITY IMPACT ================== -->
   <section class="py-16 bg-trfc-dark">

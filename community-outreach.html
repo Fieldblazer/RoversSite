@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Competitive Academy | Texarkana Rovers FC</title>
+    <title>Community Outreach | Texarkana Rovers FC</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
@@ -153,6 +153,18 @@
             background: linear-gradient(135deg, rgba(30,144,255,0.1) 0%, rgba(255,215,0,0.1) 100%);
             border: 1px solid rgba(255,215,0,0.3);
         }
+        
+        .impact-card {
+            background: rgba(30, 144, 255, 0.1);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        .impact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
     </style>
 </head>
 <body class="bg-trfc-dark">
@@ -270,9 +282,9 @@
 
           <!-- Announcement Text -->
           <p class="font-bold">
-            <span class="text-white">2025 TRYOUTS: June 3 |</span>
-            <a href="enrollment.html" class="text-gold hover:underline transition font-bold ml-1">
-              Register Now! 
+            <span class="text-white">NEXT COMMUNITY DAY: June 15 |</span>
+            <a href="#volunteer" class="text-gold hover:underline transition font-bold ml-1">
+              Join Our Free Youth Clinic! 
             </a>
           </p>
         </div>
@@ -280,116 +292,164 @@
     </div>
 
     <!-- Hero Section -->
-    <section id="home" class="relative h-screen flex items-center justify-center bg-gray-900 overflow-hidden">
+    <section class="relative h-[70vh] flex items-center justify-center bg-gray-900 overflow-hidden">
         <div class="hero-gradient absolute w-full h-full"></div>
+        <img src="https://images.unsplash.com/photo-1543351611-58f69d7c1781?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Community soccer" class="absolute w-full h-full object-cover opacity-40">
         
-        <!-- Animated Logo Background -->
-        <img src="https://i.imgur.com/1y6lprp.png" alt="TRFC Logo" class="logo-background w-[600px] h-[600px] md:w-[800px] md:h-[800px]">
-        
-        <div class="container mx-auto px-6 relative z-10 text-center flex flex-col justify-center h-full">
-            <div class="max-w-6xl mx-auto -mt-20">
-                <h1 class="bebas text-6xl md:text-8xl lg:text-9xl text-gold mb-6 tracking-wider leading-none">COMPETITIVE ACADEMY</h1>
-                <h2 class="bebas text-3xl md:text-4xl text-white mb-4">ELITE <span class="text-gold">DEVELOPMENT</span> FOR <span class="text-skyblue">SERIOUS</span> ATHLETES</h2>
-                <p class="text-lg md:text-xl text-white max-w-2xl mx-auto">Professional training and competitive play for dedicated soccer players ages U10-U16.</p>
-                <div class="mt-8 flex justify-center space-x-4">
-                    <a href="#enroll" class="btn-gold px-8 py-3 rounded-lg font-bold text-lg hover-scale">ENROLL NOW</a>
-                    <a href="#programs" class="btn-outline px-8 py-3 rounded-lg font-bold text-lg hover-scale">LEARN MORE</a>
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <h1 class="bebas text-5xl md:text-7xl lg:text-8xl text-gold mb-6 tracking-wider">COMMUNITY OUTREACH</h1>
+            <h2 class="bebas text-2xl md:text-3xl text-white mb-4">PLAYING <span class="text-gold">FOR</span> MORE THAN <span class="text-skyblue">OURSELVES</span></h2>
+            <p class="text-lg md:text-xl text-white max-w-2xl mx-auto">Each month, we dedicate ourselves to giving back to the Texarkana community through soccer and service.</p>
+            <div class="mt-8 flex justify-center space-x-4">
+                <a href="#volunteer" class="btn-gold px-8 py-3 rounded-lg font-bold text-lg hover-scale">VOLUNTEER</a>
+                <a href="contact.html" class="btn-outline px-8 py-3 rounded-lg font-bold text-lg hover-scale">LEARN MORE</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Statement -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="bebas text-4xl text-black mb-6">OUR COMMUNITY COMMITMENT</h2>
+                <div class="relative">
+                    <div class="absolute -top-8 -left-8 w-24 h-24 bg-yellow-400 rounded-full opacity-20"></div>
+                    <div class="absolute -bottom-8 -right-8 w-24 h-24 bg-skyblue rounded-full opacity-20"></div>
+                    <p class="text-gray-700 text-lg md:text-xl relative z-10">
+                        "At Texarkana Rovers FC, we believe soccer is more than a game—it's a platform for positive change. 
+                        Through our monthly outreach initiatives, we're building bridges in our community, creating opportunities 
+                        for underserved youth, and using the beautiful game to make Texarkana a better place for all."
+                    </p>
+                    <p class="mt-6 text-gray-600 font-bold">— TRFC Leadership Team</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-white">
+    <!-- Impact Areas -->
+    <section class="py-16 bg-trfc-dark">
         <div class="container mx-auto px-6">
-            <div class="flex flex-col lg:flex-row items-center">
-                <div class="lg:w-1/2 mb-12 lg:mb-0 lg:pr-12">
-                    <h2 class="bebas text-4xl text-black mb-6">ABOUT OUR COMPETITIVE ACADEMY</h2>
-                    <p class="text-gray-700 mb-4">The Texarkana Rovers Competitive Academy bridges the gap between our Kit Academy youth program and our elite Rovers FC teams. We provide a professional training environment for players ages U10-U16 who are serious about soccer development and competitive play.</p>
-                    <p class="text-gray-700 mb-6">Our academy combines the technical foundation from Kit Academy with the competitive intensity of Rovers FC, creating a complete pathway for player development. We focus on advanced technical skills, tactical understanding, physical conditioning, and mental preparation for competitive soccer.</p>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="flex items-center">
-                            <div class="bg-yellow-400 p-3 rounded-full mr-4">
-                                <i class="fas fa-trophy text-black text-xl"></i>
-                            </div>
-                            <span class="font-bold text-black">Competitive Leagues</span>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="bg-yellow-400 p-3 rounded-full mr-4">
-                                <i class="fas fa-user-graduate text-black text-xl"></i>
-                            </div>
-                            <span class="font-bold text-black">Licensed Coaches</span>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="bg-yellow-400 p-3 rounded-full mr-4">
-                                <i class="fas fa-running text-black text-xl"></i>
-                            </div>
-                            <span class="font-bold text-black">Athletic Development</span>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="bg-yellow-400 p-3 rounded-full mr-4">
-                                <i class="fas fa-star text-black text-xl"></i>
-                            </div>
-                            <span class="font-bold text-black">College Prep</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="lg:w-1/2 relative">
-                    <img src="https://i.imgur.com/DZ6PuGQ.png" class="rounded-lg shadow-xl w-full">
-                    <div class="absolute -bottom-6 -left-6 bg-yellow-400 w-32 h-32 -z-10"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Program Highlights -->
-    <section class="py-16 bg-gray-100">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-12">
-                <h2 class="bebas text-4xl text-black mb-4">WHY CHOOSE OUR ACADEMY</h2>
-                <p class="text-gray-700 max-w-2xl mx-auto">We combine the best elements of youth development and competitive play</p>
+            <div class="text-center mb-16">
+                <h2 class="bebas text-4xl text-white mb-4">OUR MONTHLY IMPACT</h2>
+                <p class="text-gray-300 max-w-2xl mx-auto">Every month, we focus on a different area of community need</p>
             </div>
             
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Kit Academy Foundation -->
-                <div class="highlight-card p-8 rounded-lg hover-scale">
-                    <div class="bg-yellow-400 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
-                        <i class="fas fa-futbol text-black text-2xl"></i>
+                <!-- Youth Development -->
+                <div class="impact-card p-8 hover-scale">
+                    <div class="bg-yellow-400 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-child text-black text-3xl"></i>
                     </div>
-                    <h3 class="bebas text-2xl text-black mb-4 text-center">KIT ACADEMY FOUNDATION</h3>
-                    <p class="text-gray-700 text-center">Building on the technical excellence from our youth program, we maintain focus on ball mastery, creativity, and love for the game.</p>
+                    <h3 class="bebas text-2xl text-white mb-4 text-center">YOUTH DEVELOPMENT</h3>
+                    <p class="text-gray-300 text-center">
+                        Free monthly soccer clinics for underserved youth, equipment drives, and scholarship opportunities 
+                        for players who demonstrate need and commitment.
+                    </p>
                 </div>
                 
-                <!-- Rovers FC Mentality -->
-                <div class="highlight-card p-8 rounded-lg hover-scale">
-                    <div class="bg-black text-white w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
-                        <i class="fas fa-chess-knight text-yellow-400 text-2xl"></i>
+                <!-- Community Service -->
+                <div class="impact-card p-8 hover-scale">
+                    <div class="bg-skyblue w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-hands-helping text-black text-3xl"></i>
                     </div>
-                    <h3 class="bebas text-2xl text-black mb-4 text-center">ROVERS FC MENTALITY</h3>
-                    <p class="text-gray-700 text-center">Instilling the competitive spirit, tactical discipline, and winning mentality of our elite Rovers FC teams.</p>
+                    <h3 class="bebas text-2xl text-white mb-4 text-center">COMMUNITY SERVICE</h3>
+                    <p class="text-gray-300 text-center">
+                        Monthly service projects where our players and coaches volunteer at local food banks, shelters, 
+                        and community clean-up initiatives.
+                    </p>
                 </div>
                 
-                <!-- Pathway to Excellence -->
-                <div class="highlight-card p-8 rounded-lg hover-scale">
-                    <div class="bg-skyblue w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
-                        <i class="fas fa-chart-line text-black text-2xl"></i>
+                <!-- Nurturing Leadership -->
+                <div class="impact-card p-8 hover-scale">
+                    <div class="bg-white w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-seedling text-black text-3xl"></i>
                     </div>
-                    <h3 class="bebas text-2xl text-black mb-4 text-center">PATHWAY TO EXCELLENCE</h3>
-                    <p class="text-gray-700 text-center">A clear progression from youth development to competitive play to potential selection for Rovers FC elite teams.</p>
+                    <h3 class="bebas text-2xl text-white mb-4 text-center">NURTURING LEADERSHIP</h3>
+                    <p class="text-gray-300 text-center">
+                        Our program builds character by empowering players to take action for meaningful causes. Through community service and advocacy, 
+                        young athletes develop leadership skills, empathy, and a lifelong commitment to making a positive difference.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Enrollment CTA -->
-    <section id="enroll" class="py-20 bg-gradient-to-r from-trfc-blue to-trfc-dark">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="bebas text-4xl text-white mb-6">READY TO JOIN OUR COMPETITIVE ACADEMY?</h2>
-            <p class="text-xl text-gray-300 max-w-2xl mx-auto mb-8">Take your game to the next level with professional training and competitive play.</p>
-            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-                <a href="enrollment.html" class="btn-gold px-8 py-4 rounded-lg font-bold text-lg hover-scale">ENROLL NOW</a>
-                <a href="contact.html" class="btn-outline px-8 py-4 rounded-lg font-bold text-lg hover-scale">CONTACT COACHES</a>
+   
+
+    <!-- Volunteer Section -->
+    <section id="volunteer" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-12 lg:mb-0 lg:pr-12">
+                    <h2 class="bebas text-4xl text-black mb-6">GET INVOLVED</h2>
+                    <p class="text-gray-700 mb-6">
+                        Our community outreach program thrives because of volunteers like you. Whether you're a player, 
+                        parent, or community member, there are many ways to contribute to our monthly initiatives.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-yellow-400 p-3 rounded-full mr-4 flex-shrink-0">
+                                <i class="fas fa-users text-black"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-black text-lg mb-2">EVENT VOLUNTEERS</h3>
+                                <p class="text-gray-700">
+                                    Help with setup, registration, coaching, or cleanup at our monthly clinics and service projects.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-skyblue p-3 rounded-full mr-4 flex-shrink-0">
+                                <i class="fas fa-box-open text-black"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-black text-lg mb-2">DONATIONS</h3>
+                                <p class="text-gray-700">
+                                    Contribute gently used equipment, snacks for events, or financial support for our programs.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-black text-white p-3 rounded-full mr-4 flex-shrink-0">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-black text-lg mb-2">IDEAS & PARTNERSHIPS</h3>
+                                <p class="text-gray-700">
+                                    Have an idea for a community initiative? Want to partner with TRFC? We'd love to hear from you!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 bg-gray-100 p-8 rounded-lg text-center">
+                    <h3 class="bebas text-2xl text-black mb-6">READY TO MAKE A DIFFERENCE?</h3>
+                    <p class="text-gray-700 mb-8 text-lg">
+                        Join our mission to strengthen the Texarkana community through soccer and service. 
+                        Your involvement helps us create lasting positive change.
+                    </p>
+                    <a href="apply.html" class="btn-gold px-8 py-4 rounded-lg font-bold text-lg hover-scale inline-block">
+                        <i class="fas fa-heart mr-2"></i>
+                        GIVE BACK
+                    </a>
+                </div>
             </div>
+        </div>
+    </section>
+
+    
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-trfc-blue to-trfc-dark">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="bebas text-4xl text-white mb-6">TOGETHER, WE CAN MAKE A DIFFERENCE</h2>
+            <p class="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
+                Whether through time, resources, or ideas, your support helps us expand our impact in the Texarkana community.
+            </p>
+      
         </div>
     </section>
 
@@ -435,8 +495,8 @@
                         <li><a href="competitive.html" class="text-gray-400 hover:text-white">Competitive Academy</a></li>
                         <li><a href="rovers-fc.html" class="text-gray-400 hover:text-white">Rovers FC</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white">Camps & Clinics</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Open Training</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Recreation League</a></li>
+                        <li><a href="open-training.html" class="text-gray-400 hover:text-white">Open Training</a></li>
+                        <li><a href="community-outreach.html" class="text-gray-400 hover:text-white">Community Outreach</a></li>
                     </ul>
                 </div>
                 

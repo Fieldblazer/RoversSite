@@ -1,95 +1,120 @@
-<!DOCTYPE html>
+P>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Enrollment | Texarkana Rovers FC</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-  />
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            navy: '#001f3f',
-            skyblue: '#87CEEB',
-            gold: '#FFD700',
-            black: '#111827',
-            trfc: {
-              dark: '#0A0F1D',
-              blue: '#1E90FF',
-              gold: '#FFD700',
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rovers FC | Texarkana Rovers Football Club</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#001f3f',
+                        skyblue: '#87CEEB',
+                        gold: '#FFD700',
+                        black: '#111827',
+                        trfc: {
+                            dark: '#0A0F1D',
+                            blue: '#1E90FF',
+                            gold: '#FFD700',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        title: ['Oswald', 'sans-serif'],
+                    },
+                }
             }
-          },
-          fontFamily: {
-            sans: ['Montserrat', 'sans-serif'],
-            title: ['Oswald', 'sans-serif'],
-          },
-        },
-      },
-    }
-  </script>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap');
-
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background-color: #0A0F1D;
-      color: #FFFFFF;
-    }
-
-    .hover-scale {
-      transition: transform 0.3s ease;
-    }
-    .hover-scale:hover {
-      transform: scale(1.03);
-    }
-
-    .nav-link {
-      position: relative;
-    }
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -2px;
-      left: 0;
-      background-color: #FFD700;
-      transition: width 0.3s ease;
-    }
-    .nav-link:hover::after {
-      width: 100%;
-    }
-
-    .form-section {
-      transition: all 0.3s ease;
-    }
-    .form-section:not(.active) {
-      display: none;
-    }
-    .tab-indicator {
-      transition: all 0.3s ease;
-    }
-    .required-field::after {
-      content: "*";
-      color: #FFD700;
-      margin-left: 2px;
-    }
-    .file-upload {
-      border: 2px dashed #2E3A59;
-      transition: all 0.3s ease;
-    }
-    .file-upload:hover {
-      border-color: #1E90FF;
-    }
-  </style>
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #0A0F1D;
+            color: white;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(10,15,29,0.95) 0%, rgba(30,144,255,0.85) 100%);
+        }
+        
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+        .hover-scale:hover {
+            transform: scale(1.03);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #FFD700;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .team-card {
+            background: linear-gradient(to bottom, #1E90FF 0%, #0A0F1D 100%);
+            border-left: 4px solid #FFD700;
+        }
+        
+        .news-card {
+            background: rgba(30, 144, 255, 0.1);
+            border-top: 4px solid #FFD700;
+        }
+        
+        .btn-gold {
+            background-color: #FFD700;
+            color: #0A0F1D;
+            transition: all 0.3s ease;
+        }
+        .btn-gold:hover {
+            background-color: #FFC000;
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            border: 2px solid #FFD700;
+            color: #FFD700;
+            transition: all 0.3s ease;
+        }
+        .btn-outline:hover {
+            background-color: #FFD700;
+            color: #0A0F1D;
+        }
+        
+        .dropdown:hover .dropdown-menu,
+.dropdown .dropdown-menu:hover {
+    display: block;
+}
+    </style>
 </head>
-<div class="bg-black text-white text-sm py-2 px-4">
+<body class="bg-trfc-dark">
+    <!-- Top Bar -->
+    <div class="bg-black text-white text-sm py-2 px-4">
         <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0 text-center sm:text-left">
             <div class="flex space-x-4">
                 <a href="#" class="hover:text-skyblue"><i class="fas fa-phone-alt mr-1"></i> (903) 748-7697</a>
@@ -146,7 +171,7 @@
           </button>
 
           <div class="absolute left-0 top-full w-44 bg-trfc-dark rounded-lg shadow-xl border border-gray-700
-                      hidden group-hover:block z-10 mt-1">
+            hidden group-hover:block z-10">
             <a href="/kit-academy.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Kit Academy</a>
             <a href="/rovers-fc.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Rovers FC</a>
             <a href="/schedules.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Schedules</a>
@@ -162,8 +187,8 @@
             Programs <i class="fas fa-chevron-down ml-2 text-xs"></i>
           </button>
 
-          <div class="absolute left-0 top-full w-48 bg-trfc-dark rounded-lg shadow-xl border border-gray-700
-                      hidden group-hover:block z-10 mt-1">
+         <div class="absolute left-0 top-full w-44 bg-trfc-dark rounded-lg shadow-xl border border-gray-700
+            hidden group-hover:block z-10">
             <a href="/open-training.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Open Training</a>
             <a href="/recreation-league.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Recreation League</a>
             <a href="/competitive.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Competitive</a>
@@ -206,15 +231,14 @@
 
       <!-- Announcement Text -->
       <p class="font-bold">
-        <span class="text-white">2025 TRYOUTS: June 3 |</span>
-        <a href="#" class="text-gold hover:underline transition font-bold ml-1">
-          Register Now! 
-        </a>
-      </p>
+  <span class="text-white">2025 TRYOUTS: June 3 |</span>
+  <a href="/enrollment.html" class="text-gold hover:underline transition font-bold ml-1">
+    Register Now! 
+  </a>
+</p>
     </div>
   </div>
 </div>
-
   <!-- Hero / Banner -->
   <section class="py-16 bg-gradient-to-r from-trfc-blue to-trfc-dark">
     <div class="container mx-auto px-4 text-center">

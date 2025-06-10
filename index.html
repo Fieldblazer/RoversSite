@@ -106,9 +106,10 @@
             color: #0A0F1D;
         }
         
-        .dropdown:hover .dropdown-menu {
-            display: block;
-        }
+        .dropdown:hover .dropdown-menu,
+.dropdown .dropdown-menu:hover {
+    display: block;
+}
     </style>
 </head>
 <body class="bg-trfc-dark">
@@ -170,7 +171,7 @@
           </button>
 
           <div class="absolute left-0 top-full w-44 bg-trfc-dark rounded-lg shadow-xl border border-gray-700
-                      hidden group-hover:block z-10 mt-1">
+            hidden group-hover:block z-10">
             <a href="/kit-academy.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Kit Academy</a>
             <a href="/rovers-fc.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Rovers FC</a>
             <a href="/schedules.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Schedules</a>
@@ -186,8 +187,8 @@
             Programs <i class="fas fa-chevron-down ml-2 text-xs"></i>
           </button>
 
-          <div class="absolute left-0 top-full w-48 bg-trfc-dark rounded-lg shadow-xl border border-gray-700
-                      hidden group-hover:block z-10 mt-1">
+         <div class="absolute left-0 top-full w-44 bg-trfc-dark rounded-lg shadow-xl border border-gray-700
+            hidden group-hover:block z-10">
             <a href="/open-training.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Open Training</a>
             <a href="/recreation-league.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Recreation League</a>
             <a href="/competitive.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Competitive</a>

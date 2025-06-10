@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Training | Texarkana Rovers FC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#001f3f',
+                        skyblue: '#87CEEB',
+                        gold: '#FFD700',
+                        black: '#111827',
+                        trfc: {
+                            dark: '#0A0F1D',
+                            blue: '#1E90FF',
+                            gold: '#FFD700',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        title: ['Oswald', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #0A0F1D;
+            color: white;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #FFD700;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .logo-background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            opacity: 0;
+            z-index: 1;
+            animation: logoFadeZoom 12s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes logoFadeZoom {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.7);
+            }
+            50% {
+                opacity: 0.08;
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.7);
+            }
+        }
+        
+        .training-benefit-card {
+            transition: all 0.3s ease;
+        }
+        .training-benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-trfc-dark">
+    <!-- Top Bar -->
+    <div class="bg-black text-white text-sm py-2 px-4">
+        <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0 text-center sm:text-left">
+            <div class="flex space-x-4">
+                <a href="#" class="hover:text-skyblue"><i class="fas fa-phone-alt mr-1"></i> (903) 748-7697</a>
+                <a href="#" class="hover:text-skyblue"><i class="fas fa-envelope mr-1"></i> info@txkrovers.com</a>
+            </div>
+            <div class="flex space-x-4">
+                <a href="https://www.facebook.com/TXKRovers" class="hover:text-gold"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="hover:text-gold"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="hover:text-gold"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="hover:text-gold"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Nav -->
+    <nav class="bg-trfc-dark border-b border-gray-800 sticky top-0 z-50 shadow-lg">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="flex justify-between items-center py-4">
+
+          <!-- Logo + Title Block -->
+          <div class="flex items-center space-x-4 flex-shrink-0">
+            <img
+              src="https://i.imgur.com/1y6lprp.png"
+              alt="ROVERS Logo"
+              class="h-16 w-16"
+            />
+            <div class="leading-tight">
+              <h1 class="text-xl font-bold font-title text-white whitespace-nowrap">
+                TEXARKANA ROVERS
+              </h1>
+              <p class="text-xl font-bold font-title text-gold whitespace-nowrap">
+                FOOTBALL CLUB
+              </p>
+            </div>
+          </div>
+
+          <!-- Navigation Links -->
+          <div class="hidden lg:flex items-center space-x-6 xl:space-x-8">
+            <!-- HOME -->
+            <a href="index.html" class="nav-link text-white hover:text-gold font-medium">
+              Home
+            </a>
+
+            <!-- ABOUT -->
+            <a href="about.html" class="nav-link text-white hover:text-gold font-medium">
+              About
+            </a>
+
+            <!-- CLUB dropdown -->
+            <div class="relative group">
+              <button class="nav-link text-white hover:text-gold flex items-center font-medium">
+                Club <i class="fas fa-chevron-down ml-2 text-xs"></i>
+              </button>
+
+              <div class="absolute left-0 top-full w-44 bg-trfc-dark rounded-lg shadow-xl border border-gray-700
+                          hidden group-hover:block z-10">
+                <a href="kit-academy.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Kit Academy</a>
+                <a href="rovers-fc.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Rovers FC</a>
+                <a href="coming-soon.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Schedules</a>
+                <a href="coming-soon.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Gear</a>
+                <a href="coming-soon.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Scholarships</a>
+                <a href="faq.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors rounded-b-lg">FAQ</a>
+              </div>
+            </div>
+
+            <!-- PROGRAMS dropdown -->
+            <div class="relative group">
+              <button class="nav-link text-white hover:text-gold flex items-center font-medium">
+                Programs <i class="fas fa-chevron-down ml-2 text-xs"></i>
+              </button>
+
+              <div class="absolute left-0 top-full w-48 bg-trfc-dark rounded-lg shadow-xl border border-gray-700
+                          hidden group-hover:block z-10">
+                <a href="open-training.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Open Training</a>
+                <a href="recreation-league.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Recreation League</a>
+                <a href="competitive.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Competitive</a>
+                <a href="community-outreach.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors rounded-b-lg">Community Outreach</a>
+              </div>
+            </div>
+
+            <!-- Other static links -->
+            <a href="enrollment.html" class="nav-link text-white hover:text-gold font-medium">Enrollment</a>
+            <a href="news.html" class="nav-link text-white hover:text-gold font-medium">News</a>
+            <a href="contact.html" class="nav-link text-white hover:text-gold font-medium">Contact</a>
+
+            <!-- APPLY Button -->
+            <a
+              href="apply.html"
+              class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-6 py-2.5 rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105 ml-2"
+            >
+              APPLY
+            </a>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <button class="lg:hidden text-white focus:outline-none p-2">
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
+
+        </div>
+      </div>
+    </nav>
+
+    <!-- Announcement Bar -->
+    <div class="bg-trfc-blue text-white py-3">
+      <div class="container mx-auto px-4">
+        <div class="flex justify-center items-center text-center">
+          <!-- Bullhorn Icon -->
+          <i class="fas fa-bullhorn text-gold mr-3 text-xl"></i>
+
+          <!-- Announcement Text -->
+          <p class="font-bold">
+            <span class="text-white">2025 TRYOUTS: June 3 |</span>
+            <a href="enrollment.html" class="text-gold hover:underline transition font-bold ml-1">
+              Register Now! 
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-b from-trfc-blue/20 to-trfc-dark py-20 md:py-28">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-12 lg:mb-0 lg:pr-12">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold font-title mb-6">
+                        <span class="text-white">OPEN</span>
+                        <span class="text-gold">TRAINING</span>
+                    </h1>
+                    <h2 class="text-2xl md:text-3xl text-skyblue mb-6 font-medium">
+                        Free Soccer Training for U6-U16 Athletes
+                    </h2>
+                    <p class="text-lg text-gray-300 mb-8 leading-relaxed">
+                        Experience elite-level training with our professional coaches and players - no commitment required! 
+                        Our open training sessions are designed to help young athletes develop their skills in a fun, 
+                        competitive environment.
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
+                        <a href="enrollment.html" class="bg-gold hover:bg-yellow-500 text-black font-bold py-4 px-8 rounded-lg transition-all duration-300 hover:shadow-lg text-center">
+                            <i class="fas fa-user-plus mr-2"></i>
+                            Enroll Now - It's Free!
+                        </a>
+                        <a href="contact.html" class="bg-trfc-blue hover:bg-blue-600 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 hover:shadow-lg text-center">
+                            <i class="fas fa-phone mr-2"></i>
+                            Contact Us
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:w-1/2">
+                    <div class="relative rounded-xl overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1579952363871-90f1bafa4d3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" 
+                             alt="Youth soccer training" 
+                             class="w-full h-auto">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6">
+                            <p class="text-white text-xl font-bold">
+                                <i class="fas fa-quote-left text-gold mr-2"></i>
+                                The best free soccer training program in Texarkana!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="py-16 bg-trfc-dark">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold font-title mb-4">
+                    <span class="text-white">Why Choose</span>
+                    <span class="text-gold">Open Training?</span>
+                </h2>
+                <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                    Our program offers unique benefits that help young athletes develop both on and off the field
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Benefit 1 -->
+                <div class="training-benefit-card bg-gray-800/50 rounded-xl p-8 border border-gray-700">
+                    <div class="w-16 h-16 bg-navy rounded-full flex items-center justify-center mb-6 text-gold text-2xl">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Completely Free</h3>
+                    <p class="text-gray-300">
+                        No hidden fees or costs. We believe every child should have access to quality soccer training regardless of financial situation.
+                    </p>
+                </div>
+                
+                <!-- Benefit 2 -->
+                <div class="training-benefit-card bg-gray-800/50 rounded-xl p-8 border border-gray-700">
+                    <div class="w-16 h-16 bg-navy rounded-full flex items-center justify-center mb-6 text-gold text-2xl">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">No Commitment</h3>
+                    <p class="text-gray-300">
+                        Come to as many or as few sessions as you like. No long-term contracts or team commitments required.
+                    </p>
+                </div>
+                
+                <!-- Benefit 3 -->
+                <div class="training-benefit-card bg-gray-800/50 rounded-xl p-8 border border-gray-700">
+                    <div class="w-16 h-16 bg-navy rounded-full flex items-center justify-center mb-6 text-gold text-2xl">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Elite Coaching</h3>
+                    <p class="text-gray-300">
+                        Train with our professional coaching staff who have experience at collegiate and professional levels.
+                    </p>
+                </div>
+                
+                <!-- Benefit 4 -->
+                <div class="training-benefit-card bg-gray-800/50 rounded-xl p-8 border border-gray-700">
+                    <div class="w-16 h-16 bg-navy rounded-full flex items-center justify-center mb-6 text-gold text-2xl">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Train With The Best</h3>
+                    <p class="text-gray-300">
+                        Your child will train alongside our competitive team players, learning from their example and work ethic.
+                    </p>
+                </div>
+                
+                <!-- Benefit 5 -->
+                <div class="training-benefit-card bg-gray-800/50 rounded-xl p-8 border border-gray-700">
+                    <div class="w-16 h-16 bg-navy rounded-full flex items-center justify-center mb-6 text-gold text-2xl">
+                        <i class="fas fa-futbol"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Skill Development</h3>
+                    <p class="text-gray-300">
+                        Focused training on technical skills, tactical awareness, and physical conditioning tailored to each age group.
+                    </p>
+                </div>
+                
+                <!-- Benefit 6 -->
+                <div class="training-benefit-card bg-gray-800/50 rounded-xl p-8 border border-gray-700">
+                    <div class="w-16 h-16 bg-navy rounded-full flex items-center justify-center mb-6 text-gold text-2xl">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Love For The Game</h3>
+                    <p class="text-gray-300">
+                        We foster a passion for soccer that goes beyond the field, creating lifelong fans and players of the beautiful game.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold font-title mb-4">
+                    <span class="text-white">Frequently Asked</span>
+                    <span class="text-gold">Questions</span>
+                </h2>
+                <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
+            </div>
+            
+            <div class="max-w-3xl mx-auto space-y-6">
+                <!-- FAQ Item 1 -->
+                <div class="bg-gray-800 rounded-xl overflow-hidden border border-gray-700">
+                    <button class="faq-question flex justify-between items-center w-full px-6 py-4 text-left text-white font-medium hover:bg-gray-700 transition-colors">
+                        <span>Is there really no cost to participate?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="faq-answer px-6 pb-4 hidden">
+                        <p class="text-gray-300">
+                            Yes! Our open training program is completely free for all participants ages U6-U16. 
+                            We believe in making quality soccer training accessible to everyone in our community. 
+                            The program is funded through sponsorships and club resources.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 2 -->
+                <div class="bg-gray-800 rounded-xl overflow-hidden border border-gray-700">
+                    <button class="faq-question flex justify-between items-center w-full px-6 py-4 text-left text-white font-medium hover:bg-gray-700 transition-colors">
+                        <span>What equipment does my child need?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="faq-answer px-6 pb-4 hidden">
+                        <p class="text-gray-300">
+                            Players should wear athletic clothing (shorts, t-shirt, or soccer jersey) and cleats or athletic shoes. 
+                            Shin guards are recommended but not required for open training. We provide all training equipment 
+                            including balls, cones, and goals. Just bring water!
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 3 -->
+                <div class="bg-gray-800 rounded-xl overflow-hidden border border-gray-700">
+                    <button class="faq-question flex justify-between items-center w-full px-6 py-4 text-left text-white font-medium hover:bg-gray-700 transition-colors">
+                        <span>How often should my child attend?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="faq-answer px-6 pb-4 hidden">
+                        <p class="text-gray-300">
+                            You can attend as many or as few sessions as you like! We recommend at least once per week 
+                            for consistent skill development, but there's no minimum requirement. Some players come 
+                            weekly while others drop in occasionally.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 4 -->
+                <div class="bg-gray-800 rounded-xl overflow-hidden border border-gray-700">
+                    <button class="faq-question flex justify-between items-center w-full px-6 py-4 text-left text-white font-medium hover:bg-gray-700 transition-colors">
+                        <span>Can my child join the competitive team after open training?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="faq-answer px-6 pb-4 hidden">
+                        <p class="text-gray-300">
+                            Absolutely! Many of our competitive team players started in open training. Our coaches 
+                            will let you know when your child is ready to try out for competitive teams. Open training 
+                            is a great way to prepare for competitive soccer.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 5 -->
+                <div class="bg-gray-800 rounded-xl overflow-hidden border border-gray-700">
+                    <button class="faq-question flex justify-between items-center w-full px-6 py-4 text-left text-white font-medium hover:bg-gray-700 transition-colors">
+                        <span>What happens in bad weather?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="faq-answer px-6 pb-4 hidden">
+                        <p class="text-gray-300">
+                            We monitor weather closely. If we need to cancel due to rain, lightning, or extreme heat, 
+                            we'll notify all enrolled families via email and text at least 2 hours before the session. 
+                            Make-up sessions are typically scheduled for the same time the following week.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="py-16 bg-trfc-dark">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold font-title mb-6">
+                <span class="text-white">Don't Miss Out On This</span>
+                <span class="text-gold">Amazing Opportunity!</span>
+            </h2>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto mb-10">
+                Space is limited in each age group to ensure quality coaching. Contact us today to secure your spot!
+            </p>
+            <a href="enrollment.html" class="inline-block bg-gold hover:bg-yellow-500 text-black font-bold py-4 px-12 rounded-lg transition-all duration-300 hover:shadow-lg text-lg">
+                <i class="fas fa-user-plus mr-2"></i>
+                Enroll Now - It's Free!
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center mb-6">
+                        <img src="https://i.imgur.com/1y6lprp.png" alt="Logo" class="h-12 w-12 mr-3">
+                        <div>
+                            <h3 class="text-xl font-bold font-title">ROVERS<span class="text-gold"> FC</span></h3>
+                            <p class="text-xs text-skyblue">Texarkana Rovers Football Club</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Developing elite soccer athletes through professional coaching, competitive play, and character development.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-skyblue"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-skyblue"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-skyblue"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-skyblue"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-6 text-gold">QUICK LINKS</h4>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white">About TRFC</a></li>
+                        <li><a href="coming-soon.html" class="text-gray-400 hover:text-white">Schedules</a></li>
+                        <li><a href="enrollment.html" class="text-gray-400 hover:text-white">Registration</a></li>
+                        <li><a href="apply.html" class="text-gray-400 hover:text-white">Apply</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-6 text-gold">PROGRAMS</h4>
+                    <ul class="space-y-3">
+                        <li><a href="kit-academy.html" class="text-gray-400 hover:text-white">Kit Academy</a></li>
+                        <li><a href="rovers-fc.html" class="text-gray-400 hover:text-white">Rovers FC</a></li>
+                        <li><a href="open-training.html" class="text-gray-400 hover:text-white">Open Training</a></li>
+                        <li><a href="recreation-league.html" class="text-gray-400 hover:text-white">Recreation League</a></li>
+                        <li><a href="competitive.html" class="text-gray-400 hover:text-white">Competitive</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-6 text-gold">CONTACT US</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-skyblue mr-3 mt-1"></i>
+                            <span>1 Legion Dr<br>Texarkana, AR 71854</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt text-skyblue mr-3"></i>
+                            <span>(903) 748-7697</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-skyblue mr-3"></i>
+                            <span>info@txkrovers.com</span>
+                        </li>
+                    </ul>
+                    
+                    <h4 class="text-lg font-bold mt-8 mb-4 text-gold">NEWSLETTER</h4>
+                    <form class="flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-md focus:outline-none text-black w-full">
+                        <button type="submit" class="bg-gold text-black px-4 py-2 rounded-r-md font-bold"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-800">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-500 text-sm mb-4 md:mb-0">
+                        © 2024 TRFC Rovers FC. All rights reserved.
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-500 hover:text-white text-sm">Privacy Policy</a>
+                        <a href="#" class="text-gray-500 hover:text-white text-sm">Terms of Service</a>
+                        <a href="#" class="text-gray-500 hover:text-white text-sm">Sitemap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.querySelector('button[class*="lg:hidden"]');
+            
+            if (mobileMenuButton && !document.getElementById('mobile-menu')) {
+                const mobileMenu = document.createElement('div');
+                mobileMenu.className = 'hidden fixed inset-0 bg-black bg-opacity-90 z-50 p-4 overflow-y-auto';
+                mobileMenu.id = 'mobile-menu';
+                
+                mobileMenu.innerHTML = `
+                    <div class="flex justify-between items-center mb-8">
+                        <div class="flex items-center space-x-2">
+                            <img src="https://i.imgur.com/RSMWGid.png" alt="Logo" class="h-10 w-10">
+                            <div>
+                                <h2 class="text-xl font-bold">TEXARKANA <span class="text-gold">ROVERS</span></h2>
+                                <p class="text-xs text-skyblue">FOOTBALL CLUB</p>
+                            </div>
+                        </div>
+                        <button id="close-mobile-menu" class="text-white text-2xl">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <a href="index.html" class="block text-white text-lg py-2">Home</a>
+                        <a href="about.html" class="block text-white text-lg py-2">About</a>
+                        
+                        <div>
+                            <button class="flex items-center justify-between w-full text-white text-left text-lg py-2">
+                                Club <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                            </button>
+                            <div class="pl-4 mt-2 hidden">
+                                <a href="kit-academy.html" class="block py-2 text-gray-300 hover:text-white">Kit Academy</a>
+                                <a href="rovers-fc.html" class="block py-2 text-gray-300 hover:text-white">Rovers FC</a>
+                                <a href="coming-soon.html" class="block py-2 text-gray-300 hover:text-white">Schedules</a>
+                                <a href="coming-soon.html" class="block py-2 text-gray-300 hover:text-white">Gear</a>
+                                <a href="coming-soon.html" class="block py-2 text-gray-300 hover:text-white">Scholarships</a>
+                                <a href="faq.html" class="block py-2 text-gray-300 hover:text-white">FAQ</a>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <button class="flex items-center justify-between w-full text-white text-left text-lg py-2">
+                                Programs <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                            </button>
+                            <div class="pl-4 mt-2 hidden">
+                                <a href="open-training.html" class="block py-2 text-gray-300 hover:text-white">Open Training</a>
+                                <a href="recreation-league.html" class="block py-2 text-gray-300 hover:text-white">Recreation League</a>
+                                <a href="competitive.html" class="block py-2 text-gray-300 hover:text-white">Competitive</a>
+                                <a href="community-outreach.html" class="block py-2 text-gray-300 hover:text-white">Community Outreach</a>
+                            </div>
+                        </div>
+                        
+                        <a href="enrollment.html" class="block text-white text-lg py-2">Enrollment</a>
+                        <a href="news.html" class="block text-white text-lg py-2">News</a>
+                        <a href="contact.html" class="block text-white text-lg py-2">Contact</a>
+                        
+                        <a href="apply.html" class="bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-3 rounded-md font-bold text-center block mt-8">
+                            APPLY
+                        </a>
+                    </div>
+                `;
+                
+                document.body.appendChild(mobileMenu);
+                
+                mobileMenuButton.addEventListener('click', function() {
+                    document.getElementById('mobile-menu').classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                });
+                
+                document.getElementById('close-mobile-menu').addEventListener('click', function() {
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                });
+                
+                const mobileMenuButtons = mobileMenu.querySelectorAll('div > button');
+                mobileMenuButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        const content = this.nextElementSibling;
+                        const isExpanded = !content.classList.contains('hidden');
+                        
+                        mobileMenuButtons.forEach(btn => {
+                            if (btn !== this) {
+                                btn.nextElementSibling.classList.add('hidden');
+                                btn.querySelector('i').classList.remove('fa-chevron-up');
+                                btn.querySelector('i').classList.add('fa-chevron-down');
+                            }
+                        });
+                        
+                        if (isExpanded) {
+                            content.classList.add('hidden');
+                            this.querySelector('i').classList.remove('fa-chevron-up');
+                            this.querySelector('i').classList.add('fa-chevron-down');
+                        } else {
+                            content.classList.remove('hidden');
+                            this.querySelector('i').classList.remove('fa-chevron-down');
+                            this.querySelector('i').classList.add('fa-chevron-up');
+                        }
+                    });
+                });
+            }
+            
+            // FAQ accordion functionality
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const isExpanded = !answer.classList.contains('hidden');
+                    const icon = this.querySelector('i');
+                    
+                    if (isExpanded) {
+                        answer.classList.add('hidden');
+                        icon.classList.remove('fa-chevron-up');
+                        icon.classList.add('fa-chevron-down');
+                    } else {
+                        answer.classList.remove('hidden');
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

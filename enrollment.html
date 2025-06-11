@@ -39,6 +39,14 @@
             color: white;
         }
         
+        /* CRITICAL: Add CSS rules to hide/show form sections */
+        .form-section {
+            display: none;
+        }
+        .form-section.active {
+            display: block;
+        }
+        
         .hero-gradient {
             background: linear-gradient(135deg, rgba(10,15,29,0.95) 0%, rgba(30,144,255,0.85) 100%);
         }
@@ -110,6 +118,14 @@
 .dropdown .dropdown-menu:hover {
     display: block;
 }
+
+        /* Tab indicator styles */
+        .tab-indicator {
+            border-bottom: 2px solid transparent;
+        }
+        .tab-indicator.active {
+            border-bottom-color: #FFD700;
+        }
     </style>
 </head>
 <body class="bg-trfc-dark">
@@ -130,7 +146,6 @@
     </div>
 
     <!-- Main Nav -->
-<!-- REPLACE your navigation section in index.html with this updated version -->
 <nav class="bg-trfc-dark border-b border-gray-800 sticky top-0 z-50 shadow-lg">
   <div class="max-w-7xl mx-auto px-6 lg:px-8">
     <div class="flex justify-between items-center py-4">
@@ -219,9 +234,6 @@
     </div>
   </div>
 </nav>
-
-
-
 
 <!-- Announcement Bar -->
 <div class="bg-trfc-blue text-white py-3">
@@ -774,7 +786,7 @@
             </div>
           </div>
 
-<!-- Updated Waiver Section (replace the entire waiver form-section) -->
+<!-- WAIVER SECTION -->
 <div id="waiver" class="form-section mt-6">
   <h3 class="text-2xl font-semibold text-white mb-6">Waiver of Liability and Release Form</h3>
   
@@ -951,7 +963,7 @@
   </div>
 </div>
 
-<!-- REPLACE your current Documents section with this simplified version -->
+<!-- DOCUMENTS SECTION -->
 <div id="documents" class="form-section mt-6">
   <h3 class="text-2xl font-semibold text-white mb-6">Document Submission</h3>
   
@@ -1125,10 +1137,7 @@
     </div>
   </footer>
 
-
-
-
-  <!-- Success Modal (triggered on final form submit) -->
+  <!-- Success Modal -->
   <div
     id="successModal"
     class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden"
@@ -1155,39 +1164,6 @@
     </div>
   </div>
 
- 
-  <!-- …everything above stays exactly the same… -->
-
-  <!-- Success Modal (triggered on final form submit) -->
-  <div
-    id="successModal"
-    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden"
-  >
-    <div class="bg-white rounded-lg p-8 max-w-md w-full">
-      <div class="text-center">
-        <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-trfc-gold">
-          <i class="fas fa-check text-trfc-dark text-xl"></i>
-        </div>
-        <h3 class="text-lg font-medium text-trfc-dark mt-3">Enrollment Submitted!</h3>
-        <div class="mt-2">
-          <p class="text-sm text-gray-600">Thank you for enrolling. We will contact you soon.</p>
-        </div>
-        <div class="mt-6">
-          <button
-            type="button"
-            onclick="closeSuccessModal()"
-            class="px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-trfc-gold hover:bg-[#e6c300] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-trfc-gold"
-          >
-            Close
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Everything else in <body> above… -->
-
-  <!-- Combined Tab‐Navigation, Next/Prev, File Preview, Payment Toggle, and Form Submit logic: -->
   <script>
     // Enhanced Tab Navigation, Validation, and Form Submit logic
 document.addEventListener('DOMContentLoaded', function() {
@@ -1207,7 +1183,7 @@ document.addEventListener('DOMContentLoaded', function() {
       'photoRelease', 'liabilityRelease', 'waiverSignature', 'waiverDate'
     ],
     documents: [
-      'proofAge', 'proofResidency', 'physicalExam', 'paymentAgreement'
+      'proofAge', 'paymentAgreement'
     ]
   };
 
@@ -1281,7 +1257,6 @@ document.addEventListener('DOMContentLoaded', function() {
     errorDiv.innerHTML = errorMessage;
     currentSection.insertBefore(errorDiv, currentSection.firstChild);
     
-    // Scroll to top of form to show error
     // Scroll to top of page to show error
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -1417,63 +1392,6 @@ function switchToTab(tabId) {
     });
   });
 
-
-// REPLACE your entire validateTab function with this updated version
-function validateTab(tabId) {
-  // Updated required fields - only proof of age for documents
-  const requiredFieldsByTab = {
-    enrollment: [
-      'firstName', 'lastName', 'birthDate', 'gender', 'parentName', 
-      'relationship', 'email', 'phone', 'address', 'city', 'state', 'zip',
-      'emergencyName', 'emergencyRelationship', 'emergencyPhone'
-    ],
-    medical: [
-      'medicalAuthorization', 'parentSignature', 'signatureDate'
-    ],
-    waiver: [
-      'playerStatusAgreement', 'riskAcknowledgment', 'insuranceAcknowledgment',
-      'photoRelease', 'liabilityRelease', 'waiverSignature', 'waiverDate'
-    ],
-    documents: [
-      'proofAge', 'paymentAgreement'  // Only proof of age and payment agreement
-    ]
-  };
-
-  const requiredFields = requiredFieldsByTab[tabId] || [];
-  const missingFields = [];
-  
-  requiredFields.forEach(fieldName => {
-    const field = document.querySelector(`[name="${fieldName}"]`);
-    if (!field) return;
-    
-    let isValid = false;
-    
-    if (field.type === 'checkbox' || field.type === 'radio') {
-      // For checkboxes and radio buttons
-      if (field.type === 'radio') {
-        // Check if any radio button with this name is selected
-        const radioGroup = document.querySelectorAll(`[name="${fieldName}"]`);
-        isValid = Array.from(radioGroup).some(radio => radio.checked);
-      } else {
-        isValid = field.checked;
-      }
-    } else if (field.type === 'file') {
-      // For file uploads - simple validation
-      isValid = field.files && field.files.length > 0;
-    } else {
-      // For text inputs, selects, textareas
-      isValid = field.value && field.value.trim() !== '';
-    }
-    
-    if (!isValid) {
-      const label = document.querySelector(`label[for="${fieldName}"]`);
-      const fieldLabel = label ? label.textContent.replace('*', '').trim() : fieldName;
-      missingFields.push(fieldLabel);
-    }
-  });
-  
-  return missingFields;
-}
   // Final form submission with complete validation
   const enrollmentForm = document.getElementById("enrollmentForm");
   if (enrollmentForm) {
@@ -1585,14 +1503,6 @@ function validateTab(tabId) {
   });
 
 });
-  </script>
-<!-- Your existing validation script stays here -->
-<script>
-// Enhanced Tab Navigation, Validation, and Form Submit logic
-document.addEventListener('DOMContentLoaded', function() {
-  // ... your existing validation code ...
-});
-</script>
 
 // Mobile menu functionality
 document.addEventListener('DOMContentLoaded', function() {
@@ -1706,10 +1616,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
-});</script>
+});
+  </script>
 </body>
 </html>
-</body>
-</html>
-
-

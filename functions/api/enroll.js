@@ -1,5 +1,3 @@
-<!-- Enrollment Stripe API -->
-
 // functions/api/enroll.js
 export async function onRequestPost({ request, env, context }) {
   console.log("🐝 Function started at", new Date().toISOString());

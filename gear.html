@@ -184,8 +184,6 @@
               <a href="kit-academy.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-trfc-gold transition-colors">Kit Academy</a>
               <a href="rovers-fc.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-trfc-gold transition-colors">Rovers FC</a>
               <a href="coming-soon.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-trfc-gold transition-colors">Schedules</a>
-              <a href="/gear.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Gear</a>
-            <a href="/coming-soon.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-gold transition-colors">Scholarships</a>
               <a href="faq.html" class="block px-4 py-3 text-white hover:bg-gray-700 hover:text-trfc-gold transition-colors rounded-b-lg">FAQ</a>
             </div>
           </div>
@@ -221,7 +219,7 @@
     <div class="relative z-10 w-full">
       <div class="container mx-auto px-6 text-center">
         <div class="mb-8">
-          <span class="kit-badge">NEW FOR 2025</span>
+          <span class="kit-badge">NEW FOR 2024</span>
         </div>
         <h1 class="hero-title text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-trfc-gold">
           UNIFORM REVEAL
@@ -250,15 +248,12 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 max-w-4xl mx-auto">
         
         <!-- Home Kit -->
-        <div class="uniform-card bg-gray-800 rounded-xl p-6 cursor-pointer" data-kit="home">
+        <div class="uniform-card bg-gray-800 rounded-xl p-6">
           <div class="relative mb-6">
             <img src="https://i.imgur.com/7m2OZfB.png" 
-                 alt="Home Kit" class="w-full h-80 object-cover rounded-lg">
+                 alt="Home Kit" class="w-full h-80 object-cover object-center rounded-lg">
             <div class="absolute top-4 left-4">
               <span class="kit-badge">HOME</span>
-            </div>
-            <div class="absolute bottom-4 right-4 bg-black bg-opacity-70 rounded-full p-2">
-              <i class="fas fa-expand text-trfc-gold"></i>
             </div>
           </div>
           <h3 class="text-2xl font-bold mb-3 text-white">Navy Blue Home</h3>
@@ -266,15 +261,12 @@
         </div>
 
         <!-- Away Kit -->
-        <div class="uniform-card bg-gray-800 rounded-xl p-6 cursor-pointer" data-kit="away">
+        <div class="uniform-card bg-gray-800 rounded-xl p-6">
           <div class="relative mb-6">
             <img src="https://i.imgur.com/1ie78rY.png" 
                  alt="Away Kit" class="w-full h-80 object-cover rounded-lg">
             <div class="absolute top-4 left-4">
               <span class="kit-badge">AWAY</span>
-            </div>
-            <div class="absolute bottom-4 right-4 bg-black bg-opacity-70 rounded-full p-2">
-              <i class="fas fa-expand text-trfc-gold"></i>
             </div>
           </div>
           <h3 class="text-2xl font-bold mb-3 text-white">White & Blue Away</h3>
@@ -282,31 +274,25 @@
         </div>
 
         <!-- Goalkeeper Home Kit -->
-        <div class="uniform-card bg-gray-800 rounded-xl p-6 cursor-pointer" data-kit="goalkeeper-home">
+        <div class="uniform-card bg-gray-800 rounded-xl p-6">
           <div class="relative mb-6">
             <img src="https://i.imgur.com/LaaTMmH.png" 
                  alt="Goalkeeper Home Kit" class="w-full h-80 object-cover rounded-lg">
             <div class="absolute top-4 left-4">
               <span class="kit-badge">GK HOME</span>
             </div>
-            <div class="absolute bottom-4 right-4 bg-black bg-opacity-70 rounded-full p-2">
-              <i class="fas fa-expand text-trfc-gold"></i>
-            </div>
           </div>
           <h3 class="text-2xl font-bold mb-3 text-white">Pink Keeper Home</h3>
-          <p class="text-gray-400 mb-4">High-visibility bright pink goalkeeper kit with enhanced padding zones for home game protection.</p>
+          <p class="text-gray-400 mb-4">High-visibility bright pink goalkeeper kit to make sure you stand out in the crowd.</p>
         </div>
 
         <!-- Goalkeeper Away Kit -->
-        <div class="uniform-card bg-gray-800 rounded-xl p-6 cursor-pointer" data-kit="goalkeeper-away">
+        <div class="uniform-card bg-gray-800 rounded-xl p-6">
           <div class="relative mb-6">
             <img src="https://i.imgur.com/Mgm9bhu.png" 
                  alt="Goalkeeper Away Kit" class="w-full h-80 object-cover rounded-lg">
             <div class="absolute top-4 left-4">
               <span class="kit-badge">GK AWAY</span>
-            </div>
-            <div class="absolute bottom-4 right-4 bg-black bg-opacity-70 rounded-full p-2">
-              <i class="fas fa-expand text-trfc-gold"></i>
             </div>
           </div>
           <h3 class="text-2xl font-bold mb-3 text-white">Green Keeper Away</h3>
@@ -324,80 +310,6 @@
       </div>
     </div>
   </section>
-
-  <!-- Kit Detail Modal -->
-  <div id="kitModal" class="fixed inset-0 modal-overlay z-50 hidden flex items-center justify-center p-4">
-    <div class="modal-content bg-trfc-dark rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-      <div class="p-8">
-        <div class="flex justify-between items-center mb-6">
-          <h2 id="modalTitle" class="text-3xl font-bold text-trfc-gold"></h2>
-          <button id="closeModal" class="text-gray-400 hover:text-white text-2xl">
-            <i class="fas fa-times"></i>
-          </button>
-        </div>
-        
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div>
-            <img id="modalImage" src="" alt="" class="w-full rounded-lg mb-4">
-            <div class="grid grid-cols-3 gap-2">
-              <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=200&h=200&fit=crop" class="w-full rounded cursor-pointer opacity-60 hover:opacity-100">
-              <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=200&h=200&fit=crop" class="w-full rounded cursor-pointer opacity-60 hover:opacity-100">
-              <img src="https://images.unsplash.com/photo-1579952363873-27d3bfad9c0d?w=200&h=200&fit=crop" class="w-full rounded cursor-pointer opacity-60 hover:opacity-100">
-            </div>
-          </div>
-          
-          <div>
-            <p id="modalDescription" class="text-gray-300 text-lg mb-6"></p>
-            
-            <div class="mb-6">
-              <h4 class="text-xl font-bold mb-3">Features:</h4>
-              <ul class="space-y-2 text-gray-300">
-                <li><i class="fas fa-check text-trfc-gold mr-2"></i>Moisture-wicking fabric</li>
-                <li><i class="fas fa-check text-trfc-gold mr-2"></i>Anti-bacterial treatment</li>
-                <li><i class="fas fa-check text-trfc-gold mr-2"></i>Reinforced stitching</li>
-                <li><i class="fas fa-check text-trfc-gold mr-2"></i>Official team crest</li>
-              </ul>
-            </div>
-            
-            <div class="mb-6">
-              <h4 class="text-xl font-bold mb-3">Size:</h4>
-              <div class="grid grid-cols-4 gap-2">
-                <button class="border border-gray-600 hover:border-trfc-gold py-2 rounded transition-colors">XS</button>
-                <button class="border border-gray-600 hover:border-trfc-gold py-2 rounded transition-colors">S</button>
-                <button class="border border-gray-600 hover:border-trfc-gold py-2 rounded transition-colors">M</button>
-                <button class="border border-gray-600 hover:border-trfc-gold py-2 rounded transition-colors">L</button>
-                <button class="border border-gray-600 hover:border-trfc-gold py-2 rounded transition-colors">XL</button>
-                <button class="border border-gray-600 hover:border-trfc-gold py-2 rounded transition-colors">XXL</button>
-                <button class="border border-gray-600 hover:border-trfc-gold py-2 rounded transition-colors">3XL</button>
-                <button class="border border-gray-600 hover:border-trfc-gold py-2 rounded transition-colors">4XL</button>
-              </div>
-            </div>
-            
-            <div class="mb-6">
-              <label class="block text-sm font-bold mb-2">Player Name (Optional):</label>
-              <input type="text" class="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white focus:border-trfc-gold focus:outline-none" placeholder="Enter name">
-              <label class="block text-sm font-bold mb-2 mt-4">Number (Optional):</label>
-              <input type="number" min="1" max="99" class="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white focus:border-trfc-gold focus:outline-none" placeholder="Enter number">
-            </div>
-            
-            <div class="flex items-center justify-end mb-6">
-              <div class="flex items-center space-x-2">
-                <button class="bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded">-</button>
-                <span class="px-4 py-1 bg-gray-800 rounded">1</span>
-                <button class="bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded">+</button>
-              </div>
-            </div>
-            
-            <div class="flex justify-center">
-              <button class="bg-trfc-gold hover:bg-yellow-500 text-black px-6 py-3 rounded-lg font-bold transition-colors">
-                <i class="fas fa-heart mr-2"></i>Wishlist
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Footer -->
   <footer class="bg-black text-white pt-16 pb-8">
@@ -489,27 +401,27 @@
   </footer>
 
   <script>
-    // Kit data
+    // Kit data (for potential future use)
     const kitData = {
       home: {
         title: 'Navy Blue Home Kit',
         description: 'Classic navy blue with light blue pinstripes and trim. This professional design features the HealthCARE Express sponsorship and represents the traditional colors of Texarkana Rovers FC. Built with advanced moisture-wicking technology for optimal performance on the pitch.',
-        image: 'https://i.imgur.com/7m2OZfB.png'
+        image: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=600&h=700&fit=crop'
       },
       away: {
         title: 'White & Blue Away Kit',
         description: 'Clean white base with striking light blue geometric patterns. This modern crystalline design creates a bold visual impact for away games while maintaining professional standards. The contemporary pattern ensures the team stands out on any pitch.',
-        image: 'https://i.imgur.com/1ie78rY.png'
+        image: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&h=700&fit=crop'
       },
       'goalkeeper-home': {
         title: 'Pink Keeper Home Kit',
         description: 'High-visibility bright pink goalkeeper kit designed for home games. Features enhanced padding zones, specialized grip-friendly fabric, and professional HealthCARE Express branding. Built for the last line of defense with maximum visibility and protection.',
-        image: 'https://i.imgur.com/LaaTMmH.png'
+        image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=700&fit=crop'
       },
       'goalkeeper-away': {
         title: 'Green Keeper Away Kit',
         description: 'Electric lime green goalkeeper kit with geometric sleeve patterns for maximum visibility on the road. Professional design ensures optimal performance for away game conditions with advanced moisture-wicking technology and enhanced protection zones.',
-        image: 'https://i.imgur.com/Mgm9bhu.png'
+        image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=700&fit=crop'
       }
     };
 
@@ -529,79 +441,6 @@
       
       uniformsSection.scrollIntoView({ behavior: 'smooth' });
     });
-
-    // Modal functionality
-    const modal = document.getElementById('kitModal');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalDescription = document.getElementById('modalDescription');
-    const modalImage = document.getElementById('modalImage');
-    const closeModal = document.getElementById('closeModal');
-
-    // Open modal for kit details
-    document.querySelectorAll('.uniform-card').forEach(card => {
-      card.addEventListener('click', () => {
-        const kitType = card.getAttribute('data-kit');
-        const kit = kitData[kitType];
-        
-        modalTitle.textContent = kit.title;
-        modalDescription.textContent = kit.description;
-        modalImage.src = kit.image;
-        modalImage.alt = kit.title;
-        
-        modal.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-      });
-    });
-
-    // Close modal
-    closeModal.addEventListener('click', () => {
-      modal.classList.add('hidden');
-      document.body.style.overflow = 'auto';
-    });
-
-    // Close modal on backdrop click
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.classList.add('hidden');
-        document.body.style.overflow = 'auto';
-      }
-    });
-
-    // Size selection functionality
-    document.querySelectorAll('.border-gray-600').forEach(button => {
-      button.addEventListener('click', () => {
-        // Remove active class from all size buttons
-        document.querySelectorAll('.border-gray-600').forEach(btn => {
-          btn.classList.remove('border-trfc-gold', 'bg-trfc-gold', 'text-black');
-          btn.classList.add('border-gray-600');
-        });
-        
-        // Add active class to clicked button
-        button.classList.remove('border-gray-600');
-        button.classList.add('border-trfc-gold', 'bg-trfc-gold', 'text-black');
-      });
-    });
-
-    // Quantity controls
-    const quantityButtons = modal.querySelectorAll('.bg-gray-700');
-    const quantityDisplay = modal.querySelector('.bg-gray-800');
-    let quantity = 1;
-
-    if (quantityButtons.length >= 2) {
-      quantityButtons[0].addEventListener('click', () => {
-        if (quantity > 1) {
-          quantity--;
-          quantityDisplay.textContent = quantity;
-        }
-      });
-
-      quantityButtons[1].addEventListener('click', () => {
-        if (quantity < 10) {
-          quantity++;
-          quantityDisplay.textContent = quantity;
-        }
-      });
-    }
 
     // Mobile menu functionality
     const mobileMenuButton = document.querySelector('button.lg\\:hidden');

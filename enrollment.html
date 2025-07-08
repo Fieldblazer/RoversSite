@@ -1,3 +1,6 @@
+<!-- Enrollment Page with Stripe -->
+
+
 <!DOCTYPE html KEEP>
 <html lang="en">
 <head>
@@ -6,6 +9,8 @@
     <title>Rovers FC | Texarkana Rovers Football Club</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Stripe JavaScript SDK -->
+    <script src="https://js.stripe.com/v3/"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -125,6 +130,31 @@
         }
         .tab-indicator.active {
             border-bottom-color: #FFD700;
+        }
+
+        /* Stripe Elements styling */
+        .StripeElement {
+            box-sizing: border-box;
+            height: 40px;
+            padding: 10px 12px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            background-color: white;
+            box-shadow: 0 1px 3px 0 #e6ebf1;
+            -webkit-transition: box-shadow 150ms ease;
+            transition: box-shadow 150ms ease;
+        }
+        
+        .StripeElement--focus {
+            box-shadow: 0 1px 3px 0 #cfd7df;
+        }
+        
+        .StripeElement--invalid {
+            border-color: #fa755a;
+        }
+        
+        .StripeElement--webkit-autofill {
+            background-color: #fefde5 !important;
         }
     </style>
 </head>
@@ -993,7 +1023,7 @@
     </div>
   </div>
 
-  <!-- Payment Information -->
+  <!-- UPDATED PAYMENT INFORMATION SECTION WITH STRIPE -->
   <div class="bg-trfc-dark p-6 rounded-lg mb-6">
     <h4 class="text-lg font-medium text-white mb-4">Payment Information</h4>
     <p class="text-gray-400 mb-4">Enrollment fee: $150 per player. Choose your payment method below.</p>
@@ -1009,24 +1039,49 @@
       </label>
     </div>
 
+    <!-- Online Payment Section with Stripe -->
     <div id="onlinePayment" class="mt-6">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="mb-4">
+        <label for="cardName" class="block text-sm font-medium text-white mb-2">Name on Card</label>
+        <input type="text" id="cardName" name="cardName" 
+               class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold" />
+      </div>
+      
+      <!-- Stripe Elements Card Input -->
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-white mb-2">Card Information</label>
+        <div id="card-element" class="p-3 border border-gray-700 rounded-md bg-white min-h-[40px]">
+          <!-- Stripe Elements will create form elements here -->
+        </div>
+        <div id="card-errors" role="alert" class="text-red-500 text-sm mt-2"></div>
+      </div>
+
+      <!-- Billing Address -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
         <div>
-          <label for="cardName" class="block text-sm font-medium text-white">Name on Card</label>
-          <input type="text" id="cardName" name="cardName" class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold" />
+          <label for="billingAddress" class="block text-sm font-medium text-white mb-1">Billing Address</label>
+          <input type="text" id="billingAddress" name="billingAddress" 
+                 class="block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold" />
         </div>
         <div>
-          <label for="cardNumber" class="block text-sm font-medium text-white">Card Number</label>
-          <input type="text" id="cardNumber" name="cardNumber" class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold" />
+          <label for="billingZip" class="block text-sm font-medium text-white mb-1">ZIP Code</label>
+          <input type="text" id="billingZip" name="billingZip" 
+                 class="block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold" />
         </div>
-        <div>
-          <label for="cardExpiry" class="block text-sm font-medium text-white">Expiry (MM/YY)</label>
-          <input type="text" id="cardExpiry" name="cardExpiry" placeholder="MM/YY" class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold" />
-        </div>
-        <div>
-          <label for="cardCvv" class="block text-sm font-medium text-white">CVV</label>
-          <input type="text" id="cardCvv" name="cardCvv" class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold" />
-        </div>
+      </div>
+    </div>
+
+    <!-- Check Payment Instructions -->
+    <div id="checkPayment" class="mt-6 hidden">
+      <div class="bg-gray-800 p-4 rounded-lg">
+        <h5 class="text-white font-medium mb-2">Check Payment Instructions:</h5>
+        <ul class="text-gray-300 text-sm space-y-1">
+          <li>• Make check payable to: <strong>Texarkana Rovers FC</strong></li>
+          <li>• Amount: <strong>$150.00</strong></li>
+          <li>• Write player's name in memo line</li>
+          <li>• Mail to: 1 Legion Dr, Texarkana, AR 71854</li>
+          <li>• Enrollment is not complete until payment is received</li>
+        </ul>
       </div>
     </div>
 
@@ -1166,8 +1221,54 @@
   </div>
 
   <script>
-    // Enhanced Tab Navigation, Validation, and Form Submit logic
+    // Enhanced Tab Navigation, Validation, and Form Submit logic with Stripe Integration
 document.addEventListener('DOMContentLoaded', function() {
+
+  // REPLACE WITH YOUR ACTUAL STRIPE PUBLISHABLE KEY
+  const STRIPE_PUBLISHABLE_KEY = 'pk_test_51R1UdkQvXP9kTZke0ZgPCARkbr0wrrqgaTNMN7MjH50EVmcMFNW5YQY6S1Sz3ERDrsflBkqQHH1j2IBaHHyyfHu00nXjVuIVn';
+  
+  // Initialize Stripe
+  let stripe, elements, cardElement;
+  
+  // Only initialize Stripe if we have a valid key
+  if (STRIPE_PUBLISHABLE_KEY && STRIPE_PUBLISHABLE_KEY !== 'pk_test_YOUR_PUBLISHABLE_KEY_HERE') {
+    stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
+    elements = stripe.elements();
+
+    // Create card element with custom styling
+    cardElement = elements.create('card', {
+      style: {
+        base: {
+          fontSize: '16px',
+          color: '#424770',
+          fontFamily: 'Montserrat, sans-serif',
+          '::placeholder': {
+            color: '#aab7c4',
+          },
+          iconColor: '#666EE8',
+        },
+        invalid: {
+          color: '#e5424d',
+          ':focus': {
+            color: '#303238',
+          },
+        },
+      },
+    });
+
+    // Mount card element
+    cardElement.mount('#card-element');
+
+    // Handle real-time validation errors from the card Element
+    cardElement.on('change', function(event) {
+      const displayError = document.getElementById('card-errors');
+      if (event.error) {
+        displayError.textContent = event.error.message;
+      } else {
+        displayError.textContent = '';
+      }
+    });
+  }
 
   // Define required fields for each tab
   const requiredFieldsByTab = {
@@ -1383,17 +1484,19 @@ function switchToTab(tabId) {
   document.querySelectorAll('input[name="paymentMethod"]').forEach(radio => {
     radio.addEventListener('change', function() {
       const onlinePayment = document.getElementById('onlinePayment');
-      if (onlinePayment) {
-        if (this.value === 'online') {
-          onlinePayment.classList.remove('hidden');
-        } else {
-          onlinePayment.classList.add('hidden');
-        }
+      const checkPayment = document.getElementById('checkPayment');
+      
+      if (this.value === 'online') {
+        onlinePayment.classList.remove('hidden');
+        checkPayment.classList.add('hidden');
+      } else {
+        onlinePayment.classList.add('hidden');
+        checkPayment.classList.remove('hidden');
       }
     });
   });
 
-  // Final form submission with complete validation
+  // Enhanced form submission with Stripe payment processing
   const enrollmentForm = document.getElementById("enrollmentForm");
   if (enrollmentForm) {
     enrollmentForm.addEventListener("submit", async function(e) {
@@ -1439,39 +1542,93 @@ function switchToTab(tabId) {
       // Show loading state
       const submitButton = this.querySelector('button[type="submit"]');
       const originalText = submitButton.innerHTML;
-      submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Submitting...';
+      submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Processing...';
       submitButton.disabled = true;
       
       try {
-        // Build FormData and submit
-        const formData = new FormData(this);
-        const response = await fetch("/api/enroll", {
-          method: "POST",
-          body: formData
-        });
+        const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
         
-        if (response.ok) {
-          // Show success modal
-          const successModal = document.getElementById("successModal");
-          if (successModal) {
-            successModal.classList.remove("hidden");
+        if (paymentMethod === 'online') {
+          // Process online payment with Stripe
+          if (!stripe || !cardElement) {
+            throw new Error('Payment processing not available. Please contact support.');
           }
+          
+          submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Processing Payment...';
+          
+          // Create payment token
+          const {token, error} = await stripe.createToken(cardElement, {
+            name: document.getElementById('cardName').value,
+            address_line1: document.getElementById('billingAddress').value,
+            address_zip: document.getElementById('billingZip').value,
+          });
+
+          if (error) {
+            document.getElementById('card-errors').textContent = error.message;
+            throw new Error(error.message);
+          }
+
+          // Prepare form data with payment token
+          const formData = new FormData(this);
+          formData.append('stripeToken', token.id);
+          formData.append('paymentAmount', '15000'); // $150.00 in cents
+          formData.append('tokenId', token.id);
+          
+          // Submit to backend
+          const response = await fetch("/api/enroll", {
+            method: "POST",
+            body: formData
+          });
+          
+          const result = await response.json();
+          
+          if (response.ok && result.success) {
+            // Payment successful
+            showSuccessMessage('Payment processed successfully! Welcome to Rovers FC.');
+          } else {
+            throw new Error(result.error || 'Payment processing failed');
+          }
+          
         } else {
-          // Handle error
-          let data = {};
-          try {
-            data = await response.json();
-          } catch (_) {}
-          alert("Error submitting form: " + (data.error || response.statusText));
+          // Handle check payment (no Stripe processing)
+          const formData = new FormData(this);
+          
+          const response = await fetch("/api/enroll", {
+            method: "POST",
+            body: formData
+          });
+          
+          const result = await response.json();
+          
+          if (response.ok && result.success) {
+            showSuccessMessage('Enrollment submitted! Please mail your check to complete registration.');
+          } else {
+            throw new Error(result.error || 'Enrollment submission failed');
+          }
         }
+        
       } catch (error) {
-        alert("Error submitting form: " + error.message);
+        console.error('Enrollment error:', error);
+        alert("Error: " + error.message);
       } finally {
         // Restore button state
         submitButton.innerHTML = originalText;
         submitButton.disabled = false;
       }
     });
+  }
+
+  // Success message function
+  function showSuccessMessage(message) {
+    const successModal = document.getElementById("successModal");
+    if (successModal) {
+      // Update success message
+      const messageElement = successModal.querySelector('p');
+      if (messageElement) {
+        messageElement.textContent = message;
+      }
+      successModal.classList.remove("hidden");
+    }
   }
 
   // Success modal close function
@@ -1487,7 +1644,12 @@ function switchToTab(tabId) {
       enrollmentForm.reset();
     }
     
-    // Hide all file previews
+    // Clear Stripe element
+    if (cardElement) {
+      cardElement.clear();
+    }
+    
+    // Hide file previews
     document.querySelectorAll('[id$="Preview"]').forEach(preview => {
       preview.classList.add("hidden");
     });

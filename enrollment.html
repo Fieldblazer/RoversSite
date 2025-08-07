@@ -1023,74 +1023,118 @@
   </div>
 
   <!-- UPDATED PAYMENT INFORMATION SECTION WITH STRIPE -->
-  <div class="bg-trfc-dark p-6 rounded-lg mb-6">
-    <h4 class="text-lg font-medium text-white mb-4">Payment Information</h4>
-    <p class="text-gray-400 mb-4">Enrollment fee: $150 per player. Choose your payment method below.</p>
+ <!-- UPDATED PAYMENT INFORMATION SECTION WITH INVOICE CODE -->
+<div class="bg-trfc-dark p-6 rounded-lg mb-6">
+  <h4 class="text-lg font-medium text-white mb-4">Payment Information</h4>
+  <p class="text-gray-400 mb-4">Enrollment fee: $150 per player. Choose your payment method below.</p>
 
-    <div class="mt-4">
-      <label class="inline-flex items-center">
-        <input type="radio" name="paymentMethod" value="online" class="h-4 w-4 text-trfc-gold focus:ring-trfc-gold border-gray-700" checked />
-        <span class="ml-2 text-white">Pay Online Now</span>
-      </label>
-      <label class="inline-flex items-center ml-6">
-        <input type="radio" name="paymentMethod" value="check" class="h-4 w-4 text-trfc-gold focus:ring-trfc-gold border-gray-700" />
-        <span class="ml-2 text-white">Pay by Check</span>
-      </label>
+  <!-- Invoice Code Section -->
+  <div class="mb-6 p-4 bg-gray-800 rounded-lg border border-gray-600">
+    <div class="flex items-center mb-3">
+      <i class="fas fa-ticket-alt text-trfc-gold mr-2"></i>
+      <label for="invoiceCode" class="text-sm font-medium text-white">Invoice Code (Optional)</label>
+    </div>
+    <input 
+      type="text" 
+      id="invoiceCode" 
+      name="invoiceCode" 
+      placeholder="Enter invoice code for custom amounts"
+      class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold" 
+    />
+    <p class="text-xs text-gray-400 mt-1">Enter "TEST" to enable custom payment amounts for testing</p>
+  </div>
+
+  <!-- Custom Amount Section (Hidden by default) -->
+  <div id="customAmountSection" class="mb-6 p-4 bg-green-900 bg-opacity-20 rounded-lg border border-green-500 hidden">
+    <div class="flex items-center mb-3">
+      <i class="fas fa-dollar-sign text-green-400 mr-2"></i>
+      <label for="customAmount" class="text-sm font-medium text-white">Custom Payment Amount</label>
+    </div>
+    <div class="relative">
+      <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
+      <input 
+        type="number" 
+        id="customAmount" 
+        name="customAmount" 
+        min="1" 
+        max="500" 
+        step="0.01"
+        placeholder="0.00"
+        class="mt-1 block w-full pl-8 rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold" 
+      />
+    </div>
+    <p class="text-xs text-gray-400 mt-1">Enter amount between $1.00 and $500.00</p>
+    <div id="amountPreview" class="mt-2 text-sm text-green-400 hidden">
+      Payment amount: <span id="previewAmount">$0.00</span>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <label class="inline-flex items-center">
+      <input type="radio" name="paymentMethod" value="online" class="h-4 w-4 text-trfc-gold focus:ring-trfc-gold border-gray-700" checked />
+      <span class="ml-2 text-white">Pay Online Now</span>
+    </label>
+    <label class="inline-flex items-center ml-6">
+      <input type="radio" name="paymentMethod" value="check" class="h-4 w-4 text-trfc-gold focus:ring-trfc-gold border-gray-700" />
+      <span class="ml-2 text-white">Pay by Check</span>
+    </label>
+  </div>
+
+  <!-- Online Payment Section with Stripe -->
+  <div id="onlinePayment" class="mt-6">
+    <div class="mb-4">
+      <label for="cardName" class="block text-sm font-medium text-white mb-2">Name on Card</label>
+      <input type="text" id="cardName" name="cardName" 
+             class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold" />
+    </div>
+    
+    <!-- Stripe Elements Card Input -->
+    <div class="mb-4">
+      <label class="block text-sm font-medium text-white mb-2">Card Information</label>
+      <div id="card-element" class="p-3 border border-gray-700 rounded-md bg-white min-h-[40px]">
+        <!-- Stripe Elements will create form elements here -->
+      </div>
+      <div id="card-errors" role="alert" class="text-red-500 text-sm mt-2"></div>
     </div>
 
-    <!-- Online Payment Section with Stripe -->
-    <div id="onlinePayment" class="mt-6">
-      <div class="mb-4">
-        <label for="cardName" class="block text-sm font-medium text-white mb-2">Name on Card</label>
-        <input type="text" id="cardName" name="cardName" 
+    <!-- Billing Address -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+      <div>
+        <label for="billingAddress" class="block text-sm font-medium text-white mb-2">Billing Address</label>
+        <input type="text" id="billingAddress" name="billingAddress" 
                class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold" />
       </div>
-      
-      <!-- Stripe Elements Card Input -->
-      <div class="mb-4">
-        <label class="block text-sm font-medium text-white mb-2">Card Information</label>
-        <div id="card-element" class="p-3 border border-gray-700 rounded-md bg-white min-h-[40px]">
-          <!-- Stripe Elements will create form elements here -->
-        </div>
-        <div id="card-errors" role="alert" class="text-red-500 text-sm mt-2"></div>
-      </div>
-
-      <!-- Billing Address -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-        <div>
-          <label for="billingAddress" class="block text-sm font-medium text-white mb-1">Billing Address</label>
-          <input type="text" id="billingAddress" name="billingAddress" 
-                 class="block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold" />
-        </div>
-        <div>
-          <label for="billingZip" class="block text-sm font-medium text-white mb-1">ZIP Code</label>
-          <input type="text" id="billingZip" name="billingZip" 
-                 class="block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold" />
-        </div>
+      <div>
+        <label for="billingZip" class="block text-sm font-medium text-white mb-2">ZIP Code</label>
+        <input type="text" id="billingZip" name="billingZip" 
+               class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold" />
       </div>
     </div>
 
-    <!-- Check Payment Instructions -->
-    <div id="checkPayment" class="mt-6 hidden">
-      <div class="bg-gray-800 p-4 rounded-lg">
-        <h5 class="text-white font-medium mb-2">Check Payment Instructions:</h5>
-        <ul class="text-gray-300 text-sm space-y-1">
-          <li>• Make check payable to: <strong>Texarkana Rovers FC</strong></li>
-          <li>• Amount: <strong>$150.00</strong></li>
-          <li>• Write player's name in memo line</li>
-          <li>• Mail to: 1 Legion Dr, Texarkana, AR 71854</li>
-          <li>• Enrollment is not complete until payment is received</li>
-        </ul>
-      </div>
-    </div>
-
+    <!-- Payment Agreement -->
     <div class="mt-6">
-      <label class="inline-flex items-center">
-        <input type="checkbox" name="paymentAgreement" required class="rounded border-gray-700 text-trfc-gold focus:ring-trfc-gold" />
-        <span class="ml-2 text-white required-field">I agree to pay $150 enrollment fee</span>
+      <label class="inline-flex items-start required-field">
+        <input type="checkbox" name="paymentAgreement" class="h-4 w-4 text-trfc-gold focus:ring-trfc-gold border-gray-700 mt-1" required />
+        <span class="ml-2 text-white">
+          I agree to pay the <span id="paymentAmountText">$150</span> enrollment fee
+        </span>
       </label>
     </div>
   </div>
+
+  <!-- Check Payment Section -->
+  <div id="checkPayment" class="mt-6 hidden">
+    <div class="bg-gray-800 p-4 rounded-lg">
+      <h5 class="text-white font-medium mb-2">Check Payment Instructions</h5>
+      <ul class="text-gray-300 text-sm space-y-1">
+        <li>• Make check payable to: <strong>Texarkana Rovers FC</strong></li>
+        <li>• Amount: <strong id="checkAmountText">$150.00</strong></li>
+        <li>• Write player's name in memo line</li>
+        <li>• Mail to: <strong>1 Legion Dr, Texarkana, AR 71854</strong></li>
+      </ul>
+    </div>
+  </div>
+</div>
 
   <div class="mt-8 flex justify-between">
     <button type="button" class="prev-tab px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-trfc-blue hover:bg-[#197fef] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-trfc-blue" data-prev="waiver">
@@ -1222,6 +1266,88 @@
   <script>
     // Enhanced Tab Navigation, Validation, and Form Submit logic with Stripe Integration
 document.addEventListener('DOMContentLoaded', function() {
+
+// Invoice Code and Custom Amount Logic
+  const invoiceCodeInput = document.getElementById('invoiceCode');
+  const customAmountSection = document.getElementById('customAmountSection');
+  const customAmountInput = document.getElementById('customAmount');
+  const amountPreview = document.getElementById('amountPreview');
+  const previewAmount = document.getElementById('previewAmount');
+  const paymentAmountText = document.getElementById('paymentAmountText');
+  const checkAmountText = document.getElementById('checkAmountText');
+
+  // Valid invoice codes (you can expand this list)
+  const validInvoiceCodes = ['TEST', 'ADMIN', 'DEMO'];
+
+  // Invoice code validation
+  invoiceCodeInput.addEventListener('input', function() {
+    const code = this.value.toUpperCase().trim();
+    
+    if (validInvoiceCodes.includes(code)) {
+      // Show custom amount section
+      customAmountSection.classList.remove('hidden');
+      customAmountInput.focus();
+    } else {
+      // Hide custom amount section and reset
+      customAmountSection.classList.add('hidden');
+      customAmountInput.value = '';
+      amountPreview.classList.add('hidden');
+      updatePaymentAmountDisplay(150); // Reset to default
+    }
+  });
+
+  // Custom amount input validation and preview
+  customAmountInput.addEventListener('input', function() {
+    const amount = parseFloat(this.value);
+    
+    if (amount && amount >= 1 && amount <= 500) {
+      previewAmount.textContent = `$${amount.toFixed(2)}`;
+      amountPreview.classList.remove('hidden');
+      updatePaymentAmountDisplay(amount);
+    } else {
+      amountPreview.classList.add('hidden');
+      updatePaymentAmountDisplay(150); // Reset to default
+    }
+  });
+
+  // Update payment amount display throughout the form
+  function updatePaymentAmountDisplay(amount) {
+    const formattedAmount = `$${amount.toFixed(2)}`;
+    paymentAmountText.textContent = formattedAmount;
+    checkAmountText.textContent = formattedAmount;
+  }
+
+  // Payment method toggle
+  const paymentMethodRadios = document.querySelectorAll('input[name="paymentMethod"]');
+  const onlinePayment = document.getElementById('onlinePayment');
+  const checkPayment = document.getElementById('checkPayment');
+
+  paymentMethodRadios.forEach(radio => {
+    radio.addEventListener('change', function() {
+      if (this.value === 'online') {
+        onlinePayment.classList.remove('hidden');
+        checkPayment.classList.add('hidden');
+      } else {
+        onlinePayment.classList.add('hidden');
+        checkPayment.classList.remove('hidden');
+      }
+    });
+  });
+
+  // Function to get current payment amount in cents for Stripe
+  window.getCurrentPaymentAmount = function() {
+    const customAmount = document.getElementById('customAmount').value;
+    const invoiceCode = document.getElementById('invoiceCode').value.toUpperCase().trim();
+    
+    if (validInvoiceCodes.includes(invoiceCode) && customAmount) {
+      const amount = parseFloat(customAmount);
+      if (amount >= 1 && amount <= 500) {
+        return Math.round(amount * 100); // Convert to cents
+      }
+    }
+    
+    return 15000; // Default $150.00 in cents
+  };
 
   // REPLACE WITH YOUR ACTUAL STRIPE PUBLISHABLE KEY
   const STRIPE_PUBLISHABLE_KEY = 'pk_live_51RiUdYJlZ2hFUsl8NYUqeW3nFl3LoqBwvfjtgseYtl5mC4erHFKKpcXdFUsLnm9qKoZz5L4UkWJdCG7gHZ1W96vJ00OxvNDttx';
@@ -1570,7 +1696,17 @@ function switchToTab(tabId) {
           // Prepare form data with payment token
           const formData = new FormData(this);
           formData.append('stripeToken', token.id);
-          formData.append('paymentAmount', '15000'); // $150.00 in cents
+	  // Add invoice code and custom amount to form data for tracking
+          const invoiceCode = document.getElementById('invoiceCode').value;
+          const customAmount = document.getElementById('customAmount').value;
+          if (invoiceCode) {
+          formData.append('invoiceCode', invoiceCode);
+          }
+          if (customAmount) {
+          formData.append('customAmountDollars', customAmount);
+          }
+          const paymentAmountCents = getCurrentPaymentAmount();
+          formData.append('paymentAmount', paymentAmountCents.toString());
           formData.append('tokenId', token.id);
           
           // Submit to backend

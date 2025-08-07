@@ -89,9 +89,13 @@ export async function onRequestPost({ request, env, context }) {
     billingZip: formData.get("billingZip") || "(not provided)",
     paymentAgreement: formData.get("paymentAgreement") ? "Yes" : "No",
     
-    // Stripe Payment Data
+    // Invoice Code and Custom Amount Support
+    invoiceCode: formData.get("invoiceCode") || null,
+    customAmountDollars: formData.get("customAmountDollars") || null,
+
+    // Stripe Payment Data - Updated to handle custom amounts
     stripeToken: formData.get("stripeToken") || null,
-    paymentAmount: formData.get("paymentAmount") || "15000" // $150.00 in cents
+    paymentAmount: formData.get("paymentAmount") || "15000" // Will be custom amount if provided
   };
 
   console.log("🐝 Captured enrollment data:", enrollmentData);
@@ -125,12 +129,17 @@ export async function onRequestPost({ request, env, context }) {
           amount: enrollmentData.paymentAmount,
           currency: 'usd',
           source: enrollmentData.stripeToken,
-          description: `Rovers FC Enrollment - ${enrollmentData.firstName} ${enrollmentData.lastName}`,
+          description: enrollmentData.invoiceCode && enrollmentData.customAmountDollars 
+? `Rovers FC Enrollment - ${enrollmentData.firstName} ${enrollmentData.lastName} (Custom Amount: $${enrollmentData.customAmountDollars} - Invoice:       ${enrollmentData.invoiceCode})`
+  : `Rovers FC Enrollment - ${enrollmentData.firstName} ${enrollmentData.lastName}`,
           receipt_email: enrollmentData.email,
           'metadata[player_name]': `${enrollmentData.firstName} ${enrollmentData.lastName}`,
           'metadata[enrollment_type]': 'season_2025_2026',
           'metadata[parent_name]': enrollmentData.parentName,
           'metadata[phone]': enrollmentData.phone
+          'metadata[phone]': enrollmentData.phone,
+          'metadata[invoice_code]': enrollmentData.invoiceCode || 'standard',
+          'metadata[custom_amount]': enrollmentData.customAmountDollars || 'none'
         })
       });
 

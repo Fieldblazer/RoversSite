@@ -98,7 +98,13 @@ export async function onRequestPost({ request, env, context }) {
     paymentAmount: formData.get("paymentAmount") || "15000" // Will be custom amount if provided
   };
 
-  console.log("🐝 Captured enrollment data:", enrollmentData);
+  // Log payment details for debugging
+  console.log("🐝 Payment Details:", {
+    paymentMethod: enrollmentData.paymentMethod,
+    paymentAmount: enrollmentData.paymentAmount,
+    invoiceCode: enrollmentData.invoiceCode,
+    customAmount: enrollmentData.customAmountDollars
+  });
 
   // Initialize payment status
   let paymentStatus = {
@@ -118,6 +124,18 @@ export async function onRequestPost({ request, env, context }) {
         throw new Error("Stripe secret key not configured");
       }
 
+      // Use the payment amount from form data (could be custom or default)
+      const paymentAmountCents = parseInt(enrollmentData.paymentAmount);
+      const paymentAmountDollars = (paymentAmountCents / 100).toFixed(2);
+      
+      console.log(`🐝 Processing payment of $${paymentAmountDollars} (${paymentAmountCents} cents)`);
+
+      // Create enhanced description based on whether it's a custom amount
+      let description = `Rovers FC Enrollment - ${enrollmentData.firstName} ${enrollmentData.lastName}`;
+      if (enrollmentData.invoiceCode && enrollmentData.customAmountDollars) {
+        description += ` (Custom Amount: $${enrollmentData.customAmountDollars} - Invoice: ${enrollmentData.invoiceCode})`;
+      }
+
       // Create Stripe charge using their API
       const stripeResponse = await fetch('https://api.stripe.com/v1/charges', {
         method: 'POST',
@@ -126,17 +144,14 @@ export async function onRequestPost({ request, env, context }) {
           'Content-Type': 'application/x-www-form-urlencoded'
         },
         body: new URLSearchParams({
-          amount: enrollmentData.paymentAmount,
+          amount: paymentAmountCents.toString(),
           currency: 'usd',
           source: enrollmentData.stripeToken,
-          description: enrollmentData.invoiceCode && enrollmentData.customAmountDollars 
-? `Rovers FC Enrollment - ${enrollmentData.firstName} ${enrollmentData.lastName} (Custom Amount: $${enrollmentData.customAmountDollars} - Invoice:       ${enrollmentData.invoiceCode})`
-  : `Rovers FC Enrollment - ${enrollmentData.firstName} ${enrollmentData.lastName}`,
+          description: description,
           receipt_email: enrollmentData.email,
           'metadata[player_name]': `${enrollmentData.firstName} ${enrollmentData.lastName}`,
           'metadata[enrollment_type]': 'season_2025_2026',
           'metadata[parent_name]': enrollmentData.parentName,
-          'metadata[phone]': enrollmentData.phone
           'metadata[phone]': enrollmentData.phone,
           'metadata[invoice_code]': enrollmentData.invoiceCode || 'standard',
           'metadata[custom_amount]': enrollmentData.customAmountDollars || 'none'
@@ -154,7 +169,7 @@ export async function onRequestPost({ request, env, context }) {
           amount: stripeResult.amount,
           error: null
         };
-        console.log("🐝 Payment successful:", stripeResult.id);
+        console.log(`🐝 Payment successful: ${stripeResult.id} for $${paymentAmountDollars}`);
       } else {
         throw new Error(stripeResult.error?.message || 'Payment failed');
       }
@@ -189,6 +204,24 @@ export async function onRequestPost({ request, env, context }) {
     };
   }
 
+  // Helper function to create custom amount information
+  const getCustomAmountInfo = () => {
+    const isCustomAmount = enrollmentData.invoiceCode && enrollmentData.customAmountDollars;
+    const paymentAmountDisplay = isCustomAmount 
+      ? `$${enrollmentData.customAmountDollars}` 
+      : '$150.00';
+
+    const customAmountNote = isCustomAmount 
+      ? `<p style="background-color: #fff3cd; border: 1px solid #ffeaa7; color: #856404; padding: 10px; border-radius: 5px; margin: 10px 0;">
+           <strong>Custom Amount:</strong> This enrollment used invoice code "${enrollmentData.invoiceCode}" for a custom payment of ${paymentAmountDisplay}.
+         </p>` 
+      : '';
+
+    return { paymentAmountDisplay, customAmountNote, isCustomAmount };
+  };
+
+  const { paymentAmountDisplay, customAmountNote, isCustomAmount } = getCustomAmountInfo();
+
   // Create detailed HTML email with payment information
   const htmlBody = `
     <div style="font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; background-color: #f9f9f9; padding: 20px;">
@@ -203,6 +236,31 @@ export async function onRequestPost({ request, env, context }) {
         }
       </div>
       
+      ${customAmountNote}
+      
+      <div style="background-color: white; padding: 20px; margin: 20px 0;">
+        <h3 style="color: #1E90FF; border-bottom: 2px solid #FFD700; padding-bottom: 10px;">Payment Information</h3>
+        <table style="width: 100%; border-collapse: collapse;">
+          <tr><td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #eee;">Payment Method:</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${enrollmentData.paymentMethod}</td></tr>
+          <tr><td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #eee;">Amount:</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${paymentAmountDisplay}</td></tr>
+          ${enrollmentData.invoiceCode ? `<tr><td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #eee;">Invoice Code:</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${enrollmentData.invoiceCode}</td></tr>` : ''}
+          <tr><td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #eee;">Payment Agreement:</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${enrollmentData.paymentAgreement}</td></tr>
+          ${enrollmentData.paymentMethod === 'online' ? `
+          <tr><td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #eee;">Card Name:</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${enrollmentData.cardName}</td></tr>
+          <tr><td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #eee;">Billing Address:</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${enrollmentData.billingAddress}</td></tr>
+          <tr><td style="padding: 8px; font-weight: bold; border-bottom: 1px solid #eee;">Billing ZIP:</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${enrollmentData.billingZip}</td></tr>
+          ` : ''}
+          ${paymentStatus.successful ? `
+          <tr><td style="padding: 8px; font-weight: bold; color: #28a745;">Payment Status:</td><td style="padding: 8px; color: #28a745;">✅ PAID - $${(paymentStatus.amount / 100).toFixed(2)}</td></tr>
+          <tr><td style="padding: 8px; font-weight: bold;">Charge ID:</td><td style="padding: 8px;">${paymentStatus.chargeId}</td></tr>
+          ` : enrollmentData.paymentMethod === 'check' ? `
+          <tr><td style="padding: 8px; font-weight: bold; color: #ffc107;">Payment Status:</td><td style="padding: 8px; color: #856404;">💰 PENDING - Awaiting check payment</td></tr>
+          ` : paymentStatus.error ? `
+          <tr><td style="padding: 8px; font-weight: bold; color: #dc3545;">Payment Status:</td><td style="padding: 8px; color: #dc3545;">❌ FAILED - ${paymentStatus.error}</td></tr>
+          ` : ''}
+        </table>
+      </div>
+
       <div style="background-color: white; padding: 20px; margin: 20px 0;">
         <h3 style="color: #1E90FF; border-bottom: 2px solid #FFD700; padding-bottom: 10px;">Player Information</h3>
         <table style="width: 100%; border-collapse: collapse;">
@@ -272,27 +330,6 @@ export async function onRequestPost({ request, env, context }) {
       </div>
 
       <div style="background-color: white; padding: 20px; margin: 20px 0;">
-        <h3 style="color: #1E90FF; border-bottom: 2px solid #FFD700; padding-bottom: 10px;">Payment Information</h3>
-        <table style="width: 100%; border-collapse: collapse;">
-          <tr><td style="padding: 5px; font-weight: bold;">Payment Method:</td><td style="padding: 5px;">${enrollmentData.paymentMethod}</td></tr>
-          <tr><td style="padding: 5px; font-weight: bold;">Payment Agreement:</td><td style="padding: 5px;">${enrollmentData.paymentAgreement}</td></tr>
-          ${enrollmentData.paymentMethod === 'online' ? `
-          <tr><td style="padding: 5px; font-weight: bold;">Card Name:</td><td style="padding: 5px;">${enrollmentData.cardName}</td></tr>
-          <tr><td style="padding: 5px; font-weight: bold;">Billing Address:</td><td style="padding: 5px;">${enrollmentData.billingAddress}</td></tr>
-          <tr><td style="padding: 5px; font-weight: bold;">Billing ZIP:</td><td style="padding: 5px;">${enrollmentData.billingZip}</td></tr>
-          ` : ''}
-          ${paymentStatus.successful ? `
-          <tr><td style="padding: 5px; font-weight: bold; color: #28a745;">Payment Status:</td><td style="padding: 5px; color: #28a745;">✅ PAID - $${(paymentStatus.amount / 100).toFixed(2)}</td></tr>
-          <tr><td style="padding: 5px; font-weight: bold;">Charge ID:</td><td style="padding: 5px;">${paymentStatus.chargeId}</td></tr>
-          ` : enrollmentData.paymentMethod === 'check' ? `
-          <tr><td style="padding: 5px; font-weight: bold; color: #ffc107;">Payment Status:</td><td style="padding: 5px; color: #856404;">💰 PENDING - Awaiting check payment</td></tr>
-          ` : paymentStatus.error ? `
-          <tr><td style="padding: 5px; font-weight: bold; color: #dc3545;">Payment Status:</td><td style="padding: 5px; color: #dc3545;">❌ FAILED - ${paymentStatus.error}</td></tr>
-          ` : ''}
-        </table>
-      </div>
-
-      <div style="background-color: white; padding: 20px; margin: 20px 0;">
         <h3 style="color: #1E90FF; border-bottom: 2px solid #FFD700; padding-bottom: 10px;">Document Submission</h3>
         ${uploadedFile ? `
         <table style="width: 100%; border-collapse: collapse;">
@@ -311,7 +348,7 @@ export async function onRequestPost({ request, env, context }) {
         ${paymentStatus.successful ? 
           `<p style="margin: 5px 0 0 0;">Payment processed successfully - Receipt sent to ${enrollmentData.email}</p>` :
           enrollmentData.paymentMethod === 'check' ?
-          `<p style="margin: 5px 0 0 0;">Enrollment pending - Awaiting check payment of $150.00</p>` :
+          `<p style="margin: 5px 0 0 0;">Enrollment pending - Awaiting check payment of ${paymentAmountDisplay}</p>` :
           ''
         }
       </div>
@@ -356,6 +393,8 @@ Waiver Agreements:
 
 Payment Information:
 - Method: ${enrollmentData.paymentMethod}
+- Amount: ${paymentAmountDisplay}
+${enrollmentData.invoiceCode ? `- Invoice Code: ${enrollmentData.invoiceCode}` : ''}
 - Agreement: ${enrollmentData.paymentAgreement}
 ${paymentStatus.successful ? `- Status: PAID - $${(paymentStatus.amount / 100).toFixed(2)}
 - Charge ID: ${paymentStatus.chargeId}` : 
@@ -368,7 +407,7 @@ ${uploadedFile ? `- Proof of Age: ${uploadedFile.name} (${(uploadedFile.size / 1
 Submitted: ${new Date().toLocaleDateString()}
   `;
 
-      // Try to send emails (both business notification and customer confirmation)
+  // Try to send emails (both business notification and customer confirmation)
   try {
     console.log("🐝 About to call Mailgun API...");
     
@@ -379,7 +418,7 @@ Submitted: ${new Date().toLocaleDateString()}
     const businessFormData = new FormData();
     businessFormData.append('from', `RoversFC Enrollment <noreply@txkrovers.com>`);
     businessFormData.append('to', 'texarkanarovers@gmail.com');
-    businessFormData.append('subject', `New Enrollment: ${enrollmentData.firstName} ${enrollmentData.lastName}${paymentStatus.successful ? ' [PAID]' : enrollmentData.paymentMethod === 'check' ? ' [CHECK PENDING]' : paymentStatus.error ? ' [PAYMENT FAILED]' : ''}`);
+    businessFormData.append('subject', `New Enrollment: ${enrollmentData.firstName} ${enrollmentData.lastName}${paymentStatus.successful ? ' [PAID]' : enrollmentData.paymentMethod === 'check' ? ' [CHECK PENDING]' : paymentStatus.error ? ' [PAYMENT FAILED]' : ''}${isCustomAmount ? ` [CUSTOM: ${paymentAmountDisplay}]` : ''}`);
     businessFormData.append('html', htmlBody);
     businessFormData.append('text', textBody);
     
@@ -420,8 +459,9 @@ Submitted: ${new Date().toLocaleDateString()}
           ${paymentStatus.successful ? `
           <div style="background-color: #d4edda; border: 1px solid #c3e6cb; color: #155724; padding: 15px; border-radius: 5px; margin: 20px 0;">
             <h4 style="margin: 0 0 10px 0;">✅ Payment Confirmed</h4>
-            <p style="margin: 0;">Your payment of <strong>${(paymentStatus.amount / 100).toFixed(2)}</strong> has been processed successfully.</p>
+            <p style="margin: 0;">Your payment of <strong>$${(paymentStatus.amount / 100).toFixed(2)}</strong> has been processed successfully.</p>
             <p style="margin: 5px 0 0 0; font-size: 14px;">You'll receive a separate receipt from Stripe via email.</p>
+            ${isCustomAmount ? `<p style="margin: 5px 0 0 0; font-size: 14px; font-style: italic;">Custom amount processed using invoice code: ${enrollmentData.invoiceCode}</p>` : ''}
           </div>
           ` : enrollmentData.paymentMethod === 'check' ? `
           <div style="background-color: #fff3cd; border: 1px solid #ffeaa7; color: #856404; padding: 15px; border-radius: 5px; margin: 20px 0;">
@@ -429,10 +469,11 @@ Submitted: ${new Date().toLocaleDateString()}
             <p style="margin: 0 0 10px 0;">Please mail your check to complete the enrollment:</p>
             <ul style="text-align: left; margin: 0; padding-left: 20px;">
               <li>Make check payable to: <strong>Texarkana Rovers FC</strong></li>
-              <li>Amount: <strong>$150.00</strong></li>
+              <li>Amount: <strong>${paymentAmountDisplay}</strong></li>
               <li>Write "${enrollmentData.firstName} ${enrollmentData.lastName}" in memo line</li>
               <li>Mail to: <strong>1 Legion Dr, Texarkana, AR 71854</strong></li>
             </ul>
+            ${isCustomAmount ? `<p style="margin: 10px 0 0 0; font-size: 14px; font-style: italic;">Custom amount using invoice code: ${enrollmentData.invoiceCode}</p>` : ''}
           </div>
           ` : ''}
         </div>
@@ -484,15 +525,17 @@ We've received the enrollment for ${enrollmentData.firstName} ${enrollmentData.l
 
 ${paymentStatus.successful ? `
 PAYMENT CONFIRMED ✅
-Your payment of ${(paymentStatus.amount / 100).toFixed(2)} has been processed successfully.
+Your payment of $${(paymentStatus.amount / 100).toFixed(2)} has been processed successfully.
 You'll receive a separate receipt from Stripe via email.
+${isCustomAmount ? `Custom amount processed using invoice code: ${enrollmentData.invoiceCode}` : ''}
 ` : enrollmentData.paymentMethod === 'check' ? `
 PAYMENT INSTRUCTIONS 💰
 Please mail your check to complete the enrollment:
 - Make check payable to: Texarkana Rovers FC
-- Amount: $150.00
+- Amount: ${paymentAmountDisplay}
 - Write "${enrollmentData.firstName} ${enrollmentData.lastName}" in memo line
 - Mail to: 1 Legion Dr, Texarkana, AR 71854
+${isCustomAmount ? `Custom amount using invoice code: ${enrollmentData.invoiceCode}` : ''}
 ` : ''}
 
 ENROLLMENT SUMMARY:

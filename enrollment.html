@@ -1025,7 +1025,7 @@
   <!-- UPDATED PAYMENT INFORMATION SECTION WITH INVOICE CODE -->
   <div class="bg-trfc-dark p-6 rounded-lg mb-6">
     <h4 class="text-lg font-medium text-white mb-4">Payment Information</h4>
-    <p class="text-gray-400 mb-4">Enrollment fee: $150 per player. Choose your payment method below.</p>
+    <p class="text-gray-400 mb-4">Enrollment fee: $97 per player. Choose your payment method below.</p>
 
     <!-- Invoice Code Section -->
     <div class="mb-6 p-4 bg-gray-800 rounded-lg border border-gray-600">
@@ -1115,7 +1115,7 @@
         <label class="inline-flex items-start required-field">
           <input type="checkbox" name="paymentAgreement" class="h-4 w-4 text-trfc-gold focus:ring-trfc-gold border-gray-700 mt-1" required />
           <span class="ml-2 text-white">
-            I agree to pay the <span id="paymentAmountText">$150</span> enrollment fee
+            I agree to pay the <span id="paymentAmountText">$97</span> enrollment fee
           </span>
         </label>
       </div>
@@ -1127,7 +1127,7 @@
         <h5 class="text-white font-medium mb-2">Check Payment Instructions</h5>
         <ul class="text-gray-300 text-sm space-y-1">
           <li>• Make check payable to: <strong>Texarkana Rovers FC</strong></li>
-          <li>• Amount: <strong id="checkAmountText">$150.00</strong></li>
+          <li>• Amount: <strong id="checkAmountText">$97.00</strong></li>
           <li>• Write player's name in memo line</li>
           <li>• Mail to: <strong>1 Legion Dr, Texarkana, AR 71854</strong></li>
         </ul>
@@ -1291,7 +1291,7 @@ document.addEventListener('DOMContentLoaded', function() {
       customAmountSection.classList.add('hidden');
       customAmountInput.value = '';
       amountPreview.classList.add('hidden');
-      updatePaymentAmountDisplay(150); // Reset to default
+      updatePaymentAmountDisplay(97); // Reset to default
     }
   });
 
@@ -1305,7 +1305,7 @@ document.addEventListener('DOMContentLoaded', function() {
       updatePaymentAmountDisplay(amount);
     } else {
       amountPreview.classList.add('hidden');
-      updatePaymentAmountDisplay(150); // Reset to default
+      updatePaymentAmountDisplay(97); // Reset to default
     }
   });
 
@@ -1345,7 +1345,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     
-    return 15000; // Default $150.00 in cents
+    return 9700; // Default $97.00 in cents
   };
 
   // REPLACE WITH YOUR ACTUAL STRIPE PUBLISHABLE KEY

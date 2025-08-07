@@ -95,7 +95,7 @@ export async function onRequestPost({ request, env, context }) {
 
     // Stripe Payment Data - Updated to handle custom amounts
     stripeToken: formData.get("stripeToken") || null,
-    paymentAmount: formData.get("paymentAmount") || "15000" // Will be custom amount if provided
+    paymentAmount: formData.get("paymentAmount") || "9700" // Will be custom amount if provided
   };
 
   // Log payment details for debugging
@@ -209,7 +209,7 @@ export async function onRequestPost({ request, env, context }) {
     const isCustomAmount = enrollmentData.invoiceCode && enrollmentData.customAmountDollars;
     const paymentAmountDisplay = isCustomAmount 
       ? `$${enrollmentData.customAmountDollars}` 
-      : '$150.00';
+      : '$97.00';
 
     const customAmountNote = isCustomAmount 
       ? `<p style="background-color: #fff3cd; border: 1px solid #ffeaa7; color: #856404; padding: 10px; border-radius: 5px; margin: 10px 0;">

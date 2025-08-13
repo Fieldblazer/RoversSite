@@ -1037,10 +1037,10 @@
         type="text" 
         id="invoiceCode" 
         name="invoiceCode" 
-        placeholder="Enter invoice code for custom amounts"
+        placeholder="Enter invoice code"
         class="mt-1 block w-full rounded-md border-gray-700 bg-white text-black shadow-sm focus:border-trfc-gold focus:ring-trfc-gold" 
       />
-      <p class="text-xs text-gray-400 mt-1">Enter "TEST" to enable custom payment amounts for testing</p>
+      <p class="text-xs text-gray-400 mt-1"></p>
     </div>
 
     <!-- Custom Amount Section (Hidden by default) -->
@@ -1276,7 +1276,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const checkAmountText = document.getElementById('checkAmountText');
 
   // Valid invoice codes (you can expand this list)
-  const validInvoiceCodes = ['TEST', 'ADMIN', 'DEMO'];
+  const validInvoiceCodes = ['TEST', 'ADMIN', 'ROVERSMAX'];
 
   // Invoice code validation
   invoiceCodeInput.addEventListener('input', function() {
